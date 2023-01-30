@@ -1,14 +1,14 @@
 # Invoke Actions
 
-Pando are a set of a blockchain based protocols, which are designed to be executed by sending transactions to Pando's MTG.
+Pando is a set of blockchain protocols executed by sending transactions to multisig address.
 
-For example, if you want to get information from the protocols, call the APIs and read the response is the easiest way. But if you want to interact with the protocols, tell the protocols what you want to do, with cryptocurrency as the medium, you need to send transactions to Pando's MTG.
+To retrieve information, call the APIs and read the response. 
 
-The `Action Protocol` to illustrate behaviors of each transaction. `Action Protocol` is basically a bytes array, which is encoded in the transaction memo field.
+However, if you want to interact with the protocols and tell them what you want to do with cryptocurrency, you need to send transactions to Pando's multisig address. 
 
-When you send a transaction to Pando's MTG, MTG Nodes will try to decode the memo field and execute the action in it.
+The behavior of each transaction is illustrated by the `Action Protocol`, a byte array encoded in the transaction memo field. When you send a transaction, MTG Nodes decode the memo field and execute the action within.
 
-## Generate actions manually
+## Generate actions by API
 
 To better understand how the action works, let's generate the action manually. This time, we'll use 4swap's `swap` action as an example: We want to swap `CNB` to `DOGE`.
 
@@ -101,9 +101,9 @@ log.Println("memo", memo)
 
 ### Send by `mixin-cli`
 
-When you have the action, encoded in the memo field, you're ready to send transactions to Pando's MTG.
+When you have the encoded action for the memo field, you can send transactions to Pando's MTG. 
 
-There are several ways to send transactions to Pando's MTG. For testing purpose, you can use `mixin-cli`. 
+There are various ways to send transactions, but for testing, you can use `mixin-cli`.
 
 ```bash{3,4,5,6,7,8,9} [mixin-cli]
 $ mixin-cli -f ./keystore.json transfer --asset 965e5c6e-434c-3fa9-b780-c50f43cd955c \

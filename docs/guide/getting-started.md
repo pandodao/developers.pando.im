@@ -1,42 +1,44 @@
 # Getting Started
 
-This section will help you get started with Pando Protocols. We will walk you through the basic concepts of Pando Protocols, and how to integrate them into your projects.
+Get started with Pando Protocols development with this guide. We'll cover fundamental concepts and show you how to integrate them into your projects.
 
-## Register your Mixin Network App
+## Register Mixin Network App
 
-The only prerequisite to develop with Pando is to register as a Mixin Developer. You may need to download Mixin Messenger at first if you don't have it installed: [Download it](https://mixin.network/messenger).
+To start developing with Pando, first register as a Mixin Developer. If you don't have Mixin Messenger, [download it](https://mixin.network/messenger). Then follow [these steps](https://developers.mixin.one/docs/dapp/getting-started/create-dapp) to register as a developer.
 
-After you have Mixin Messenger installed, you can register as a Mixin Developer by [those steps](https://developers.mixin.one/docs/dapp/getting-started/create-dapp).
-
-For more information about Mixin Network, please visit [Mixin Network Developer Portal](https://developers.mixin.one/).
+For more information about Mixin Network, please visit [Mixin Network Developer Portal](https://developers.mixin.one/dashboard).
 
 ::: info
-Each developer account can creates 2 applications for free, pay if you need more.
+Each developer account can creates 2 Apps for free. Pay to the portal if you need more.
 :::
 
 ## Generate the keys
 
-Click `Ed25519 session` button to generate a new keystore, which includes sensitive information such as the application's PIN, session ID, pin token, and private key:
+At the App page, click `Ed25519 session` button to generate a new keystore, which includes sensitive information such as the application's PIN, session ID, pin token, and private key:
 
 ```json
 {
   "pin":        "123456",
-  "client_id":  "96c1460b-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "client_id":  "eac51982-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
   "session_id": "cc2ae4e2-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
   "pin_token":  "YcUaTtLL...ZaNag34",
   "private_key":"tbcUDgb4...2TxNfQi"
 }
 ```
 
-and save it to a file named `keystore.json`. Note that the `client_id` is the only unique identifier of your application, you will need it later.
+Save it to a file named `keystore.json`. 
+
+Note that the `client_id` is the only unique identifier of your application, you will need it later.
 
 ::: warning
-Note that the above keys and info are generated in the browser, it will not be saved by the server and browser, please store it properly.
+Note that the above keys and info are generated in the browser, it will not be saved by the server and browser, please store it properly and don't share it with others.
 :::
 
 ## Install `mixin-cli`
 
-We are strongly recommending you to use `mixin-cli` to help you develop with Pando. It is a command line tool that helps you to manage your dApps and manpuate with Mixin Network.
+We highly recommend using `mixin-cli` for Pando development. It's a command-line tool that streamlines dApp management and interactions with the Mixin Network.
+
+Install from source:
 
 ```bash
 git clone git@github.com:fox-one/mixin-cli.git
@@ -44,23 +46,23 @@ cd mixin-cli
 go install
 ```
 
-Now you can use `mixin-cli`, for example, show the information of your application:
+Now you can use it to show the information of your application:
 
 ```bash
 $ mixin-cli -f ./keystore.json user me
 ```
 
-In the following sections, we will use `mixin-cli` to do some operations without writing too much code.
+In subsequent sections, we'll use `mixin-cli` to perform operations without coding.
 
 ## Get CNB for testing
 
-To test your dApp, you need to get some cryptocurrencies into your keystore. You can get some CNB from [Pando Catkin](https://catkin.pando.im), which has a faucet to give you some CNB for free.
+To test your app, you'll need to acquire cryptocurrency. Obtain CNB from the [Pando Catkin](https://catkin.pando.im)'s CNB faucet, which provides free CNB tokens for developers.
 
-After you get some CNB, you can transfer them to your keystore by paste your application's `client_id` to the entry field, and using Mixin Messenger to scan the QR code.
+Once you have CNB, transfer it to your keystore by entering your app's `client_id` in the field and scanning the QR code with Mixin Messenger:
 
 <QrCodeView :qrcode-label="'Scan to transfer'" prepend-text="mixin://transfer/"/>
 
-If you successfully make it, you will see the CNB in your keystore by `mixing-cli`:
+If successful, view the CNB in your keystore via `mixin-cli`:
 
 ```bash
 $ mixin-cli -f ./keystore.json asset list
@@ -75,9 +77,7 @@ AssetId                               Symbol     Name                     Balanc
 
 ## What's next?
 
-By now, you should have a basic prerequisite to start developing with Pando Protocols. 
-
-But currently, you haven't interacted with Pando Protocols yet. Before we start, let's take a look at the basic concepts of Pando Protocols, which will help you understand how Pando Protocols work.
+You now have the basic prerequisites to start developing with Pando Protocols. To further understand how it works, explore the following:
 
 If you would like to know about the restful APIs Pando provides, visit [Call API](./call-apis). To put it simply, we will use `curl` to interact with these APIs.
 

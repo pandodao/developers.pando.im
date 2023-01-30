@@ -47,6 +47,7 @@ export default {
           items: [
             { text: 'Restful API', link: '/references/4swap/api' },
             { text: 'Action', link: '/references/4swap/action' },
+            { text: 'Design', link: '/references/4swap/design' },
           ]
         },
         {
@@ -54,21 +55,9 @@ export default {
           items: [
             { text: 'Restful API', link: '/references/leaf/api' },
             { text: 'Action', link: '/references/leaf/action' },
+            { text: 'Design', link: '/references/leaf/design' },
           ]
-        },
-        {
-          text: 'Rings',
-          items: [
-            { text: 'Restful API', link: '/references/rings/api' },
-            { text: 'Action', link: '/references/rings/action' },
-          ]
-        },
-        {
-          text: 'Resources',
-          items: [
-            { text: 'Examples', link: '/references/4swap/examples' },
-          ]
-        },
+        }
       ]
     }
   }
