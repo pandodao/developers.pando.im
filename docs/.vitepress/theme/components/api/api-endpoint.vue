@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p class="url shiki material-palenight"><code>{{ method }} {{ url }}</code> <span v-if="auth" class="auth">AUTHORIZATION REQUIRED</span></p>
+    <div v-if="auth" class="auth-wrapper"><span class="auth">AUTHORIZATION REQUIRED</span></div>
+    <div class="shiki material-palenight"><code class="url">{{ method }} {{ url }}</code>
+    </div>
   </div>
 </template>
 
@@ -25,10 +27,14 @@ const props = defineProps({
 </script>
 
 <style lang="css" scoped>
+.auth-wrapper {
+  margin-bottom: 4px;
+}
+.url {
+  background-color: var(--vp-c-blue-dimm-2);
+}
 .auth {
-  margin-left: 8px;
   border-radius: 4px;
-
   font-family: var(--vp-font-family-mono);
   font-size: var(--vp-code-font-size);
   padding: 3px 6px;

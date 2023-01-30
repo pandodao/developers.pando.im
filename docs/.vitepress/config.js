@@ -15,9 +15,9 @@ export default {
           text: 'Introduction',
           items: [
             { text: 'Getting Started', link: '/guide/getting-started' },
-            { text: 'Understand MTG', link: '/guide/understand-mtg' },
             { text: 'Call APIs', link: '/guide/call-apis' },
             { text: 'Invoke Actions', link: '/guide/invoke-actions' },
+            { text: 'Understand MTG', link: '/guide/understand-mtg' },
             { text: 'Redirect to Wallets', link: '/guide/redirect-to-wallets' },
           ]
         },
@@ -30,7 +30,6 @@ export default {
         {
           text: 'Resources',
           items: [
-            { text: 'Examples', link: '/guide/examples' },
             { text: 'SDKs', link: '/guide/sdks' },
             { text: 'Useful Links', link: '/guide/useful-links' },
           ]

@@ -14,7 +14,7 @@ Pando supports [multiple wallets](./wallets), and provides 2 npm packages to hel
 It's a recommended way to use them, and they will save you a lot of time.
 
 ```typescript
-[WIP]
+@TODO
 ```
 
 ## Redirect Manually

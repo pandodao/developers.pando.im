@@ -28,7 +28,7 @@ Click `Ed25519 session` button to generate a new keystore, which includes sensit
 }
 ```
 
-and save it to a file named `keystore.json`.
+and save it to a file named `keystore.json`. Note that the `client_id` is the only unique identifier of your application, you will need it later.
 
 ::: warning
 Note that the above keys and info are generated in the browser, it will not be saved by the server and browser, please store it properly.
@@ -44,13 +44,34 @@ cd mixin-cli
 go install
 ```
 
-Now you can use `mixin-cli`, for example, list all assets in your keystore:
+Now you can use `mixin-cli`, for example, show the information of your application:
+
+```bash
+mixin-cli -f ./keystore.json user me
+```
+
+In the following sections, we will use `mixin-cli` to do some operations without writing too much code.
+
+## Get CNB for testing
+
+To test your dApp, you need to get some cryptocurrencies into your keystore. You can get some CNB from [Pando Catkin](https://catkin.pando.im), which has a faucet to give you some CNB for free.
+
+After you get some CNB, you can transfer them to your keystore by paste your application's `client_id` to the entry field, and using Mixin Messenger to scan the QR code.
+
+<QrCodeView :qrcode-label="'Scan to transfer'" prepend-text="mixin://transfer/"/>
+
+If you successfully make it, you will see the CNB in your keystore by `mixing-cli`:
 
 ```bash
 mixin-cli -f ./keystore.json asset list
 ```
 
-In the following sections, we will use `mixin-cli` to do some operations without writing too much code.
+You would see something like this:
+
+```bash
+AssetId                               Symbol     Name                     Balance
+965e5c6e-434c-3fa9-b780-c50f43cd955c  CNB        Chui Niu Bi              100.01234
+```
 
 ## What's next?
 
@@ -58,11 +79,11 @@ By now, you should have a basic prerequisite to start developing with Pando Prot
 
 But currently, you haven't interacted with Pando Protocols yet. Before we start, let's take a look at the basic concepts of Pando Protocols, which will help you understand how Pando Protocols work.
 
-If you are not familiar with how Pando manages assets in a decentralized way, you may want to read [MTG](./understand-mtg) first.
-
 If you would like to know about the restful APIs Pando provides, visit [Call API](./call-apis). To put it simply, we will use `curl` to interact with these APIs.
 
 If you want to know how to interact with Pando by sending transactions, visit [Invoke Actions](./invoke-actions). 
+
+If you are not familiar with how Pando manages assets in a decentralized way, you may want to read [MTG](./understand-mtg).
 
 If you want to know how to fill the transfer and redirect to supported wallets in a web browser, visit [Redirect to Wallets](./redirect-to-wallets).
 

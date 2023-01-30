@@ -8,4 +8,13 @@
   --vp-button-brand-active-bg: #434add;
 
   --vp-c-brand-dark: #434add;
+
+  --vp-c-blue: #646cff;
+  --vp-c-blue-light: #747bff;
+  --vp-c-blue-lighter: #787fff;
+  --vp-c-blue-dark: #434add;
+  --vp-c-blue-darker: #191f8c;
+  --vp-c-blue-dimm-1: rgba(16, 117, 185, 0.05);
+  --vp-c-blue-dimm-2: rgba(16, 117, 185, 0.15);
+  --vp-c-blue-dimm-3: rgba(16, 117, 185, 0.5);
 }

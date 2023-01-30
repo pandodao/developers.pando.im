@@ -41,4 +41,35 @@ const txQueryParams = [{
   description: 'The limit of returned items'
 }];
 
+const actionParams = [{
+  name: 'action',
+  type: 'string',
+  where: 'json',
+  required: true,
+  description: 'action protocol data',
+}, {
+  name: 'amount',
+  type: 'string',
+  where: 'json',
+  required: true,
+  description: 'amount of transaction',
+}, {
+  name: 'asset_id',
+  type: 'string',
+  where: 'json',
+  required: true,
+  description: 'asset uuid of transaction',
+}, {
+  name: 'broker_id',
+  type: 'string',
+  where: 'json',
+  required: false,
+  description: 'broker id, leave it empty to use 4swap\'s default broker',
+}, {
+  name: 'trace_id',
+  type: 'string',
+  where: 'json',
+  required: false,
+  description: 'an UUID to trace the transaction.',
+}];
 </script>

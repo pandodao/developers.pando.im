@@ -1,48 +1,6 @@
 # 4swap API
 
-<script setup>
-const durParam =   {
-  name: 'dur',
-  type: 'string',
-  required: false,
-  description: 'The duration of returning data. for example, 4320h means latest 180 days'
-};
-
-const baseAndQuoteParams = [
-  {
-    name: 'base',
-    type: 'uuid',
-    required: true,
-    description: 'The base asset id'
-  },
-  {
-    name: 'quote',
-    type: 'uuid',
-    required: true,
-    description: 'The quote asset id'
-  }
-];
-
-const followIdParam = {
-  name: 'follow_id',
-  type: 'uuid',
-  required: true,
-  description: 'The follow id to trace the order'
-};
-
-const txQueryParams = [{
-  name: 'next_cursor',
-  type: 'number',
-  required: false,
-  description: 'The next cursor to fetch next page'
-}, {
-  name: 'limit',
-  type: 'number',
-  required: false,
-  description: 'The limit of returned items'
-}];
-
-</script>
+<!--@include: ../../parts/api-params.md-->
 
 ## Read info
 
@@ -285,7 +243,7 @@ This API will respond the order detail related to the follow id.
 
 ## Read transactions
 
-<APIEndpoint method="GET" url="transactions?cursor=:next_cursor&limit=:limit" />
+<APIEndpoint method="GET" url="/transactions?cursor=:next_cursor&limit=:limit" />
 
 This API will respond the order detail related to the follow id.
 
@@ -295,7 +253,7 @@ This API will respond the order detail related to the follow id.
 
 ## Read transactions of pair
 
-<APIEndpoint method="GET" url="transactions/:base_asset_id/:quote_asset_id?cursor=:next_cursor&limit=:limit" />
+<APIEndpoint method="GET" url="transactions/:base/:quote?cursor=:next_cursor&limit=:limit" />
 
 This API will respond a list of transactions of the specified pair.
 
@@ -305,7 +263,7 @@ This API will respond a list of transactions of the specified pair.
 
 ## Read transactions of me
 
-<APIEndpoint method="GET" auth url="transactions/:base_asset_id/:quote_asset_id/mine?cursor=:next_cursor&limit=:limit" />
+<APIEndpoint method="GET" auth url="transactions/:base/:quote/mine?cursor=:next_cursor&limit=:limit" />
 
 This API will respond a list of transactions of the specified pair releated to me.
 
@@ -313,3 +271,28 @@ This API will respond a list of transactions of the specified pair releated to m
 
 <!--@include: ../../parts/responses/transactions.md-->
 
+## Create action
+
+<APIEndpoint method="POST" auth url="/actions" />
+
+This is an API to generate an encrypted transfer by provided [action protocol](/docs/references/4swap/action) data. It's useful if you don't want to sign and encrypt the transaction memo yourself.
+
+<APIParams :params="actionParams" />
+
+### Response
+
+```json
+{
+  "ts": 1627697766503,
+  "data": {
+    // the encrypted action data
+    "action": "...",
+    // the code and the code url.
+    // they could be used to invoke Mixin Network compatible wallet, like Messenger and Fennec.
+    "code": "d294380f-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "code_url": "mixin://codes/d294380f-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    // an UUID to trace the transfer
+    "follow_id": "yyyyyyyy-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  }
+}
+```
