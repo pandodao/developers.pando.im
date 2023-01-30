@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,a as l}from"./app.0e7df95e.js";const A=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"parts/auth.md"}'),o={name:"parts/auth.md"},p=l("",13),e=[p];function t(c,r,D,y,i,F){return n(),a("div",null,e)}const d=s(o,[["render",t]]);export{A as __pageData,d as default};
