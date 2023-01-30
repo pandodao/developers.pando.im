@@ -13,7 +13,7 @@ Public APIs are available to everyone. You can simply call them without any auth
 Here is an example of calling the `/info` API of 4swap:
 
 ```bash
-curl -X GET "https://api.4swap.org/api/info" -H "accept: application/json"
+$ curl -X GET "https://api.4swap.org/api/info" -H "accept: application/json"
 ```
 
 The response will be like this:
@@ -39,7 +39,7 @@ The access token should be signed and generate by **Your Own Mixn Application**.
 Generate the access token by using `mixin-cli` is pretty easy:
 
 ```bash [mixin-cli]
-mixin-cli -f ./keystore.json sign /me
+$ mixin-cli -f ./keystore.json sign /me
 ```
 
 `mixin-cli` will output the access token, you can use it to call the protected APIs:
@@ -115,7 +115,7 @@ signAuthenticationToken(
 to validate your access token, by calling those API, it's an API to get the transactions of pairs `BTC/ETH` in 4swap:
 
 ```bash
-curl -X GET "https://api.4swap.org/api/transactions/c6d0c728-2624-429b-8e0d-d9d19b6592fa/43d61dcd-e413-450d-80b8-101d5e903357/mine" -H "accept: application/json" \
+$ curl -X GET "https://api.4swap.org/api/transactions/c6d0c728-2624-429b-8e0d-d9d19b6592fa/43d61dcd-e413-450d-80b8-101d5e903357/mine" -H "accept: application/json" \
 --header 'Authorization: Bearer YOUR_ACCESS_TOKEN_HERE'
 ```
 

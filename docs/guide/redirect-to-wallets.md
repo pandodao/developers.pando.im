@@ -17,7 +17,7 @@ It's a recommended way to use them, and they will save you a lot of time.
 @TODO
 ```
 
-## Redirect Manually
+## Redirect manually
 
 If you can not use `@foxone/passport`, or you prefer to do that yourself, you can redirect users to Mixin Messenger to pay.
 

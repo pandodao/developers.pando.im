@@ -273,11 +273,21 @@ This API will respond a list of transactions of the specified pair releated to m
 
 ## Create action
 
-<APIEndpoint method="POST" auth url="/actions" />
+<APIEndpoint method="POST" url="/actions" />
 
 This is an API to generate an encrypted transfer by provided [action protocol](./action) data. It's useful if you don't want to sign and encrypt the transaction memo yourself.
 
 <APIParams :params="actionParams" />
+
+::: tip
+Don't use this API if you want to swap frequently, it's not efficient. You should generate memo locally instead.
+:::
+
+::: info
+Field `amount` and `asset_id` are optional. If you provide them, the API will send request to Mixin Network and create a payment `code` and `code_url` for you. 
+
+If you're building a dApp or a WebApp, it could be useful to let users pay for your service by Mixin Network compatible wallet, like Messenger and Fennec.
+:::
 
 ### Response
 
@@ -287,7 +297,7 @@ This is an API to generate an encrypted transfer by provided [action protocol](.
   "data": {
     // the encrypted action data
     "action": "...",
-    // the code and the code url.
+    // the code and the code url, only available if you provide `amount` and `asset_id`
     // they could be used to invoke Mixin Network compatible wallet, like Messenger and Fennec.
     "code": "d294380f-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
     "code_url": "mixin://codes/d294380f-xxxx-xxxx-xxxx-xxxxxxxxxxxx",

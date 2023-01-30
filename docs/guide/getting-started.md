@@ -47,7 +47,7 @@ go install
 Now you can use `mixin-cli`, for example, show the information of your application:
 
 ```bash
-mixin-cli -f ./keystore.json user me
+$ mixin-cli -f ./keystore.json user me
 ```
 
 In the following sections, we will use `mixin-cli` to do some operations without writing too much code.
@@ -63,7 +63,7 @@ After you get some CNB, you can transfer them to your keystore by paste your app
 If you successfully make it, you will see the CNB in your keystore by `mixing-cli`:
 
 ```bash
-mixin-cli -f ./keystore.json asset list
+$ mixin-cli -f ./keystore.json asset list
 ```
 
 You would see something like this:

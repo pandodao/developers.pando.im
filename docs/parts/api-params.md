@@ -51,13 +51,13 @@ const actionParams = [{
   name: 'amount',
   type: 'string',
   where: 'json',
-  required: true,
+  required: false,
   description: 'amount of transaction',
 }, {
   name: 'asset_id',
   type: 'string',
   where: 'json',
-  required: true,
+  required: false,
   description: 'asset uuid of transaction',
 }, {
   name: 'broker_id',
