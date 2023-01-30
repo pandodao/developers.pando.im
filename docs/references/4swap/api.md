@@ -1,6 +1,6 @@
 # 4swap API
 
-<!--@include: ../../parts/api-params.md-->
+<!--@include: ../../parts/4swap-api-params.md-->
 
 ## Read info
 

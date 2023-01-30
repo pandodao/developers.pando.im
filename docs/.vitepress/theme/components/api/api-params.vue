@@ -55,7 +55,6 @@ const props = defineProps({
   transition: color 0.5s, background-color 0.5s;
 }
 .params-type {
-  color: var(--vp-c-blue-darker);
   background-color: var(--vp-c-blue-dimm-2);
 }
 .params-type.json {
