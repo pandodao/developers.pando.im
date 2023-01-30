@@ -1,1 +1,0 @@
-import{o as a,c as t}from"./app.0fa8e07e.js";const o=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"parts/api-params.md"}'),e={name:"parts/api-params.md"},n=Object.assign(e,{setup(r){return(s,p)=>(a(),t("div"))}});export{o as __pageData,n as default};
