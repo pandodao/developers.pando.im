@@ -275,7 +275,7 @@ This API will respond a list of transactions of the specified pair releated to m
 
 <APIEndpoint method="POST" auth url="/actions" />
 
-This is an API to generate an encrypted transfer by provided [action protocol](/docs/references/4swap/action) data. It's useful if you don't want to sign and encrypt the transaction memo yourself.
+This is an API to generate an encrypted transfer by provided [action protocol](./action) data. It's useful if you don't want to sign and encrypt the transaction memo yourself.
 
 <APIParams :params="actionParams" />
 
