@@ -25,6 +25,8 @@ export default {
           text: 'Others',
           items: [
             { text: 'Wallets', link: '/guide/wallets' },
+            { text: 'Talkee', link: '/guide/talkee' },
+            { text: 'Lots', link: '/guide/lots' },
           ]
         },
         {
@@ -40,6 +42,7 @@ export default {
           items: [
             { text: 'Overview', link: '/references/overview' },
             { text: 'Authorization', link: '/references/auth' },
+            { text: 'Action Specification', link: '/references/action' },
           ]
         },
         {
