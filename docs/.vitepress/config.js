@@ -33,6 +33,7 @@ export default {
           text: 'Resources',
           items: [
             { text: 'SDKs', link: '/guide/sdks' },
+            { text: 'Community', link: '/guide/community' },
             { text: 'Useful Links', link: '/guide/useful-links' },
           ]
         },

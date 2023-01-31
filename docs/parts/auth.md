@@ -16,7 +16,7 @@ $ mixin-cli -f ./keystore.json sign /me
 `mixin-cli` will output the access token, you can use it to call the protected APIs:
 
 ```bash
-sign GET /me with request id e98b1200-xxxx-xxxx-xxxx-xxxxxxxxxxxx & exp 1m0s
+sign GET /me with request id e98b1200-xxxx-xxxx-xxxx-xxxxxxxxxxxx & exp 10m0s
 
 eyJhbGciOiJFZER....jTtecIBiQo4OrJ7q7Ag
 ```
