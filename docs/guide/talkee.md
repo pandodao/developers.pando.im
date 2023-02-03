@@ -32,9 +32,9 @@ Additionally, please answer the following questions:
 We'll review your application and get back to you promptly.
 
 ::: tip Notes
-1. Ensure that the tokens/coins you want to distribute are supported by [Mixin Network](https://mixin.one/snapshots).
-2. An amount of tokens/coins may be required to cover the cost of the reward feature.
-3. Currently, we only support Arweave as the storage network."
+- Ensure that the tokens/coins you want to distribute are supported by [Mixin Network](https://mixin.one/snapshots).
+- An amount of tokens/coins may be required to cover the cost of the reward feature.
+- Currently, we only support arweave as the storage network.
 :::
 
 ### Pricing
