@@ -1,10 +1,10 @@
 # Talkee
 
-Talkee is a comment hosting service for web sites and web3 applications. It can be embedded in any web based applications. People can connect their wallets to leave comments.
+**Talkee** is a powerful comment hosting solution for web sites and web3 applications. With its seamless integration, it can be easily embedded into any web-based platform, allowing users to connect their wallets and leave comments.
 
-The content of comments could be stored on the blockchain, by default it's stored on [Arweave](https://www.arweave.org/), a decentralized storage network.
+The comments' content can be securely stored on the blockchain, with [Arweave](https://www.arweave.org/) as the default decentralized storage network.
 
-The host can distribute crypto rewards to the commenters according to the some specific rules.
+Hosts have the ability to reward active commenters with cryptocurrencies based on customizable rules and criteria.
 
 ## Demo
 
@@ -13,29 +13,28 @@ Please visit [this page](https://fox-one.github.io/uikit-next/?path=/story/talke
 ## Who's using Talkee
 
 - [Pando](https://pando.im) - The official website of Pando.
-- [Coinpost](https://coinpost.jp) - Coinpost is a Japanese crypto media. Talkee is used to collect comments from the readers and distribute Bitcoin to the top commenters.
-
+- [Coinpost](https://coinpost.jp) - A famous Japanese cryptocurrency and blockchain media. Talkee is used to collect comments from the readers and distribute Bitcoin to the top commenters.
 
 ## Register your site
 
-Please send an email to `contact@pando.im` to apply for a site id. Please provide the following information in the email:
+To apply for a `site_id`, please kindly send an email to `contact@pando.im` with the following details:
 
 - Your site name
-- Your site url
+- Your site URL
 
-and anwser the following questions:
+Additionally, please answer the following questions:
 
-1. How many comments do you expect to have per day?
-2. Do you want to enable the reward feature?
-3. If so, how many tokens do you want to distribute per day and what's the token/coin symbol?
-4. Do you want to enable the seal on blockchain feature?
+1. What is your expected daily comment count?
+2. Do you wish to enable the reward feature?
+3. If yes, specify the number of tokens you want to distribute daily and the token/coin symbol.
+4. Do you want to activate the stored on blockchain feature?
 
-We will review your application and reply to you as soon as possible.
+We'll review your application and get back to you promptly.
 
-::: tip
-1. Please make sure the token/coins you want to distribute are supported by [Mixin Network](https://mixin.one/snapshots).
-2. We will ask you to pay an mount of tokens/coins to cover the cost of the reward feature.
-3. At present, we only support Arweave as the storage network.
+::: tip Notes
+1. Ensure that the tokens/coins you want to distribute are supported by [Mixin Network](https://mixin.one/snapshots).
+2. An amount of tokens/coins may be required to cover the cost of the reward feature.
+3. Currently, we only support Arweave as the storage network."
 :::
 
 ### Pricing
@@ -62,7 +61,7 @@ Talkee is free for now.
 <body>
   <!-- insert scripts -->
   <script src="https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.prod.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.0/dist/index.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.1/dist/index.umd.js"></script>
   <!-- the container -->
   <div class="#talkee-wrapper"></div>
 </body>
@@ -114,7 +113,7 @@ for more options, please visit [this page](https://github.com/fox-one/uikit-next
 
 ### Enable MetaMask and WalletConnect support
 
-If you want to enable MetaMask and WalletConnect support, please add the following code to your HTML:
+To enable MetaMask and WalletConnect support, add the following code to your HTML:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@foxone/mvm@0.1.27/dist/mvm.min.js"></script>
@@ -122,11 +121,11 @@ If you want to enable MetaMask and WalletConnect support, please add the followi
 
 ### Use Talkee in your Vue3 project
 
-Please visit [this page](https://github.com/fox-one/uikit-next/tree/main/packages/talkee) to see the installation guide.
+Talkee is a Vue3 component, making it easy to integrate into your Vue3 project. For installation instructions, visit [this page](https://github.com/fox-one/uikit-next/tree/main/packages/talkee).
 
 ### Gitch and workarounds
 
-for some reason, the button's style is not applied correctly, so we need to add the following code to your custom css file:
+To resolve issues with incorrect button styling in certain scenarios, add the following code to your custom CSS file.
 
 ```css
 :root {
