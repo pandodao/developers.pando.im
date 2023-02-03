@@ -38,7 +38,13 @@ Note that the above keys and info are generated in the browser, it will not be s
 
 We highly recommend using `mixin-cli` for Pando development. It's a command-line tool that streamlines dApp management and interactions with the Mixin Network.
 
-Install from source:
+### Install the prebuilt binary
+
+Download the prebuilt binary from [releases](https://github.com/fox-one/mixin-cli/releases).
+
+Put it in your `$PATH` and make it executable.
+
+### Install from source:
 
 ```bash
 git clone git@github.com:fox-one/mixin-cli.git
