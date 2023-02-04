@@ -6,6 +6,8 @@ The comments' content can be securely stored on the blockchain, with [Arweave](h
 
 Hosts have the ability to reward active commenters with cryptocurrencies based on customizable rules and criteria.
 
+![Talkee Screenshot](./assets/talkee.webp)
+
 ## Demo
 
 Please visit [this page](https://fox-one.github.io/uikit-next/?path=/story/talkee-talkee--default) to see the demo.
@@ -39,7 +41,7 @@ We'll review your application and get back to you promptly.
 
 ### Pricing
 
-Talkee is free for now.
+Talkee is free.
 
 ## Installation
 

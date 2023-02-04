@@ -18,3 +18,9 @@
   --vp-c-blue-dimm-2: rgba(16, 117, 185, 0.15);
   --vp-c-blue-dimm-3: rgba(16, 117, 185, 0.5);
 }
+
+.vp-doc p img {
+  box-shadow: 0 0 0 0.5px var(--vp-c-border);
+  border-radius: 8px;
+}
+
