@@ -1,6 +1,6 @@
 export default {
   title: 'Pando Developers',
-  description: 'Just playing around.',
+  description: 'Just playing around with Pando',
   themeConfig: {
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
