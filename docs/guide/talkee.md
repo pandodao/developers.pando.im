@@ -65,7 +65,7 @@ Talkee is free.
   <script src="https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.prod.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.1/dist/index.umd.js"></script>
   <!-- the container -->
-  <div class="#talkee-wrapper"></div>
+  <div id="talkee-wrapper"></div>
 </body>
 ```
 
