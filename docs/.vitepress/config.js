@@ -61,6 +61,12 @@ export default {
             { text: 'Action', link: '/references/leaf/action' },
             { text: 'Design', link: '/references/leaf/design' },
           ]
+        },
+        {
+          text: 'Talkee',
+          items: [
+            { text: 'Restful API', link: '/references/talkee/api' },
+          ]
         }
       ]
     }

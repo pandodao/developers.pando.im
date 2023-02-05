@@ -61,6 +61,10 @@ const props = defineProps({
   color: var(--vp-c-yellow-darker);
   background-color: var(--vp-c-yellow-dimm-2);
 }
+.params-type.header {
+  color: var(--vp-c-green-darker);
+  background-color: var(--vp-c-green-dimm-2);
+}
 .param-item, .param-required {
   font-family: var(--vp-font-family-mono);
   font-size: var(--vp-code-font-size);
