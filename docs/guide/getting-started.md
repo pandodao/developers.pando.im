@@ -47,7 +47,7 @@ Put it in your `$PATH` and make it executable.
 ### Install from source:
 
 ```bash
-git clone git@github.com:fox-one/mixin-cli.git
+git clone https://github.com/fox-one/mixin-cli.git
 cd mixin-cli
 go build
 go install
