@@ -1,0 +1,1 @@
+import{o as e,c as t}from"./app.6776b379.js";const p=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"parts/talkee-ws-params.md"}'),a={name:"parts/talkee-ws-params.md"},n=Object.assign(a,{setup(s){return(r,c)=>(e(),t("div"))}});export{p as __pageData,n as default};
