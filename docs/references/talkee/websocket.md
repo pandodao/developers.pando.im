@@ -74,9 +74,8 @@ This API is used to get latest 100 messages of specific site and slug.
 ### Response
 
 ```json
-{
-  "ts": 1675582938650,
-  "data": [
+[
+  {
     "category":"text",
     "data":"SGVsbG8h",
     "created_at":"2023-02-06T17:26:17.800860098+09:00",
@@ -88,9 +87,9 @@ This API is used to get latest 100 messages of specific site and slug.
       "avatar_url": "https://mixin-images.zeromesh.net/.../avatar.jpg",
       "created_at": "2022-02-05T16:11:16.420872+09:00"
     }
-    // ...
-  ]
-}
+  }
+  // ...
+]
 ```
 
 ## Create a new message
