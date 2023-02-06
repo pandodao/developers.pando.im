@@ -159,11 +159,11 @@ This API is used to create new reply for a specific comment.
 
 ## Get replies
 
-<APIEndpoint method="GET" url="/comments/:comment_id/replies" />
+<APIEndpoint method="GET" url="/comments/:comment_id/replies?limit=:limit&offset=:offset&" />
 
 This API is used to create new reply for a specific comment.
 
-<APIParams :params="[commentIdParam, contentParam]" />
+<APIParams :params="repliesQueryParams.concat([commentIdParam, contentParam])" />
 
 <!--@include: ../../parts/responses/talkee-reply.md-->
 
