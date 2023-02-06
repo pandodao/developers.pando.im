@@ -66,6 +66,7 @@ export default {
           text: 'Talkee',
           items: [
             { text: 'Restful API', link: '/references/talkee/api' },
+            { text: 'Websocket', link: '/references/talkee/websocket' },
           ]
         }
       ]
