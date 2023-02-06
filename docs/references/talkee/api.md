@@ -11,40 +11,21 @@ Some APIs require you to specify a site, for example, `GET /comments` need to kn
 
 Both ways are valid, but you can only use one of them at a time. If you specify a site by both ways, the header will be used.
 
-## Get site info
-
-<APIEndpoint method="GET" url="/sites/:site_id" />
-
-This API is used to get site info.
-
-<APIParams :params="[ siteIdParam ]" />
-
-### Response
-
-```json
-{
-  "ts": 1675583895807,
-  "data": {
-    "id": 1,
-    "user_id": 1,
-    "origin": "https://....",
-    "name": "A Test Site",
-    "use_arweave": false,
-    "reward_strategy": 0,
-    "created_at": "2022-02-05T16:11:16.420872+09:00",
-    "updated_at": "2022-02-05T16:11:16.420872+09:00"
-  }
-}
-```
-
 ## Login
 
 <APIEndpoint method="POST" url="/auth/login" />
 
 This API is used to login to Talkee. 
 
-Talkee's authentication is slightly different from other pando protocols. It uses own JWT token to identify users. So you need to exchange mixin's `access_token` mentioned in the [Authorization](../auth) to Talkee's `access_token` first, and then
-save the `access_token` in the response to access other authenticated APIs.
+Talkee's authentication is slightly different from other pando protocols. It uses own JWT token to identify users. 
+
+To get the JWT token, there are three ways:
+
+1. Login with Mixin OAuth: You need to exchange Mixin OAuth's `code` to Talkee's `access_token`. Assign `mixin_oauth` to `method` and `code` to `mixin_oauth_code` in the request body.
+2. Login with Mixin access token: You need to exchange Mixin's `access_token` to Talkee's `access_token`. Assign `mixin_token` to `method` and mixin's `access_token` mentioned in the [Authorization](../auth) to `mixin_access_token` in the request body.
+3. Login with MVM: `@TODO`
+
+After you get the `access_token`, save the `access_token` in the response to access other authenticated APIs.
 
 <APIParams :params="loginParams" />
 
@@ -67,6 +48,32 @@ Note that the `mixin_access_token` is same as the `access_token` in the [Authori
       "avatar_url": "https://mixin-images.zeromesh.net/.../avatar.jpg",
       "created_at": "2022-02-05T16:11:16.420872+09:00"
     }
+  }
+}
+```
+
+## Get site info
+
+<APIEndpoint method="GET" url="/sites/:site_id" />
+
+This API is used to get site info.
+
+<APIParams :params="[ siteIdParam ]" />
+
+### Response
+
+```json
+{
+  "ts": 1675583895807,
+  "data": {
+    "id": 1,
+    "user_id": 1,
+    "origin": "https://....",
+    "name": "A Test Site",
+    "use_arweave": false,
+    "reward_strategy": 0,
+    "created_at": "2022-02-05T16:11:16.420872+09:00",
+    "updated_at": "2022-02-05T16:11:16.420872+09:00"
   }
 }
 ```

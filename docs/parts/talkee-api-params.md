@@ -89,13 +89,19 @@ const loginParams = [{
   type: 'string',
   required: true,
   where: 'json',
-  description: 'the login method, only support "mixin" now'
+  description: 'the login method, can be "mixin_oauth" or "mixin_token" or "mvm"'
 }, {
-  name: 'mixin_access_token',
+  name: 'mixin_oauth_code',
   type: 'string',
-  required: true,
+  required: false,
   where: 'json',
-  description: 'the access token of mixin, should be signed for `/me`'
+  description: 'the oauth code of mixin oauth. Only required when `method` is "mixin_oauth"'
+}, {
+  name: 'mixin_token',
+  type: 'string',
+  required: false,
+  where: 'json',
+  description: 'the access token of mixin, should be signed for `/me`. Only required when `method` is "mixin_token"'
 }, {
   name: 'lang',
   type: 'string',
