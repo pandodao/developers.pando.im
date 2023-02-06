@@ -23,7 +23,7 @@ To get the JWT token, there are three ways:
 
 1. Login with Mixin OAuth: You need to exchange Mixin OAuth's `code` to Talkee's `access_token`. Assign `mixin_oauth` to `method` and `code` to `mixin_oauth_code` in the request body.
 2. Login with Mixin access token: You need to exchange Mixin's `access_token` to Talkee's `access_token`. Assign `mixin_token` to `method` and mixin's `access_token` mentioned in the [Authorization](../auth) to `mixin_access_token` in the request body.
-3. Login with MVM: `@TODO`
+3. Login with MVM: You need to sign an [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) messages to exchange for Talkee's `access_token`. Assign `mvm` to `method`, put the signed message to `signed_message` and put the signature to `sign` in the request body.
 
 After you get the `access_token`, save the `access_token` in the response to access other authenticated APIs.
 

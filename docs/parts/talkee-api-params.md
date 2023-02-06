@@ -103,6 +103,18 @@ const loginParams = [{
   where: 'json',
   description: 'the access token of mixin, should be signed for `/me`. Only required when `method` is "mixin_token"'
 }, {
+  name: 'sign',
+  type: 'string',
+  required: false,
+  where: 'json',
+  description: 'the signature of the `EIP-4361` message. Only required when `method` is "mvm"'
+}, {
+  name: 'signed_message',
+  type: 'string',
+  required: false,
+  where: 'json',
+  description: 'the `EIP-4361` message. Only required when `method` is "mvm"'
+}, {
   name: 'lang',
   type: 'string',
   required: false,
