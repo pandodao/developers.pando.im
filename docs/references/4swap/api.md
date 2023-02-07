@@ -113,7 +113,7 @@ The API will respond all supported pairs. It's compatible with Coinmarketcap's r
 
 ## Read statistics
 
-<APIEndpoint method="GET" url="/states/markets?dur=:dur" />
+<APIEndpoint method="GET" url="/stats/markets?dur=:dur" />
 
 This API will respond historical market statistics.
 
@@ -140,7 +140,7 @@ This API will respond historical market statistics.
 
 ## Read statistics of pair
 
-<APIEndpoint method="GET" url="/states/markets/:base/:quote" />
+<APIEndpoint method="GET" url="/stats/markets/:base/:quote" />
 
 This API will respond historical market statistics specified by base and quote asset.
 
@@ -167,7 +167,7 @@ This API will respond historical market statistics specified by base and quote a
 
 ## Read candlestick data
 
-<APIEndpoint method="GET" url="/states/markets/:base/:quote/kline/v2?dur=:dur" />
+<APIEndpoint method="GET" url="/stats/markets/:base/:quote/kline/v2?dur=:dur" />
 
 This API will respond the candlestick data specified by base and quote asset.
 
