@@ -130,7 +130,7 @@ This API will respond historical market statistics.
       "date": "2021-04-03T00:00:00Z",
       // liquidity in US dollar
       "value": "88919122.02992768",
-      // liquidity in US dollar
+      // volume in US dollar
       "volume": "10727320.64681277"
     },
     // ...
@@ -157,7 +157,7 @@ This API will respond historical market statistics specified by base and quote a
       "date": "2021-04-03T00:00:00Z",
       // liquidity in US dollar
       "value": "88919122.02992768",
-      // liquidity in US dollar
+      // volume in US dollar
       "volume": "10727320.64681277"
     },
     // ...
