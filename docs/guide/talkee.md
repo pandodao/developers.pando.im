@@ -43,8 +43,66 @@ We'll review your application and get back to you promptly.
 
 Talkee is free.
 
-## Installation
+## Installation (Vue3)
 
+Talkee is a Vue3 component, making it easy to integrate into your Vue3 project. 
+
+For installation instructions, visit [this page](https://github.com/fox-one/uikit-next/tree/main/packages/talkee).
+
+## Installation (Wordpress)
+
+If you are using Wordpress, you can easily integrate Talkee into your site.
+
+### Disable the default comment system
+
+Follow the instructions [here](https://wordpress.com/support/comments/#enable-or-disable-comments) to disable the default comment system.
+
+### Install the scripts
+
+We recommend using the [WPCode](https://wordpress.org/plugins/insert-headers-and-footers/) plugin to integrate Talkee into your Wordpress site.
+
+Please install WPCode, enable it. Then, go to the plugin settings page "Code Snippets -> Header & Footers".
+
+and add the following code to the `Header` section:
+
+```html
+<link href="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.2/dist/style.css" rel="stylesheet" />
+<style>
+	.talkee {
+		margin-top: 40px;
+		padding: 0 !important;
+	}
+	.talkee textarea, .talkee input {
+	  border: none;
+	}
+	.talkee .v-btn:hover {
+	    background-color: inherit;
+	}
+	.talkee .info .v-btn {
+		height: 20px;
+		font-size: inherit;
+		line-height: inherit;
+		font-family: inherit;
+		font-size-adjust: inherit;
+		background: transparent;
+		padding: 0;
+		outline: none;
+	}
+	.talkee .info .v-btn__overlay {
+		background: transparent;
+	}
+</style>
+```
+
+and add the following code to the `body` section:
+
+<!--@include: ../parts/code/talkee-install-script.md-->
+
+And then, click the `Save` button to save the changes.
+
+## Installation (UMD)
+
+Any web site can use Talkee with the UMD installation method.
 
 ### Put the scripts and css in your HTML
 
@@ -55,7 +113,7 @@ Talkee is free.
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- insert styles -->
   <link
-    href="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.1/dist/style.css"
+    href="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.2/dist/style.css"
     rel="stylesheet"
   />
   <title>Talkee UMD Demo</title>
@@ -63,78 +121,29 @@ Talkee is free.
 <body>
   <!-- insert scripts -->
   <script src="https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.prod.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.1/dist/index.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.2/dist/index.umd.js"></script>
   <!-- the container -->
-  <div id="talkee-wrapper"></div>
+  <div id="comments"></div>
 </body>
 ```
 
 ### Use Talkee in your js code
 
-```js
-const talkeeOpts = computed(() => {
-  const slug = window.location.pathname;
-  return {
-    slug,
-    // show the link to the arweave transaction page if possible
-    showLink: true,
-    // the site id, required
-    siteId: "3",
-    // the container selector to render the talkee
-    container: "#talkee-wrapper",
-    // default locale is en
-    locale: "en",
-    // add supported auth methods
-    auth: {
-      authMethods: ["metamask", "walletconnect", "mixin", "fennec"],
-    }
-  };
-});
-
-function installTalkee() {
-  const _checkTalkee = () => {
-    return window.Talkee && window.Talkee.install && window.Vue;
-  }
-  setTimeout(() => {
-    if (_checkTalkee()) {
-      window.Talkee.show(talkeeOpts.value);
-    } else {
-      // try again
-      installTalkee();
-    }
-  }, 1000);
-}
-
-// install talkee when the page is loaded
-onload() {
-  installTalkee();
-}
-```
+<!--@include: ../parts/code/talkee-install-script.md-->
 
 for more options, please visit [this page](https://github.com/fox-one/uikit-next/tree/main/packages/talkee) to see the installation guide.
 
-### Enable MetaMask and WalletConnect support
+
+## Installation (Full customized)
+
+Talkee provides [comphrensive APIs](../references/talkee/api.md) for developers to customize the UI and the behavior of the comment system.
+
+We provide a <a href="/demo/talkee" target="_blank">demo</a> to show how to use the APIs to build a custom comment system.
+
+## Enable MetaMask and WalletConnect support
 
 To enable MetaMask and WalletConnect support, add the following code to your HTML:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@foxone/mvm@0.1.27/dist/mvm.min.js"></script>
 ```
-
-### Use Talkee in your Vue3 project
-
-Talkee is a Vue3 component, making it easy to integrate into your Vue3 project. For installation instructions, visit [this page](https://github.com/fox-one/uikit-next/tree/main/packages/talkee).
-
-### Gitch and workarounds
-
-To resolve issues with incorrect button styling in certain scenarios, add the following code to your custom CSS file.
-
-```css
-:root {
-  --v-theme-overlay-multiplier: 1;
-}
-```
-
-
-
-

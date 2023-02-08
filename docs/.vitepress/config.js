@@ -26,7 +26,6 @@ export default {
           items: [
             { text: 'Wallets', link: '/guide/wallets' },
             { text: 'Talkee', link: '/guide/talkee' },
-            { text: 'Lots', link: '/guide/lots' },
           ]
         },
         {
