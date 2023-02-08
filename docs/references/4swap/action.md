@@ -9,6 +9,7 @@ The section is a draft proposal, it's not finalized yet.
 
 ```yaml
 20    bytes: header
+---
 20~84 bytes: MMISG
 16    bytes: fill_asset_id
 8     bytes: minimum
@@ -31,6 +32,7 @@ In which,
 
 ```yaml
 20    bytes: header
+---
 20~84 bytes: MMISG
 16    bytes: asset_id
 2     bytes: slippage
@@ -49,6 +51,7 @@ In which,
 
 ```yaml
 20    bytes: header
+---
 20~84 bytes: MMISG
 ```
 
