@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,a as l}from"./app.bf30e28a.js";const A=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"parts/code/talkee-install-script.md"}'),p={name:"parts/code/talkee-install-script.md"},o=l("",1),t=[o];function e(c,r,F,D,y,i){return n(),a("div",null,t)}const d=s(p,[["render",e]]);export{A as __pageData,d as default};
