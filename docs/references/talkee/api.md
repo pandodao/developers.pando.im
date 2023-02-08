@@ -45,7 +45,7 @@ Note that the `mixin_access_token` is same as the `access_token` in the [Authori
       "mixin_user_id": "36158804-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
       "mixin_identity_number": "1234456",
       "full_name": "John Wick",
-      "avatar_url": "https://mixin-images.zeromesh.net/.../avatar.jpg",
+      "avatar_url": "https://mixin-images.zeromesh.net/...",
       "created_at": "2022-02-05T16:11:16.420872+09:00"
     }
   }
@@ -118,7 +118,7 @@ This API is used to get comments.
         "mixin_user_id": "36158804-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
         "mixin_identity_number": "1234456",
         "full_name": "John Wick",
-        "avatar_url": "https://mixin-images.zeromesh.net/.../avatar.jpg",
+        "avatar_url": "https://mixin-images.zeromesh.net/...",
         "created_at": "2022-02-05T16:11:16.420872+09:00"
       }
     },
@@ -197,7 +197,7 @@ This API is used to create new reply for a specific comment.
         "mixin_user_id": "36158804-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
         "mixin_identity_number": "1234456",
         "full_name": "John Wick",
-        "avatar_url": "https://mixin-images.zeromesh.net/.../avatar.jpg",
+        "avatar_url": "https://mixin-images.zeromesh.net/...",
         "created_at": "2022-02-05T16:11:16.420872+09:00"
       }
     }

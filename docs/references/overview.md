@@ -22,5 +22,7 @@
 | `https://mtgswap-api.fox.one/api`      | 4swap |    alt    |
 | `https://leaf-api.pando.im/api`     | Leaf | primary |
 | `https://rings-api.pando.im/api`     | Rings  | primary |
+| `https://talkee-api.pando.im/api`     | Talkee  | primary |
+| `https://talkee-ws.pando.im/ws`     | Talkee  | primary (Websocket) |
 
 
