@@ -37,6 +37,8 @@
         font-family: "Courier New", Courier, monospace;
         white-space: pre-wrap;
         word-wrap: break-word;
+        max-height: 400px;
+        overflow: auto;
       }
     </style>
   </head>
@@ -63,7 +65,7 @@
         <button class="f-btn" id="connectToChatAction" disabled>
           Connect to chat
         </button>
-        <input class="" id="chatbox" value="Hello!" disabled />
+        <input class="" id="chatbox" value="Type here!" disabled />
         <button class="f-btn" id="sendToChatAction" disabled>
           Send Message!
         </button>
@@ -116,6 +118,7 @@
 
       const outputAppend = (data) => {
         output.innerText += data + "\n";
+        output.scrollTop = output.scrollHeight;
       };
 
       const uuidv4 = () => {
