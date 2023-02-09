@@ -49,25 +49,30 @@ Talkee is a Vue3 component, making it easy to integrate into your Vue3 project.
 
 For installation instructions, visit [this page](https://github.com/fox-one/uikit-next/tree/main/packages/talkee).
 
-## Installation (Wordpress)
+## Installation (Universal)
 
-If you are using Wordpress, you can easily integrate Talkee into your site.
-
-### Disable the default comment system
-
-Follow the instructions [here](https://wordpress.com/support/comments/#enable-or-disable-comments) to disable the default comment system.
-
-### Install the scripts
-
-We recommend using the [WPCode](https://wordpress.org/plugins/insert-headers-and-footers/) plugin to integrate Talkee into your Wordpress site.
-
-Please install WPCode, enable it. Then, go to the plugin settings page "Code Snippets -> Header & Footers".
-
-and add the following code to the `Header` section:
+If you are using any other CMS, or static site generators, such as Gatsby, Jekyll, Hugo, etc, you can easily integrate Talkee into your site by putting the following script to the end of your `<body>` tag. Don't forget to replace the `YOUR_SITE_ID_HERE` with your site id.
 
 ```html
-<link href="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.2/dist/style.css" rel="stylesheet" />
+<body>
+  <!-- ... -->
+  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee-install-js@latest/dist/ti.min.js"></script>
+  <script>window.tijs({ siteId: YOUR_SITE_ID_HERE, authMethods: ["mixin", "fennec"] });</script>
+  </script>
+</body>
+```
+
+## Installation (Wordpress)
+
+If you are using Wordpress, We recommend using the [WPCode](https://wordpress.org/plugins/insert-headers-and-footers/) plugin to integrate Talkee.
+
+Install WPCode, enable it. Then, go to the plugin settings page "Code Snippets -> Header & Footers", and add the following code to the `Header` section, which will fix some style glitches:
+
+```html
 <style>
+	#comments {
+		display: none;
+	}
 	.talkee {
 		margin-top: 40px;
 		padding: 0 !important;
@@ -94,15 +99,19 @@ and add the following code to the `Header` section:
 </style>
 ```
 
-and add the following code to the `body` section:
+Add the following code to the `body` section. Don't forget to replace the `YOUR_SITE_ID_HERE` with your site id.
 
-<!--@include: ../parts/code/talkee-install-script.md-->
+```html
+<script src="https://cdn.jsdelivr.net/npm/@foxone/talkee-install-js@latest/dist/ti.min.js"></script>
+<script>window.tijs({ siteId: YOUR_SITE_ID_HERE, authMethods: ["mixin", "fennec"] });</script>
+</script>
+```
 
-And then, click the `Save` button to save the changes.
+Click the `Save` button to save the changes.
 
 ## Installation (UMD)
 
-Any web site can use Talkee with the UMD installation method.
+If you wanna integrate Talkee into your site with more flexibility, please follow the steps below.
 
 ### Put the scripts and css in your HTML
 
@@ -113,7 +122,7 @@ Any web site can use Talkee with the UMD installation method.
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- insert styles -->
   <link
-    href="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.2/dist/style.css"
+    href="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.3/dist/style.css"
     rel="stylesheet"
   />
   <title>Talkee UMD Demo</title>
@@ -121,7 +130,7 @@ Any web site can use Talkee with the UMD installation method.
 <body>
   <!-- insert scripts -->
   <script src="https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.prod.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.2/dist/index.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.3/dist/index.umd.js"></script>
   <!-- the container -->
   <div id="comments"></div>
 </body>
@@ -129,12 +138,46 @@ Any web site can use Talkee with the UMD installation method.
 
 ### Use Talkee in your js code
 
-<!--@include: ../parts/code/talkee-install-script.md-->
+```js
+const talkeeOpts = {
+  apiBase: "https://talkee-api.pando.im/api",
+  slug: window.location.pathname,
+  // show the link to the arweave transaction page if possible
+  showLink: true,
+  // the site id, required
+  siteId: "YOUR_SITE_ID_HERE",
+  // the container selector to render the talkee
+  container: "#comments",
+  // default locale is en
+  locale: "en",
+  // add supported auth methods
+  auth: {
+    authMethods: ["metamask", "walletconnect", "mixin", "fennec"],
+  }
+};
+
+function installTalkee() {
+  const _checkTalkee = () => {
+    return window.Talkee && window.Talkee.install && window.Vue;
+  }
+  setTimeout(() => {
+    if (_checkTalkee()) {
+	    if (document.getElementById("comments")) {
+        window.Talkee.show(talkeeOpts);
+	    }
+    } else {
+      // try again
+      installTalkee();
+    }
+  }, 1000);
+}
+installTalkee();
+```
 
 for more options, please visit [this page](https://github.com/fox-one/uikit-next/tree/main/packages/talkee) to see the installation guide.
 
 
-## Installation (Full customized)
+## Use Talkee APIs with your own UI
 
 Talkee provides [comphrensive APIs](../references/talkee/api.md) for developers to customize the UI and the behavior of the comment system.
 
