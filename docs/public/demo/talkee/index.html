@@ -10,16 +10,22 @@
       rel="stylesheet"
     />
     <title>Talkee API Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.5/base64.min.js"></script>
     <style>
       #app {
         padding: 16px;
         max-width: 660px;
         margin: 0 auto;
       }
-      button {
+      button,
+      input {
         border: 1px solid #ccc;
         padding: 12px;
         margin: 0 10px;
+      }
+      button[disabled],
+      input[disabled] {
+        opacity: 0.5;
       }
       p {
         margin: 10px 0;
@@ -45,13 +51,22 @@
       <p>
         <button class="f-btn" id="getSiteAction">Get Site Info</button>
         <button class="f-btn" id="getCommentsAction">Get Comments</button>
-        <button class="f-btn" id="loginTalkeeAction">Login to Talkee</button>
-        <button class="f-btn" id="postCommentAction">Post A Comment</button>
+        <button class="f-btn" id="loginTalkeeAction" disabled>
+          Login to Talkee
+        </button>
+        <button class="f-btn" id="postCommentAction" disabled>
+          Post A Comment
+        </button>
       </p>
       <div>Talkee Chat</div>
       <p>
-        <button class="f-btn" id="connectToChatAction">Connect to chat</button>
-        <button class="f-btn" id="sendToChatAction">Send Hello!</button>
+        <button class="f-btn" id="connectToChatAction" disabled>
+          Connect to chat
+        </button>
+        <input class="" id="chatbox" value="Hello!" disabled />
+        <button class="f-btn" id="sendToChatAction" disabled>
+          Send Message!
+        </button>
       </p>
       <div id="output"></div>
     </div>
@@ -74,6 +89,7 @@
         "connectToChatAction"
       );
       const sendToChatAction = document.getElementById("sendToChatAction");
+      const chatbox = document.getElementById("chatbox");
       const output = document.getElementById("output");
 
       let token = "";
@@ -123,6 +139,7 @@
           .then((data) => {
             outputJSON(data);
             token = data.token;
+            loginTalkeeAction.disabled = false;
           });
       };
 
@@ -156,6 +173,8 @@
           const data = await resp.json();
           talkeeToken = data.data.access_token;
           outputJSON(data);
+
+          connectToChatAction.disabled = false;
         });
       };
 
@@ -176,7 +195,7 @@
       };
 
       getCommentsAction.onclick = async () => {
-        const url = `${talkeeApiBase}/comments?limit=3&order_by=created_at`;
+        const url = `${talkeeApiBase}/comments?limit=10&order_by=created_at`;
         let resp = null;
         try {
           resp = await fetch(url, {
@@ -240,11 +259,16 @@
         for (let ix = 0; ix < data.length; ix++) {
           const msg = data[ix];
           outputAppend(
-            `${msg.created_at} ${msg.user.full_name}: ${atob(msg.data)}`
+            `${msg.created_at} ${msg.user.full_name}: ${Base64.decode(
+              msg.data
+            )}`
           );
         }
         outputAppend("-- latest history messages end --");
         console.log("latest messages", data);
+
+        sendToChatAction.disabled = false;
+        chatbox.disabled = false;
       };
 
       connectToChatAction.onclick = async () => {
@@ -268,7 +292,9 @@
           console.log("receive a message", event.data);
           const data = JSON.parse(event.data);
           outputAppend(
-            `${data.created_at} ${data.user.full_name}: ${atob(data.data)}`
+            `${data.created_at} ${data.user.full_name}: ${Base64.decode(
+              data.data
+            )}`
           );
         });
       };
@@ -286,13 +312,13 @@
           body: JSON.stringify({
             message_id: uuidv4(),
             category: "text",
-            data: btoa("Hello!"),
+            data: Base64.encode(chatbox.value),
           }),
         });
         const data = await resp.json();
 
         outputAppend(
-          `${data.created_at} ${data.user.full_name}: ${atob(data.data)}`
+          `${data.created_at} ${data.user.full_name}: ${chatbox.value}`
         );
         console.log("send a message", data);
       };
