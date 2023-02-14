@@ -10,7 +10,7 @@ Hosts have the ability to reward active commenters with cryptocurrencies based o
 
 ## Demo
 
-Please visit [this page](https://fox-one.github.io/uikit-next/?path=/story/talkee-talkee--default) to see the demo.
+Please visit [this page](https://talkee.pando.im/demo.html) to see the demo.
 
 ## Who's using Talkee
 
@@ -19,24 +19,19 @@ Please visit [this page](https://fox-one.github.io/uikit-next/?path=/story/talke
 
 ## Register your site
 
-To apply for a `site_id`, please kindly send an email to `contact@pando.im` with the following details:
+To apply for a `site_id`, please visit [this page](https://talkee.pando.im/) to register your site.
+
+The following details are required:
 
 - Your site name
-- Your site URL
-
-Additionally, please answer the following questions:
-
-1. What is your expected daily comment count?
-2. Do you wish to enable the reward feature?
-3. If yes, specify the number of tokens you want to distribute daily and the token/coin symbol.
-4. Do you want to activate the stored on blockchain feature?
-
-We'll review your application and get back to you promptly.
+- Your site origin (e.g. https://pando.im)
 
 ::: tip Notes
-- Ensure that the tokens/coins you want to distribute are supported by [Mixin Network](https://mixin.one/snapshots).
+- You need to sign in with Mixin Messenger to register your site.
+- Each account can only register 3 sites.
 - An amount of tokens/coins may be required to cover the cost of the reward feature.
 - Currently, we only support arweave as the storage network.
+- Ensure that the tokens/coins you want to distribute are supported by [Mixin Network](https://mixin.one/snapshots).
 :::
 
 ### Pricing
@@ -58,7 +53,6 @@ If you are using any other CMS, or static site generators, such as Gatsby, Jekyl
   <!-- ... -->
   <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee-install-js@latest/dist/ti.min.js"></script>
   <script>window.tijs({ siteId: YOUR_SITE_ID_HERE, authMethods: ["mixin", "fennec"] });</script>
-  </script>
 </body>
 ```
 
