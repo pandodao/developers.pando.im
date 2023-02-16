@@ -66,7 +66,7 @@ To sign the message, you need to use the private key of the Ethereum account. Fo
 The pesudo code is presented below:
 
 ```js
-message = executeTemplate(tpl, {
+data = executeTemplate(tpl, {
   "domain": "login.xyz",
   "address": "0x5d9de.....06",
   "statement": "Sign-In With Ethereum Example Statement",
@@ -74,7 +74,7 @@ message = executeTemplate(tpl, {
 });
 
 // The wallet will prompt the user to sign the message
-signature = sign(message);
+signature = sign(data);
 ```
 
 We provide a SDK to help you generate the message and sign it:
