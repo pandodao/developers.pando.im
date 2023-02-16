@@ -28,4 +28,4 @@ Please save them, we need them to interact with the multisig address in later se
 
 ## Protected APIs
 
-<!--@include: ../parts/auth.md-->
+<!--@include: ../parts/auth-token.md-->

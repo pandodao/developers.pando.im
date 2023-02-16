@@ -42,6 +42,7 @@ export default {
           items: [
             { text: 'Overview', link: '/references/overview' },
             { text: 'Authorization', link: '/references/auth' },
+            { text: 'Authorization (Client)', link: '/references/auth-client' },
             { text: 'Action Specification', link: '/references/action' },
           ]
         },

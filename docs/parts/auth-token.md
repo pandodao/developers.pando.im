@@ -1,13 +1,10 @@
-
-Although most APIs are public, some APIs require authentication. You need to provide an access token to call them.
-
-Usually, you can use the a regular Mixin Access Token for `GET https://api.mixin.one/me` with scope `"FULL"`.
+To generate an access token, the most commonly used method is to sign and generate it using your application's keystore. This involves using the keystore to sign the endpoint `GET https://api.mixin.one/me`, which then generates the access token.
 
 ::: tip
 The access token should be signed and generate by **Your Own Mixn Application**. 
 :::
 
-Generate the access token by using `mixin-cli` is pretty easy:
+Generating the access token using mixin-cli is a straightforward process.
 
 ```bash [mixin-cli]
 $ mixin-cli -f ./keystore.json sign /me
