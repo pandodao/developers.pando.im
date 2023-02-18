@@ -171,3 +171,20 @@ func Login(ctx context.Context, pubkey string) (string, error) {
 }
 ```
 
+### Prevent EIP4361 from logining by mixin token
+
+In most cases, we should not allow the user to login with mixin token. To prevent this, we can check if the userID has already associated with a valid address.
+
+```go
+  contractAddr, err := mvm.GetUserContract(ctx, profile.UserID)
+  if err != nil {
+    fmt.Printf("err mvm.GetUserContract: %v\n", err)
+    return nil, err
+  }
+
+  // if contractAddr is not 0x000..00, it means the user has already registered a mvm account
+  emptyAddr := common.Address{}
+  if contractAddr != emptyAddr {
+    return nil, core.ErrBadMvmLoginMethod
+  }
+```
