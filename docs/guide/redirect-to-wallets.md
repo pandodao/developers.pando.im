@@ -20,20 +20,37 @@ const passport = MixinPassport.init();
 
 // auth
 const data = await passport.auth({
-  clientId: globals.clientId.value,
-  authMethods: props.authMethods as any[],
+  // the client_id of your application
+  clientId: "61504be8-a9da-477d-9e18-448ac3780919",
+  // supported wallets
+  authMethods: ["metamask", "walletconnect", "mixin", "fennec", "onekey"],
+  // oauth scopes, only used for authMethods contains "mixin"
+  // only "PROFILE:READ" is required
   scope: "PROFILE:READ ASSETS:READ",
+  // the origin of your application
   origin: "app.pando.im",
+  // use pkce way for OAuth or not
   pkce: true,
 });
 
-// send a multisig payment
+// send a multisig transfer
 await passport.payment({
   code,
   multisig: true,
   checker: () => {
     // check if the payment is completed
   },
+});
+
+// send a normal transfer
+await passport.payment({
+  assetId: "965e5c6e-434c-3fa9-b780-c50f43cd955c",
+  amount: "0.1",
+  recipient: "THE_RECIPIENT_UUID_HERE",
+  traceId: "A_RANDOM_UUID_HERE",
+  memo: "THE_MEMO_HERE",
+  // show or hide the checking modal
+  hideCheckingModal: false,
 });
 ```
 
