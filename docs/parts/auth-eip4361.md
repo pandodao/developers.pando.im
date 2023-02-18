@@ -112,7 +112,7 @@ In the handler of `/auth`, you can use the `passport-go` to parse and validate t
 ```go
 import (
 	eip4361 "github.com/fox-one/passport-go/eip4361"
-  "github.com/fox-one/passport-go/mvm"
+	"github.com/fox-one/passport-go/mvm"
 )
 
 type LoginPayload struct {
@@ -123,34 +123,34 @@ type LoginPayload struct {
 // ...
 func handler(w http.ResponseWriter, r *http.Request) error {
 	ctx := r.Context()
-  body := &LoginPayload{}
-  if err := param.Binding(r, body); err != nil {
-    return err
-  }
+	body := &LoginPayload{}
+	if err := param.Binding(r, body); err != nil {
+		return err
+	}
 
-  if body.Signature == "" {
-    return err
-  }
+	if body.Signature == "" {
+		return err
+	}
 
-  message, err := eip4361.Parse(body.Message)
-  if err != nil {
-    return err
-  }
+	message, err := eip4361.Parse(body.Message)
+	if err != nil {
+		return err
+	}
 
-  if err := message.Validate(time.Now()); err != nil {
-    return err
-  }
+	if err := message.Validate(time.Now()); err != nil {
+		return err
+	}
 
-  if err := eip4361.Verify(message, body.Signature); err != nil {
-    return err
-  }
+	if err := eip4361.Verify(message, body.Signature); err != nil {
+		return err
+	}
 
-  // get the public key from the message, and use it to login
-  token, err := Login(ctx, message.Address)
-  if err != nil {
-    return err
-  }
-  // ...
+	// get the public key from the message, and use it to login
+	token, err := Login(ctx, message.Address)
+	if err != nil {
+		return err
+	}
+	// ...
 }
 
 func Login(ctx context.Context, pubkey string) (string, error) {
