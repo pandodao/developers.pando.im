@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- insert styles -->
     <link
-      href="https://cdn.jsdelivr.net/npm/@foxone/mixin-passport@1.1.1/dist/style.css"
+      href="https://cdn.jsdelivr.net/npm/@foxone/mixin-passport@1.2.1/dist/style.css"
       rel="stylesheet"
     />
     <title>Talkee API Demo</title>
@@ -75,8 +75,8 @@
 
     <!-- insert scripts -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@foxone/mvm@0.1.27/dist/mvm.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@foxone/mixin-passport@1.1.1/dist/index.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@foxone/mvm@0.1.29/dist/mvm.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@foxone/mixin-passport@1.2.1/dist/index.umd.min.js"></script>
 
     <script>
       const passport = MixinPassport.init();
@@ -134,7 +134,7 @@
         passport
           .auth({
             origin: "your demo site",
-            authMethods: ["mixin", "fennec"],
+            authMethods: ["metamask", "walletconnect", "mixin", "fennec"],
             clientId: clientId,
             scope: "PROFILE:READ ASSETS:READ",
             pkce: true,

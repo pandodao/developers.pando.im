@@ -77,12 +77,97 @@ data = executeTemplate(tpl, {
 signature = sign(data);
 ```
 
-We provide a SDK to help you generate the message and sign it:
+You can refer to the wallet's API documentation to implement the signing process.
+
+### Use our SDKs
+
+To simplify the procedure, we offer an npm package [@foxone/mixin-passport](https://www.npmjs.com/package/@foxone/mixin-passport) for generating and signing the message, as well as a golang module [passport-go](https://github.com/fox-one/passport-go) for parsing and validating the signature.
+
+Here is the example of using them:
 
 ```js
-// @TODO
+const data = await passport.auth({
+  clientId: globals.clientId.value,
+  authMethods: props.authMethods as any[],
+  scope: "PROFILE:READ",
+  origin: "app.pando.im",
+  pkce: true,
+  hooks: {
+    beforeSignMessage: async () => {
+      // put the fields you want to sign here
+      return { statement: "This is statement" };
+    },
+    afterSignMessage: async ({ message, signature }) => {
+      // send the message and signature to wherever you want
+      // e.g.
+      const resp = await api.post("/auth", { message, signature });
+      return resp.access_token
+    },
+  },
+});
 ```
 
-Or you can also refer to the wallet's API documentation to implement the signing process.
+In the handler of `/auth`, you can use the `passport-go` to parse and validate the signature:
 
-Now you get the signature and the messages, you can use it to login to Pando Proto.
+```go
+import (
+	eip4361 "github.com/fox-one/passport-go/eip4361"
+  "github.com/fox-one/passport-go/mvm"
+)
+
+type LoginPayload struct {
+	Signature     string `json:"signature"`
+	Message string `json:"message"`
+}
+
+// ...
+func handler(w http.ResponseWriter, r *http.Request) error {
+	ctx := r.Context()
+  body := &LoginPayload{}
+  if err := param.Binding(r, body); err != nil {
+    return err
+  }
+
+  if body.Signature == "" {
+    return err
+  }
+
+  message, err := eip4361.Parse(body.Message)
+  if err != nil {
+    return err
+  }
+
+  if err := message.Validate(time.Now()); err != nil {
+    return err
+  }
+
+  if err := eip4361.Verify(message, body.Signature); err != nil {
+    return err
+  }
+
+  // get the public key from the message, and use it to login
+  token, err := Login(ctx, message.Address)
+  if err != nil {
+    return err
+  }
+  // ...
+}
+
+func Login(ctx context.Context, pubkey string) (string, error) {
+  addr := common.HexToAddress(pubkey)
+  mvmUser, err := mvm.GetBridgeUser(ctx, addr)
+  if err != nil {
+    return "", err
+  }
+
+  // save the user here
+  // ...
+
+  // generate an access token for the user
+  token := jwt.NewWithClaims( 
+    // .... 
+  )
+  return token, nil
+}
+```
+

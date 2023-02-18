@@ -30,24 +30,6 @@ After you get the `access_token`, save the `access_token` in the response to acc
 
 <APIParams :params="loginParams" />
 
-
-The `signed_message` is an JSON object with the EIP-4361's fields. It looks like this:
-
-```json
-{
-  "domain": "login.xyz",
-  "address": "0x5d9de03......906",
-  "statement": "Sign-In With Ethereum Example Statement",
-  "uri": "https://login.xyz",
-  "version": 1,
-  "nonce": "risxcddc",
-  "issued_at": "2023-02-16T09:48:07.667Z",
-  "expiration_time": "2023-02-18T09:48:07.665Z",
-  "chain_id": 1,
-  "resources": ["https://login.xyz/abc.json", "ipfs://Qm..."]
-}
-```
-
 ::: tip 
 Note that the `mixin_access_token` is same as the `access_token` in the [Authorization](../auth).
 :::

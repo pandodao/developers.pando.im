@@ -182,5 +182,7 @@ We provide a <a href="/demo/talkee" target="_blank">demo</a> to show how to use 
 To enable MetaMask and WalletConnect support, add the following code to your HTML:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@foxone/mvm@0.1.27/dist/mvm.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@foxone/mvm@0.1.29/dist/mvm.min.js"></script>
 ```
+
+And follow [the instructions](../references/auth-client.html#eip-4361-sign-in-with-ethereum) to implement the EIP-4361 sign in flow.
