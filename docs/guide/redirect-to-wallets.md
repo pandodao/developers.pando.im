@@ -8,13 +8,33 @@ Let's assume you have already understand the previous sections, and you have alr
 
 Pando supports [multiple wallets](./wallets), and provides 2 npm packages to help you redirect users to all supported wallets.
 
-- `@foxone/passport`: a SDK for sign in with Mixin Messenger, Fennec, and other wallets.
-- `@foxone/mvm`: if you want to redirect users to WalletConnect compatible wallets, you need it.
+- [@foxone/passport](https://www.npmjs.com/package/@foxone/mixin-passport): a SDK for sign in with Mixin Messenger, Fennec, and other wallets.
+- [@foxone/mvm](https://www.npmjs.com/package/@foxone/mvm): if you want to redirect users to Metamask or any WalletConnect compatible wallets, you need it.
 
 It's a recommended way to use them, and they will save you a lot of time.
 
 ```typescript
-@TODO
+const passport = MixinPassport.init();
+
+// ...
+
+// auth
+const data = await passport.auth({
+  clientId: globals.clientId.value,
+  authMethods: props.authMethods as any[],
+  scope: "PROFILE:READ ASSETS:READ",
+  origin: "app.pando.im",
+  pkce: true,
+});
+
+// send a multisig payment
+await passport.payment({
+  code,
+  multisig: true,
+  checker: () => {
+    // check if the payment is completed
+  },
+});
 ```
 
 ## Redirect manually
