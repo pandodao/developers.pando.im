@@ -1,15 +1,5 @@
 # Wallets
 
-## Mixin Messenger
-
-[Mixin Messenger](https://mixin.network/messenger) is an open source cryptocurrency wallet, which supports almost all popular cryptocurrencies.
-
-Mixin Messenger is developed by Mixin Dev Team, who release it under the GPL-3.0 license.
-
-For users, please download the app from its [official website](https://mixin.network/messenger).
-
-For developers, please check out [its source code here](https://github.com/MixinNetwork/).
-
 ## Fennec
 
 [Fennec](https://pando.im/fennec) is an open source browser extension that allows you to easily manage your own crypto assets wallet of Mixin Network.
@@ -33,6 +23,14 @@ The hoster has the permission to view the transactions and assets of your keysto
 
 Pando supports Metamask and WalletConnect compatible wallets by [MVM](https://mvm.app/), which is an EVM compatible virtual machine running on Mixin Network.
 
-MVM provides a standard interface for Metamask and WalletConnect compatible wallets to interact with Pando. You may want to check out [MVM's developer documentation](https://mvm.dev/) to learn more about it.
+MVM provides a standard interface for Metamask and WalletConnect compatible wallets to interact with Pando. You may want to check out [Authorization (Client-side)](../references/auth-client) and [MVM's developer documentation](https://mvm.dev/) to learn more about it.
 
+## Mixin Messenger
 
+[Mixin Messenger](https://mixin.network/messenger) is an open source cryptocurrency wallet, which supports almost all popular cryptocurrencies.
+
+Mixin Messenger is developed by Mixin Dev Team, who release it under the GPL-3.0 license.
+
+For users, please download the app from its [official website](https://mixin.network/messenger).
+
+For developers, please check out [its source code here](https://github.com/MixinNetwork/).
