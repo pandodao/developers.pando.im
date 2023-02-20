@@ -22,10 +22,11 @@ export default {
           ]
         },
         {
-          text: 'Others',
+          text: 'Extra Topics',
           items: [
             { text: 'Wallets', link: '/guide/wallets' },
             { text: 'Talkee', link: '/guide/talkee' },
+            { text: 'Changelog', link: '/guide/changelog' },
           ]
         },
         {
