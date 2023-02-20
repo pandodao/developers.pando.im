@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,a as o}from"./app.137f2748.js";const A=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"parts/auth-token.md"}'),l={name:"parts/auth-token.md"},p=o("",12),e=[p];function t(c,r,D,y,i,F){return n(),a("div",null,e)}const d=s(l,[["render",t]]);export{A as __pageData,d as default};
