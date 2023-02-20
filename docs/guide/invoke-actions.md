@@ -32,7 +32,7 @@ The `swap` action are formatted as following string
 - `receiver_id`: the ID of the receiver, you can use the `client_id` in your keystore.
 - `follow_id`: an UUID to trace the order. You can use `uuidgen` to generate a random UUID.
 - `fill_asset_id`: the asset ID of the asset you want to get. In the example, we want to get `DOGE`, which is `6770a1e5-6086-44d5-b60f-545f9d9e8ffd`.
-- `routes`: the routes of the swap. We'll leave it blank for now, which means we don't care about the routes.
+- `routes`: the routes of the swap. We'll leave it blank for now, 4swap will use [`CNB` and `DOGE` pool](https://app.4swap.org/#/pair/detail?base=6770a1e5-6086-44d5-b60f-545f9d9e8ffd&quote=965e5c6e-434c-3fa9-b780-c50f43cd955c&source=market) for the swap. In real projects, you need to calculate the routes by yourself.
 - `minimum`: the minimum amount of asset you will get. In the example, we want to get at least `0.00000001 DOGE`.
 :::
 

@@ -69,6 +69,12 @@ export default {
             { text: 'Restful API', link: '/references/talkee/api' },
             { text: 'Websocket', link: '/references/talkee/websocket' },
           ]
+        },
+        {
+          text: 'Botastic',
+          items: [
+            { text: 'Restful API', link: '/references/botastic/api' },
+          ]
         }
       ]
     }
