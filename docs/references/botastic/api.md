@@ -137,7 +137,7 @@ The payload should be a JSON object containing the following fields:
 }
 ```
 
-## Get to Conversation
+## Read Conversation
 
 <APIEndpoint method="GET" url="/conversations/:conversation_id" />
 
