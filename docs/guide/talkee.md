@@ -96,7 +96,7 @@ Install WPCode, enable it. Then, go to the plugin settings page "Code Snippets -
 Add the following code to the `body` section. Don't forget to replace the `YOUR_SITE_ID_HERE` with your site id.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@foxone/talkee-install-js@latest/dist/ti.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@foxone/talkee-install-js@0.1.1/dist/ti.min.js"></script>
 <script>window.tijs({ siteId: YOUR_SITE_ID_HERE, authMethods: ["mixin", "fennec"] });</script>
 </script>
 ```
@@ -116,7 +116,7 @@ If you wanna integrate Talkee into your site with more flexibility, please follo
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- insert styles -->
   <link
-    href="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.4/dist/style.css"
+    href="https://cdn.jsdelivr.net/npm/@foxone/talkee@3.0.0/dist/style.css"
     rel="stylesheet"
   />
   <title>Talkee UMD Demo</title>
@@ -124,7 +124,7 @@ If you wanna integrate Talkee into your site with more flexibility, please follo
 <body>
   <!-- insert scripts -->
   <script src="https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.prod.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee@2.0.4/dist/index.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee@3.0.0/dist/index.umd.js"></script>
   <!-- the container -->
   <div id="comments"></div>
 </body>
