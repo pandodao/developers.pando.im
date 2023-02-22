@@ -36,7 +36,7 @@ The payload should be a JSON array containing multiple records to be indexed, wi
 
 ## Search Indices
 
-<APIEndpoint method="GET" url="/search?keywords=:keywords&n=:n" />
+<APIEndpoint method="GET" url="/indices/search?keywords=:keywords&n=:n" />
 
 This API will search a specific index with keywords.
 
