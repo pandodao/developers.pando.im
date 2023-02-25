@@ -87,11 +87,16 @@ Here is the example of using them:
 
 ```js
 const data = await passport.auth({
-  clientId: globals.clientId.value,
-  authMethods: props.authMethods as any[],
+  clientId: "YOUR_CLIENT_ID",
+  authMethods: ["metamask", "walletconnect", "mixin", "fennec", "onekey"],
   scope: "PROFILE:READ",
   origin: "app.pando.im",
   pkce: true,
+  // mvmAuthType supports "SignedMessage" or "MixinToken". Default is "SignedMessage"
+  // - "SignedMessage": will sign a message with the private key of the user's account
+  // - "MixinToken": will use the Mixin Network's authentication flow, which will generate a token and return it directly
+  mvmAuthType: "SignedMessage",
+  // if mvmAuthType is "SignedMessage", you need to provide the following hooks
   hooks: {
     beforeSignMessage: async () => {
       // put the fields you want to sign here
@@ -99,7 +104,7 @@ const data = await passport.auth({
     },
     afterSignMessage: async ({ message, signature }) => {
       // send the message and signature to wherever you want
-      // e.g.
+      // e.g. POST /auth to your server, or invoke a smart contract's method
       const resp = await api.post("/auth", { message, signature });
       return resp.access_token
     },

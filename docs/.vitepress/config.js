@@ -49,6 +49,7 @@ export default {
         },
         {
           text: '4swap',
+          collapsed: true,
           items: [
             { text: 'Restful API', link: '/references/4swap/api' },
             { text: 'Action', link: '/references/4swap/action' },
@@ -57,6 +58,7 @@ export default {
         },
         {
           text: 'Leaf',
+          collapsed: true,
           items: [
             { text: 'Restful API', link: '/references/leaf/api' },
             { text: 'Action', link: '/references/leaf/action' },
@@ -65,6 +67,7 @@ export default {
         },
         {
           text: 'Talkee',
+          collapsed: true,
           items: [
             { text: 'Restful API', link: '/references/talkee/api' },
             { text: 'Websocket', link: '/references/talkee/websocket' },
@@ -72,6 +75,7 @@ export default {
         },
         {
           text: 'Botastic',
+          collapsed: true,
           items: [
             { text: 'Restful API', link: '/references/botastic/api' },
           ]
