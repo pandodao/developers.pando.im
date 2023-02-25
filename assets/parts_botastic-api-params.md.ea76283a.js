@@ -1,0 +1,1 @@
+import{o as t,c as a}from"./app.8ede6b4f.js";const p=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"parts/botastic-api-params.md"}'),e={name:"parts/botastic-api-params.md"},i=Object.assign(e,{setup(s){return(r,c)=>(t(),a("div"))}});export{p as __pageData,i as default};
