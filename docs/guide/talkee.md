@@ -51,10 +51,20 @@ If you are using any other CMS, or static site generators, such as Gatsby, Jekyl
 ```html
 <body>
   <!-- ... -->
-  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee-install-js@latest/dist/ti.min.js"></script>
-  <script>window.tijs({ siteId: YOUR_SITE_ID_HERE, authMethods: ["mixin", "fennec"] });</script>
+  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee-install-js@0.1.1/dist/ti.min.js"></script>
+  <script>window.tijs({ siteId: YOUR_SITE_ID_HERE, authMethods: ["metamask", "fennec"] });</script>
 </body>
 ```
+
+The `tijs` function accepts an object with the following properties:
+
+- `siteId`: Number, the site id you got from the registration page, required.
+- `authMethods`: Array of string, the authentication methods you want to support, optional. The default value is `["metamask", "walletconnect", "mixin", "fennec"]`.
+- `chainId`: Number, the chain id of the network you want to use, optional. The default value is `1` (eth mainnet).
+- `locale`: String, the language you want to use, optional. The default value is `en`. Currently, we only support `en`, `ja` and `zh`.
+- `container`: String, the css selector of the container, optional. The default value is `#comments`.
+- `showLink`: Boolean, whether to show the on-chain tx link to the comment page, optional. The default value is `true`.
+- `slug`: String, the slug of the page, optional. The default value is the current page url: `window.location.pathname`.
 
 ## Installation (Wordpress)
 
