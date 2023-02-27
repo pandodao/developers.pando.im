@@ -8,7 +8,7 @@
 
 This API will create an index with current `app_id`
 
-The payload should be a JSON array containing multiple records to be indexed, with the following fields:
+The payload should be an object which containing a JSON array with multiple records to index, with the following fields:
 
 ```json
 {
@@ -30,9 +30,18 @@ The payload should be a JSON array containing multiple records to be indexed, wi
 
 ### Response
 
+Example of success:
+
 ```json
-@TODO
+{"ts":1677490198494,"data":{}}
 ```
+
+Example of failure:
+
+```json
+{"ts":1677489070329,"data":{"code":500,"msg":"request failed"}}
+```
+
 
 ## Search Indices
 
@@ -44,9 +53,30 @@ This API will search a specific index with keywords.
 
 ### Response
 
+Example of success:
+
 ```json
-@TODO
+{
+  "ts": 1677491418914,
+  "data": [
+    {
+      "data": "test1",
+      "object_id": "test1",
+      "category": "plain-text",
+      "properties": "",
+      "created_at": 1677491319,
+      "score": 0.19436581
+    }
+  ]
+}
 ```
+
+Example of failure:
+
+```json
+{"ts":1677492900119,"data":{"code":400,"msg":"keywords is required"}}
+```
+
 
 ## Create Conversation
 
