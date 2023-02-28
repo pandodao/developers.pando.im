@@ -2,6 +2,10 @@
 
 <!--@include: ../../parts/botastic-api-params.md-->
 
+::: warning DRAFT PROPOSAL
+The section is a draft proposal, it's not finalized yet.
+:::
+
 ## Authentication
 
 To authenticate your API requests, add these headers:
