@@ -2,6 +2,15 @@
 
 <!--@include: ../../parts/botastic-api-params.md-->
 
+## Authentication
+
+To authenticate your API requests, add these headers:
+
+- `X-BOTASTIC-APPID`: the ID of your botastic application
+- `X-BOTASTIC-SECRET`: a secret key of your botastic application
+
+You can apply your application ID and secret key by [contacting us](mailto:contact@pando.im).
+
 ## Create Indices
 
 <APIEndpoint method="POST" url="/indices" />
