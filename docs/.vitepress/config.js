@@ -10,7 +10,7 @@ export default {
       },
       {
         text: 'Console',
-        link: '/console'
+        link: 'https://developers.pando.im/console/'
       }
     ],
     sidebar: {
