@@ -32,9 +32,9 @@ jobs:
         run: yarn docs:build
 
       # build console
-      - uses: actions/checkout@master
-      - uses: actions/cache@v2
+      - name: Prepare to build console
         working-directory: ./console
+        uses: actions/cache@v2
         with:
           path: |
             node_modules
@@ -42,8 +42,8 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('./yarn.lock') }}
 
       - name: Setup node env
-        uses: actions/setup-node@master
         working-directory: ./console
+        uses: actions/setup-node@master
         with:
           node-version: "16"
 
