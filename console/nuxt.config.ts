@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     dirs: ["stores", "composables"],
   },
   app: {
+    baseURL: "/console",
     head: {
       title: "Pando Developer Console",
       charset: "utf-8",
