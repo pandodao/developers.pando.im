@@ -20,7 +20,8 @@ export default {
 .layout-desktop {
   height: 100vh;
   .layout-main {
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }
 </style>
