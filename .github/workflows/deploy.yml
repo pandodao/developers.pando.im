@@ -1,5 +1,13 @@
 name: Deploy
 
+env:
+  AWS_REGION: us-east-2
+  APP_ENV: prod
+  NUXT_PUBLIC_MIXIN_CLIENT_ID: eac51982-6cf9-42c9-8fc8-ee5c17d3cb27
+  NUXT_PUBLIC_MIXIN_API_BASE_URL: "https://api.mixin.one"
+  NUXT_PUBLIC_TALKEE_CLIENT_ID: 61504be8-a9da-477d-9e18-448ac3780919
+  NUXT_PUBLIC_TALKEE_API_BASE_URL: "https://talkee-api.pando.im/api"
+
 on:
   push:
     branches:
@@ -8,7 +16,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: github.repository_owner == 'pandodao'
     steps:
+      # build developer docs
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -18,12 +28,48 @@ jobs:
           cache: yarn
       - run: yarn install --frozen-lockfile
 
-      - name: Build
+      - name: Build Docs
         run: yarn docs:build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      # build console
+      - uses: actions/checkout@master
+      - uses: actions/cache@v2
+        working-directory: ./console
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vitepress/dist
-          cname: developers.pando.im
+          path: |
+            node_modules
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('./yarn.lock') }}
+
+      - name: Setup node env
+        uses: actions/setup-node@master
+        working-directory: ./console
+        with:
+          node-version: "16"
+
+      - name: Install dependencies
+        working-directory: ./console
+        run: yarn --frozen-lockfile --non-interactive
+
+      - name: Build console
+        working-directory: ./console
+        run: APP_ENV=${{ env.APP_ENV }} yarn generate
+
+      - name: Move console/.output/public to docs/.vitepress/dist
+        run: cp -a console/.output/public docs/.vitepress/dist/console
+
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: docs/.vitepress/dist
+      #     cname: developers.pando.im
+
+      # upload to aws
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.PROD_AWS_ACCESS_KEY_SECRET }}
+      - run: aws s3 cp --recursive docs/.vitepress/dist ${{ secrets.S3_URL_PROD }} --acl public-read
+      - run: aws s3 cp docs/.vitepress/dist ${{ secrets.S3_URL_PROD }} --inculde "index.html" --cache-control "no-cache" --acl public-read

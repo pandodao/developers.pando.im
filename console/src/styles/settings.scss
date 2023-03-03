@@ -1,0 +1,27 @@
+$border-radius-root: 8px;
+
+@use "@foxone/uikit/sass/setting" with (
+  $menu-content-border-radius: 20px,
+  $dialog-border-radius: 20px,
+  $button-rounded-border-radius: 12px,
+  $tabs-height: 40px,
+  $rounded: (
+    0: 0,
+    // 4px
+    "sm": $border-radius-root * 0.5,
+    // 8px
+    null: $border-radius-root,
+    // 12px
+    "md": $border-radius-root * 1.5,
+    // 16px
+    "lg": $border-radius-root * 2,
+    // 20px
+    "xl": $border-radius-root * 2.5,
+    "pill": 9999px,
+    "circle": 50%,
+    "shaped": $border-radius-root * 6 0,
+  ),
+  $container-max-widths: (
+    "md": null,
+  )
+);
