@@ -7,6 +7,10 @@ export default {
       {
         text: 'References',
         link: '/references/overview'
+      },
+      {
+        text: 'Console',
+        link: '/console'
       }
     ],
     sidebar: {

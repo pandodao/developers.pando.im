@@ -3,7 +3,7 @@ name: Deploy
 env:
   AWS_REGION: us-east-2
   APP_ENV: prod
-  NUXT_PUBLIC_MIXIN_CLIENT_ID: eac51982-6cf9-42c9-8fc8-ee5c17d3cb27
+  NUXT_PUBLIC_MIXIN_CLIENT_ID: 16b00c6d-cdf2-41c9-ad22-7539e1ea9ef0
   NUXT_PUBLIC_MIXIN_API_BASE_URL: "https://api.mixin.one"
   NUXT_PUBLIC_TALKEE_CLIENT_ID: 61504be8-a9da-477d-9e18-448ac3780919
   NUXT_PUBLIC_TALKEE_API_BASE_URL: "https://talkee-api.pando.im/api"
