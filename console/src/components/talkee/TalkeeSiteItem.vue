@@ -6,51 +6,50 @@
           {{ site.name }}
         </div>
         <div class="text-caption text-greyscale_3">
-          Origins: {{ site.origins.join(", ") }}
+          {{ t("talkee.origins", { origins: site.origins.join(", ") }) }}
         </div>
         <div class="text-caption text-greyscale_3">
-          Site ID: {{ site.id }}
+          {{ t("talkee.site_id", { site_id: site.id }) }}
         </div>
       </div>
       <div class="control d-flex">
         <FButton variant="plain" color="link" class="edit-btn" rounded="0" size="small" @click="copySiteId">
           <VIcon color="link">$IconCopy</VIcon>
-          <span class="ml-1">Copy</span>
+          <span class="ml-1">{{ t("copy") }}</span>
         </FButton>
         <FButton variant="plain" color="link" class="install-btn ml-1" rounded="0" size="small" @click="openInstallDialog">
           <VIcon color="link">$IconBrowserCode</VIcon>
-          <span class="ml-1">Install</span>
+          <span class="ml-1">{{ t("install") }}</span>
         </FButton>
         <VSpacer />
         <FButton variant="plain" color="link" class="copy-btn" rounded="0" size="small" @click="openEditDialog">
           <VIcon color="link">$IconEdit</VIcon>
-          <span class="ml-1">Edit</span>
+          <span class="ml-1">{{ t("edit") }}</span>
         </FButton>
       </div>
     </VSheet>
 
 
-    <FModal v-model="showEditDialog" desktop="dialog" offset="16" :title="'Edit'">
+    <FModal v-model="showEditDialog" desktop="dialog" offset="16" :title="t('edit')">
       <div class="pb-4">
         <div class="pa-4 mb-4">
           <VRow dense>
             <VCol cols="12">
-              <FInput v-model="nameInputValue" label="Name" />
+              <FInput v-model="nameInputValue" :label="t('talkee.site_name')" :placeholder="t('talkee.site_name.placeholder')" />
             </VCol>
             <VCol cols="12">
-              <FInput v-model="originInputValue" label="Origin" :error-messages="originInputErrors"/>
+              <FInput v-model="originInputValue" :label="t('talkee.origin')" :placeholder="t('talkee.origin.placeholder')" :error-messages="originInputErrors"/>
             </VCol>
             <VCol cols="12" class="text-center">
-              <FButton color="primary" rounded="sm" :disabled="!validatedEdit" @click="saveEdit">{{ $t("common.save") }}</FButton>
+              <FButton color="primary" rounded="sm" :disabled="!validatedEdit" @click="saveEdit">{{ $t("save") }}</FButton>
             </VCol>
           </VRow>
         </div>
       </div>
     </FModal>
 
-    <FModal v-model="showInstallDialog" desktop="dialog" offset="16" :title="'Install'">
+    <FModal v-model="showInstallDialog" desktop="dialog" offset="16" :title="t('talkee.install.title')">
       <div class="pb-4">
-        <div class="text-overline text-center">Install Approaches</div>
         <VSheet class="install-approaches">
           <VExpansionPanels variant="accordion" v-model="expansionMode">
             <VExpansionPanel title="Universal" elevation="0" rounded="0" :ripple="false">
@@ -63,22 +62,20 @@
                     <FButton color="primary" variant="outlined" rounded="sm">{{ $t("talkee.install_guide") }}</FButton>
                   </a>
                   <VSpacer />
-                  <FButton color="primary" rounded="sm" @click="copyTijs">{{ $t("common.copy") }}</FButton>
+                  <FButton color="primary" rounded="sm" @click="copyTijs">{{ $t("copy") }}</FButton>
                 </div>
               </VExpansionPanelText>
             </VExpansionPanel>
             <VExpansionPanel title="Wordpress Plugin" elevation="0" rounded="0" :ripple="false">
               <VExpansionPanelText>
-                Coming Soon.
+                {{ t("coming_soon") }}
               </VExpansionPanelText>
             </VExpansionPanel>
             <VExpansionPanel title="Customize" elevation="0" rounded="0" :ripple="false">
               <VExpansionPanelText class="text-body-1">
-                <p class="mb-2">
-                  For more install approaches, please refer to the <a href="https://developers.pando.im/guide/talkee#installation-vue3" target="_blank">documentation</a>.
+                <p class="mb-2" v-html="t('talkee.install.customize.hint_1')">
                 </p>
-                <p>
-                  Talkee also provides a comprehensive <a href="https://developers.pando.im/guide/talkee#use-talkee-apis-with-your-own-ui" target="_blank">APIs </a> for fully customization.
+                <p v-html="t('talkee.install.customize.hint_2')">
                 </p>
               </VExpansionPanelText>
             </VExpansionPanel>
@@ -122,7 +119,7 @@ const originInputErrors = computed(() => {
   if (!originInputValue.value) return [];
   const errors = [];
   if (!originInputValue.value.startsWith("https://") && !originInputValue.value.startsWith("http://")) {
-    errors.push("Origin must start with 'https://' or 'http://'.");
+    errors.push(t("talkee.origins.error_msg"));
   }
   return errors;
 });
@@ -164,13 +161,13 @@ function openEditDialog() {
 function copyTijs() {
   const { copy } = useClipboard({ source: tijsScript.value });
   copy(tijsScript.value);
-  toast.success({ message: t("common.copied") });
+  toast.success({ message: t("copied") });
 }
 
 function copySiteId() {
   const { copy } = useClipboard({ source: props.site.id });
   copy(props.site.id);
-  toast.success({ message: t("common.copied") });
+  toast.success({ message: t("copied") });
 }
 </script>
 

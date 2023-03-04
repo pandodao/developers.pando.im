@@ -1,13 +1,13 @@
 <template>
   <div class="narrow-page pa-4">
     <VSheet border rounded class="pa-4">
-      <h3 class="text-h5 mb-4">Welcome to Pando Developer Console.</h3>
+      <h3 class="text-h5 mb-4">{{ t("welcome.title") }}</h3>
       <div class="text-body-1 text-greyscale_3 mb-4">
-        Pando provides a set of decentralized protocols and Web3 tools to help developers build their own applications.
+        {{ t("welcome.text") }}
       </div>
       <div>
         <a href="https://developers.pando.im/" target="_blank">
-          <FButton variant="outlined" color="primary" rounded="sm" >Read Documents</FButton>
+          <FButton variant="outlined" color="primary" rounded="sm" >{{ t("documents") }}</FButton>
         </a>
       </div>
     </VSheet>
@@ -21,13 +21,7 @@ definePageMeta({
 </script>
 
 <script setup lang="ts">
-const env = useRuntimeConfig();
-const router = useRouter();
-const userStore = useUserStore();
-
-
-const loading = ref(false);
-
+const { t } = useI18n({ useScope: "local" });
 onMounted(async () => {
 });
 </script>

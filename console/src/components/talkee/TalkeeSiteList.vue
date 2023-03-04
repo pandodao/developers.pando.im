@@ -1,11 +1,11 @@
 <template>
   <div>
     <VSheet class="d-flex align-center">
-      <div class="text-overline pl-0 text-greyscale_3 ">Sites</div>
+      <div class="text-overline pl-0 text-greyscale_3 ">{{ t("talkee.sites") }}</div>
       <VSpacer />
       <FButton size="small" variant="text" text rounded="0" @click="openNewDialog">
         <VIcon>$IconPlus</VIcon>
-        <span class="ml-1">New</span>
+        <span class="ml-1">{{ t("talkee.new") }}</span>
       </FButton>
     </VSheet>
     <FDivider class="mb-4"/>
@@ -16,26 +16,26 @@
       </div>
     </div>
     <div v-else class="text-body-1 text-greyscale_3 text-center mt-10">
-      {{ "No site." }}
+      {{ t("talkee.no_site") }}
     </div>
 
     <VSheet class="d-flex align-center">
-      <div class="text-overline pl-0 text-greyscale_3 ">Resources</div>
+      <div class="text-overline pl-0 text-greyscale_3 ">{{ t("talkee.resources") }}</div>
       <VSpacer />
     </VSheet>
     <FDivider class="mb-4"/>
     <div>
-      <a href="https://developers.pando.im/guide/talkee" title="Install Guide" target="_blank">
-        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">Install Guide</FButton>
+      <a href="https://developers.pando.im/guide/talkee.html" title="Install Guide" target="_blank">
+        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">{{ t("talkee.resources.install_guide") }}</FButton>
       </a>
-      <a href="https://developers.pando.im/references/talkee/api" title="API References" target="_blank">
-        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">API References</FButton>
+      <a href="https://developers.pando.im/references/talkee/api.html" title="API References" target="_blank">
+        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">{{ t("talkee.resources.api_references") }}</FButton>
       </a>
       <a href="https://talkee.pando.im/demo.html" title="Comment Demo" target="_blank">
-        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">Comment Demo</FButton>
+        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">{{ t("talkee.resources.comment_demo") }}</FButton>
       </a>
       <a href="https://talkee.pando.im/demo-chat.html" title="Chat Demo" target="_blank">
-        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">Chat Demo</FButton>
+        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">{{ t("talkee.resources.chat_demo") }}</FButton>
       </a>
     </div>
 
@@ -44,13 +44,13 @@
         <div class="pa-4 mb-4">
           <VRow dense>
             <VCol cols="12">
-              <FInput v-model="nameInputValue" label="Name" placeholder="Your website name" />
+              <FInput v-model="nameInputValue"  :label="t('talkee.site_name')" :placeholder="t('talkee.site_name.placeholder')"  />
             </VCol>
             <VCol cols="12">
-              <FInput v-model="originInputValue" label="Origin" placeholder="e.g. https://abc.com" :error-messages="originInputErrors"/>
+              <FInput v-model="originInputValue" :label="t('talkee.origin')" :placeholder="t('talkee.origin.placeholder')"  :error-messages="originInputErrors"/>
             </VCol>
             <VCol cols="12" class="text-center">
-              <FButton color="primary" rounded="sm" :disabled="!validatedEdit" @click="createSite">{{ $t("common.create") }}</FButton>
+              <FButton color="primary" rounded="sm" :disabled="!validatedEdit" @click="createSite">{{ $t("create") }}</FButton>
             </VCol>
           </VRow>
         </div>
@@ -68,6 +68,8 @@ export default {
 
 <script setup lang="ts">
 import { addSite  } from "@/services/talkee";
+const { t } = useI18n({ useScope: "local" });
+
 const talkeeDataStore = useTalkeeDataStore();
 const showNewDialog = ref(false);
 const nameInputValue = ref("");
@@ -85,7 +87,7 @@ const originInputErrors = computed(() => {
   if (!originInputValue.value) return [];
   const errors = [];
   if (!originInputValue.value.startsWith("https://") && !originInputValue.value.startsWith("http://")) {
-    errors.push("Origin must start with 'https://' or 'http://'.");
+    errors.push(t("talkee.origins.error_msg"));
   }
   return errors;
 });
