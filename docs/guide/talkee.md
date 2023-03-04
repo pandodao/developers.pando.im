@@ -10,7 +10,7 @@ Hosts have the ability to reward active commenters with cryptocurrencies based o
 
 ## Demo
 
-Please visit [this page](https://talkee.pando.im/) to see the demo.
+Please visit [this page](https://developers.pando.im/console/talkee) to see the demo.
 
 ## Who's using Talkee
 
@@ -19,7 +19,7 @@ Please visit [this page](https://talkee.pando.im/) to see the demo.
 
 ## Register your site
 
-To apply for a `site_id`, please visit [this page](https://talkee.pando.im/) to register your site.
+To apply for a `site_id`, please visit [this page](https://developers.pando.im/console/talkee) to register your site.
 
 The following details are required:
 
@@ -185,7 +185,7 @@ for more options, please visit [this page](https://github.com/fox-one/uikit-next
 
 Talkee provides [comphrensive APIs](../references/talkee/api.md) for developers to customize the UI and the behavior of the comment system.
 
-We provide a <a href="https://talkee.pando.im/" target="_blank">demo</a> to show how to use the APIs to build a custom comment system.
+We provide a <a href="https://developers.pando.im/demo/chat-demo.html" target="_blank">demo</a> to show how to use the APIs to build a custom comment system.
 
 ## Enable MetaMask and WalletConnect support
 

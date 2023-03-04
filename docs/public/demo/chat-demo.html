@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- insert styles -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/@foxone/mixin-passport@1.2.2/dist/style.css"
+      rel="stylesheet"
+    />
+    <title>Talkee API Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.5/base64.min.js"></script>
+    <style>
+      #app {
+        padding: 16px;
+        max-width: 660px;
+        margin: 0 auto;
+      }
+      button,
+      input {
+        border: 1px solid #ccc;
+        padding: 12px;
+        margin: 0 10px;
+      }
+      button[disabled],
+      input[disabled] {
+        opacity: 0.5;
+      }
+      p {
+        margin: 10px 0;
+      }
+      #output {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        font-family: "Courier New", Courier, monospace;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        max-height: 400px;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div>Auth & Passport</div>
+      <p>
+        <button class="f-btn" id="authAction" class="f-button">Login</button>
+      </p>
+      <div>Talkee</div>
+      <p>
+        <button class="f-btn" id="getSiteAction">Get Site Info</button>
+        <button class="f-btn" id="getCommentsAction">Get Comments</button>
+        <input class="" id="commentbox" value="Type here to comment" disabled />
+        <button class="f-btn" id="postCommentAction" disabled>
+          Post A Comment
+        </button>
+      </p>
+      <div>Talkee Chat</div>
+      <p>
+        <button class="f-btn" id="connectToChatAction" disabled>
+          Connect to chat
+        </button>
+        <input class="" id="chatbox" value="Type here to chat" disabled />
+        <button class="f-btn" id="sendToChatAction" disabled>
+          Send Message!
+        </button>
+      </p>
+      <div id="output"></div>
+    </div>
+
+    <!-- insert scripts -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@foxone/mvm@0.1.30/dist/mvm.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@foxone/mixin-passport@1.2.2/dist/index.umd.min.js"></script>
+
+    <script>
+      const passport = MixinPassport.init();
+
+      const authAction = document.getElementById("authAction");
+      const getCommentsAction = document.getElementById("getCommentsAction");
+      const getSiteAction = document.getElementById("getSiteAction");
+      const postCommentAction = document.getElementById("postCommentAction");
+      const connectToChatAction = document.getElementById(
+        "connectToChatAction"
+      );
+      const sendToChatAction = document.getElementById("sendToChatAction");
+      const chatbox = document.getElementById("chatbox");
+      const commentbox = document.getElementById("commentbox");
+      const output = document.getElementById("output");
+
+      let talkeeToken = "";
+      let socket = null;
+
+      const cfg = {
+        site_id: 2,
+        slug: "talkee-demo",
+      };
+
+      const talkeeApiBase = "https://talkee-api.pando.im/api";
+      const talkeeWsBase = "wss://talkee-ws.pando.im/ws";
+      const talkeeWsApiBase = "https://talkee-ws.pando.im/ws";
+      const clientId = "61504be8-a9da-477d-9e18-448ac3780919";
+
+      const outputJSON = (data) => {
+        output.innerText = JSON.stringify(data, null, 2);
+      };
+
+      const outputClear = (data) => {
+        output.innerText = "";
+      };
+
+      const outputAppend = (data) => {
+        output.innerText += data + "\n";
+        output.scrollTop = output.scrollHeight;
+      };
+
+      const uuidv4 = () => {
+        return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+          (
+            c ^
+            (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+          ).toString(16)
+        );
+      };
+
+      const loginToTalkee = async (method, msg, sig, mixin_token) => {
+        const payload = {
+          method,
+          lang: "ja",
+        };
+        if (method === "mvm") {
+          payload.signed_message = msg;
+          payload.signature = sig;
+        } else {
+          payload.mixin_token = mixin_token;
+        }
+        console.log(payload);
+        const url = `${talkeeApiBase}/auth/login`;
+        const resp = await fetch(url, {
+          method: "POST",
+          mode: "cors",
+          cahce: "no-cache",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+        const data = await resp.json();
+        talkeeToken = data.data.access_token;
+        return data;
+      };
+
+      authAction.onclick = async () => {
+        const data = await passport.auth({
+          origin: "your demo site",
+          authMethods: ["metamask"],
+          clientId: clientId,
+          scope: "PROFILE:READ ASSETS:READ",
+          pkce: true,
+          hooks: {
+            beforeSignMessage: async () => {
+              return {
+                statement: "You'll login to Talkee by the signature",
+                expirationTime: new Date(
+                  new Date().getTime() + 1000 * 60 * 3
+                ).toISOString(),
+              };
+            },
+            afterSignMessage: async ({ message, signature }) => {
+              const r = await loginToTalkee("mvm", message, signature, "");
+              return r.data.access_token;
+            },
+          },
+        });
+        outputJSON(data);
+        talkeeToken = data.token;
+        connectToChatAction.disabled = false;
+        postCommentAction.disabled = false;
+        commentbox.disabled = false;
+      };
+
+      getSiteAction.onclick = () => {
+        const url = `${talkeeApiBase}/sites/${cfg.site_id}`;
+        fetch(url, {
+          method: "GET",
+          mode: "cors",
+          cahce: "no-cache",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).then(async (resp) => {
+          resp.json().then((data) => {
+            outputJSON(data);
+          });
+        });
+      };
+
+      getCommentsAction.onclick = async () => {
+        const url = `${talkeeApiBase}/comments?limit=10&order_by=created_at`;
+        let resp = null;
+        try {
+          resp = await fetch(url, {
+            method: "GET",
+            mode: "cors",
+            cahce: "no-cache",
+            headers: {
+              "X-TALKEE-SITE-ID": cfg.site_id,
+              "X-TALKEE-SITE-SLUG": cfg.slug,
+              "Content-Type": "application/json",
+            },
+          });
+        } catch (e) {
+          outputJSON(e.toString());
+        }
+        const data = await resp.json();
+
+        output.innerText = data.data.comments
+          .map((x) => {
+            return `${x.created_at}, ${x.creator.full_name} leave a comment: \n${x.content}`;
+          })
+          .join("\n");
+      };
+
+      postCommentAction.onclick = async () => {
+        if (talkeeToken === "") {
+          output.innerText = "Please login to Talkee first";
+          return;
+        }
+        const url = `${talkeeApiBase}/comments`;
+        const resp = await fetch(url, {
+          method: "POST",
+          mode: "cors",
+          cahce: "no-cache",
+          headers: {
+            Authorization: "Bearer " + talkeeToken,
+            "X-TALKEE-SITE-ID": cfg.site_id,
+            "X-TALKEE-SITE-SLUG": cfg.slug,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            content: commentbox.value,
+          }),
+        });
+        outputJSON(await resp.json());
+      };
+
+      const fetchLatestMessages = async () => {
+        const url = `${talkeeWsApiBase}/messages?site_id=${cfg.site_id}&slug=${cfg.slug}?filter=latest`;
+        const resp = await fetch(url, {
+          method: "GET",
+          mode: "cors",
+          cahce: "no-cache",
+          headers: {
+            Authorization: "Bearer " + talkeeToken,
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await resp.json();
+        outputAppend("-- latest history messages begin --");
+        for (let ix = 0; ix < data.length; ix++) {
+          const msg = data[ix];
+          outputAppend(
+            `${msg.created_at} ${msg.user.full_name}: ${Base64.decode(
+              msg.data
+            )}`
+          );
+        }
+        outputAppend("-- latest history messages end --");
+        console.log("latest messages", data);
+
+        sendToChatAction.disabled = false;
+        chatbox.disabled = false;
+      };
+
+      connectToChatAction.onclick = async () => {
+        outputClear();
+        socket = new WebSocket(
+          `${talkeeWsBase}?site_id=${cfg.site_id}&slug=${cfg.slug}`
+        );
+        socket.addEventListener("open", async (event) => {
+          socket.send(
+            JSON.stringify({
+              type: "auth",
+              token: talkeeToken,
+            })
+          );
+
+          await fetchLatestMessages();
+        });
+
+        // Listen for messages
+        socket.addEventListener("message", (event) => {
+          console.log("receive a message", event.data);
+          const data = JSON.parse(event.data);
+          outputAppend(
+            `${data.created_at} ${data.user.full_name}: ${Base64.decode(
+              data.data
+            )}`
+          );
+        });
+      };
+
+      sendToChatAction.onclick = async () => {
+        const url = `${talkeeWsApiBase}/messages?site_id=${cfg.site_id}&slug=${cfg.slug}`;
+        const resp = await fetch(url, {
+          method: "POST",
+          mode: "cors",
+          cahce: "no-cache",
+          headers: {
+            Authorization: "Bearer " + talkeeToken,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message_id: uuidv4(),
+            category: "text",
+            data: Base64.encode(chatbox.value),
+          }),
+        });
+        const data = await resp.json();
+
+        outputAppend(
+          `${data.created_at} ${data.user.full_name}: ${chatbox.value}`
+        );
+        console.log("send a message", data);
+      };
+    </script>
+  </body>
+</html>
