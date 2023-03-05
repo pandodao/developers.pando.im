@@ -23,7 +23,7 @@ export default defineNuxtConfig({
       title: "Pando Developer Console",
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover",
-      meta: [{ name: "description", content: "Best Multisig Wallet on Mixin Network" }],
+      meta: [{ name: "description", content: "Pando provides a set of decentralized protocols and Web3 tools to help developers build their own applications." }],
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         {
