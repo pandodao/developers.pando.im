@@ -3,7 +3,7 @@
     <VSheet class="d-flex align-center">
       <div class="text-overline pl-0 text-greyscale_3 ">{{ t("talkee.sites") }}</div>
       <VSpacer />
-      <FButton size="small" variant="text" text rounded="0" @click="openNewDialog">
+      <FButton v-if="!reachLimit" size="small" variant="text" text rounded="0" @click="openNewDialog">
         <VIcon>$IconPlus</VIcon>
         <span class="ml-1">{{ t("talkee.new") }}</span>
       </FButton>
@@ -94,6 +94,10 @@ const originInputErrors = computed(() => {
 
 const validatedEdit = computed(() => {
   return originInputErrors.value.length === 0 && nameInputValue.value.length > 0;
+});
+
+const reachLimit = computed(() => {
+  return sites.value.length >= 3;
 });
 
 function createSite() {

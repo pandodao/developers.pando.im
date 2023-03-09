@@ -40,6 +40,18 @@
   "talkee.connect.title": "Please connect to talkee to continue",
   "talkee.connect.text": "Talkee uses an individual authentication flow. You need to connect to Talkee with your wallet to continue.",
 
+  "botastic.apps": "Apps",
+  "botastic.name": "name",
+  "botastic.name.placeholder": "A name for remembering",
+  "botastic.app_id": "App ID: {app_id}",
+  "botastic.app_secret": "App Secret: {app_secret}",
+  "botastic.new_app": "New App",
+  "botastic.no_app": "No App",
+  "botastic.resources": "Resources",
+  "botastic.resources.api_references": "API References",
+  "botastic.connect.title": "Please connect to botastic to continue",
+  "botastic.connect.text": "Botastic uses an individual authentication flow. You need to connect to Botastic with your wallet to continue.",
+
   "errorcode.-1": "NETWORK ERROR",
   "errorcode.404": "CANNOT FIND RESOURCE",
   "errorcode.fallback": "NETWORK ERROR"

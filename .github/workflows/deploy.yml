@@ -7,6 +7,8 @@ env:
   NUXT_PUBLIC_MIXIN_API_BASE_URL: "https://api.mixin.one"
   NUXT_PUBLIC_TALKEE_CLIENT_ID: 61504be8-a9da-477d-9e18-448ac3780919
   NUXT_PUBLIC_TALKEE_API_BASE_URL: "https://talkee-api.pando.im/api"
+  NUXT_PUBLIC_BOTASTIC_CLIENT_ID: 0224cb95-87eb-4794-86d2-06f19350d9d7
+  NUXT_PUBLIC_BOTASTIC_API_BASE_URL: "https://botastic-api.pando.im/api"
 
 on:
   push:

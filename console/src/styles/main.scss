@@ -14,3 +14,7 @@ a {
   text-decoration: none;
   color: rgb(var(--v-theme-link));
 }
+.font-fix-width {
+  font-family: monospace !important;
+  font-size: 12px;
+}

@@ -39,7 +39,7 @@
             </div>
           </div>
           <template #append>
-            <FButton v-if="talkeeLogged" size="small" class="disconnect" rounded="sm" @click="serv.disconnect">{{ $t("disconnect") }}</FButton>
+            <FButton v-if="serv.logged" size="small" class="disconnect" rounded="sm" @click="serv.disconnect">{{ $t("disconnect") }}</FButton>
             <FButton v-else size="small" color="primary" rounded="sm" @click="serv.connect">{{ $t("connect") }}</FButton>
           </template>
         </FListItem>
@@ -59,20 +59,26 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import talkeeIcon from "@/assets/images/services/talkee.svg";
+import servIcons from "@/assets/images/services";
 
 const { t } = useI18n();
 
-const { logged, talkeeLogged, login, loginToTalkee, logout, logoutTalkee, displayAvatar, displayName, authChannel } = useAccount();
+const { logged, talkeeLogged, login, loginToTalkee, loginToBotastic, logout, logoutTalkee, logoutServ, servicesLogged,
+  displayAvatar, displayName, authChannel } = useAccount();
 
 const show = ref(false);
 
 const services = computed(() => {
   return [
     {
-      label: "Talkee", icon: talkeeIcon,
+      label: "Talkee", icon: servIcons.talkeeIcon, logged: talkeeLogged.value,
       disconnect: () => { logoutTalkee(); show.value = false; },
       connect: () => { loginToTalkee(); show.value = false; }
+    },
+    {
+      label: "Botastic", icon: servIcons.botasticIcon, logged: servicesLogged.value("botastic"),
+      disconnect: () => { logoutServ("botastic"); show.value = false; },
+      connect: () => { loginToBotastic(); show.value = false; }
     }
   ]
 });

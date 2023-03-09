@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   srcDir: "src/",
   css: ["~/styles/main.scss"],
   components: {
-    dirs: ["~/components/common", "~/components/talkee", "~/layouts/components"],
+    dirs: ["~/components/common", "~/components/talkee", "~/components/botastic", "~/layouts/components"],
   },
   imports: {
     dirs: ["stores", "composables"],
@@ -25,7 +25,7 @@ export default defineNuxtConfig({
       viewport: "width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover",
       meta: [{ name: "description", content: "Pando provides a set of decentralized protocols and Web3 tools to help developers build their own applications." }],
       link: [
-        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        { rel: "icon", type: "image/png", href: "/console/favicon.png" },
         {
           rel: "stylesheet",
           href: "https://static.fox.one/font/inter/style.css",
@@ -46,11 +46,15 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      mixinApiBase: process.env.NUXT_PUBLIC_MIXIN_API_BASE_URL,
-      talkeeApiBase: process.env.NUXT_PUBLIC_TALKEE_API_BASE_URL,
       token: process.env.NUXT_PUBLIC_MIXIN_TOKEN,
       clientID: process.env.NUXT_PUBLIC_MIXIN_CLIENT_ID,
+      mixinApiBase: process.env.NUXT_PUBLIC_MIXIN_API_BASE_URL,
+
       talkeeClientID: process.env.NUXT_PUBLIC_TALKEE_CLIENT_ID,
+      talkeeApiBase: process.env.NUXT_PUBLIC_TALKEE_API_BASE_URL,
+
+      botasticClientID: process.env.NUXT_PUBLIC_BOTASTIC_CLIENT_ID,
+      botasticApiBase: process.env.NUXT_PUBLIC_BOTASTIC_API_BASE_URL,
     },
   },
   vite: {
