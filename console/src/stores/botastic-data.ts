@@ -1,8 +1,9 @@
-import { getApps } from "@/services/botastic";
+import { getApps, getBots } from "@/services/botastic";
 
 export const useBotasticDataStore = defineStore("botastic-data", () => {
   // states
   const apps = ref<Array<Botastic.App>>([]);
+  const bots = ref<Array<Botastic.Bot>>([]);
   const loading = ref(false);
 
   // getters
@@ -26,11 +27,28 @@ export const useBotasticDataStore = defineStore("botastic-data", () => {
     apps.value.push(_app);
   }
 
+  function addBots(_bots: Botastic.Bot[]) {
+    bots.value = _bots;
+  }
+
+  function addBot(_bot: Botastic.Bot) {
+    bots.value.push(_bot);
+  }
+
   function updateApp(id: number, name: string) {
     const index = apps.value.findIndex((s) => s.id === id);
     if (index >= 0) {
       const m = Object.assign({}, apps.value[index]);
       m.name = name;
+      apps.value[index] = m;
+    }
+  }
+
+  function updateBot(id: number, values = {}) {
+    const index = apps.value.findIndex((s) => s.id === id);
+    if (index >= 0) {
+      let m = Object.assign({}, apps.value[index]);
+      m = Object.assign(m, values);
       apps.value[index] = m;
     }
   }
@@ -43,9 +61,18 @@ export const useBotasticDataStore = defineStore("botastic-data", () => {
     return resp;
   }
 
+  async function loadBots() {
+    loading.value = true;
+    const resp = await getBots();
+    addBots(resp);
+    loading.value = false;
+    return resp;
+  }
+
   return {
     // states
     apps,
+    bots,
     loading,
 
     // getters
@@ -55,8 +82,12 @@ export const useBotasticDataStore = defineStore("botastic-data", () => {
     // actions
     addApp,
     addApps,
+    addBot,
+    addBots,
     updateApp,
+    updateBot,
     loadApps,
+    loadBots,
   };
 }, { }
 );

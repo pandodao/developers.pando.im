@@ -9,7 +9,10 @@
     </VSheet>
     <div v-else>
       <FLoading v-if="botasticLoading" />
-      <BotasticAppList v-else />
+      <template v-else>
+        <BotasticAppList />
+        <BotasticBotList />
+      </template>
     </div>
   </div>
 </template>

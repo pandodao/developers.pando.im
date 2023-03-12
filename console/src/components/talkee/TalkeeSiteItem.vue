@@ -182,7 +182,14 @@ function copySiteId() {
 
 .tijs-textarea {
   &:deep(textarea) {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    font-weight: normal;
+    font-family: monospace;
+  }
+}
+.v-input {
+  &:deep(input) {
+    font-size: 0.9rem;
     font-weight: normal;
     font-family: monospace;
   }

@@ -216,6 +216,7 @@ export function useAccount() {
     try {
       await Promise.all([
         botasticDataStore.loadApps(),
+        botasticDataStore.loadBots(),
       ]);
     } catch (error) {
       toast.error(error);

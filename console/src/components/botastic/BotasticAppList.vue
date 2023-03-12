@@ -19,17 +19,6 @@
       {{ t("botastic.no_app") }}
     </div>
 
-    <VSheet class="d-flex align-center">
-      <div class="text-overline pl-0 text-greyscale_3 ">{{ t("botastic.resources") }}</div>
-      <VSpacer />
-    </VSheet>
-    <FDivider class="mb-4"/>
-    <div>
-      <a href="https://developers.pando.im/references/botastic/api.html" title="API References" target="_blank">
-        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">{{ t("botastic.resources.api_references") }}</FButton>
-      </a>
-    </div>
-
     <FModal v-model="showNewDialog" desktop="dialog" offset="16" :title="'Edit'">
       <div class="pb-4">
         <div class="pa-4 mb-4">

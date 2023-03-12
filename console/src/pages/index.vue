@@ -1,6 +1,6 @@
 <template>
   <div class="narrow-page pa-4">
-    <VSheet border rounded class="pa-4">
+    <VSheet rounded class="pa-4">
       <h3 class="text-h5 mb-4">{{ t("welcome.title") }}</h3>
       <div class="text-body-1 text-greyscale_3 mb-4">
         {{ t("welcome.text") }}
