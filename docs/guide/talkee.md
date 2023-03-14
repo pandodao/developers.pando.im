@@ -51,7 +51,7 @@ If you are using any other CMS, or static site generators, such as Gatsby, Jekyl
 ```html
 <body>
   <!-- ... -->
-  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee-install-js@0.1.1/dist/ti.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee-install-js@0.1.2/dist/ti.min.js"></script>
   <script>window.tijs({ siteId: YOUR_SITE_ID_HERE, authMethods: ["metamask", "fennec"] });</script>
 </body>
 ```
@@ -126,7 +126,7 @@ If you wanna integrate Talkee into your site with more flexibility, please follo
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- insert styles -->
   <link
-    href="https://cdn.jsdelivr.net/npm/@foxone/talkee@3.0.0/dist/style.css"
+    href="https://cdn.jsdelivr.net/npm/@foxone/talkee@3.0.1/dist/style.css"
     rel="stylesheet"
   />
   <title>Talkee UMD Demo</title>
@@ -134,7 +134,7 @@ If you wanna integrate Talkee into your site with more flexibility, please follo
 <body>
   <!-- insert scripts -->
   <script src="https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.prod.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee@3.0.0/dist/index.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@foxone/talkee@3.0.1/dist/index.umd.js"></script>
   <!-- the container -->
   <div id="comments"></div>
 </body>
