@@ -10,7 +10,7 @@ Hosts have the ability to reward active commenters with cryptocurrencies based o
 
 ## Demo
 
-Please visit [this page](https://developers.pando.im/console/talkee) to see the demo.
+Please visit [Comment Demo](https://developers.pando.im/demo/comment-demo.html) and [Chat Demo](https://developers.pando.im/demo/chat-demo.html).
 
 ## Who's using Talkee
 
