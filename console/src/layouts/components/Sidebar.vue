@@ -50,7 +50,7 @@ const services = computed(() => {
   return [
     { label: "Home", icon: servIcons.pandoIcon, route: "index" },
     { label: "Talkee", icon: servIcons.talkeeIcon, route: "talkee" },
-    { label: "Botastic", icon: servIcons.botasticIcon, route: "botastic" }
+    // { label: "Botastic", icon: servIcons.botasticIcon, route: "botastic" }
   ]
 });
 

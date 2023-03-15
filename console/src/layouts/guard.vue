@@ -16,13 +16,13 @@
               </div>
               <div class="">
                 <div class="code-block mb-8">
-                  <h1 class="font-weight-normal mb-1">Developer Console</h1>
-                  <div class="desc text-greyscale_3">Let's get started with your blockchain wallet</div>
+                  <h1 class="font-weight-bold mb-1">{{ t("guard.title") }}</h1>
+                  <div class="desc text-greyscale_3">{{ t("guard.text") }}</div>
                 </div>
-                <FButton color="primary" rounded="sm" @click="conn" block>Connect Wallet</FButton>
+                <FButton color="primary" rounded="sm" @click="conn" block>{{ t("connect_wallet") }}</FButton>
                 <div class="links d-flex pt-4 text-caption">
                   <a href="https://pando.im/" target="_blank">Pando.im</a>
-                  <a href="https://developers.pando.im/" target="_blank">Documents</a>
+                  <a href="https://developers.pando.im/" target="_blank">{{ t("documents") }}</a>
                 </div>
               </div>
             </div>
@@ -46,6 +46,7 @@ import logo from '@/assets/images/logo-with-text.svg';
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
 const { login } = useAccount();
+const { t } = useI18n({ useScope: "local" });
 
 function conn() {
   login()

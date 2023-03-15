@@ -81,6 +81,10 @@ const reachLimit = computed(() => {
 });
 
 function createSite() {
+  if (originInputValue.value.endsWith("/")) {
+    originInputValue.value = originInputValue.value.slice(0, -1);
+  }
+
   addSite(nameInputValue.value, originInputValue.value).then((resp) => {
     talkeeDataStore.addSite(resp);
     showNewDialog.value = false;

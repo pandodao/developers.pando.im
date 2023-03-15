@@ -74,7 +74,7 @@ const reachLimit = computed(() => {
 });
 
 function createBot() {
-  addBot(nameInputValue.value).then((resp) => {
+  addBot(nameInputValue.value, "").then((resp) => {
     botasticDataStore.addBot(resp);
     showNewDialog.value = false;
   });}

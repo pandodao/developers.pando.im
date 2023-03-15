@@ -129,7 +129,7 @@ const validatedEdit = computed(() => {
 
 const tijsScript = computed(() => {
   // wierd workaround. compiler don't like html close tag in template
-  return `$$script src="https://cdn.jsdelivr.net/npm/@foxone/talkee-install-js@0.1.1/dist/ti.min.js">$$/script>
+  return `$$script src="https://cdn.jsdelivr.net/npm/@foxone/talkee-install-js@0.1.2/dist/ti.min.js">$$/script>
 $$script>
   window.tijs({
     siteId: ${props.site.id},
@@ -141,6 +141,9 @@ $$/script>`.replace(/\$\$/g, "<");
 
 function saveEdit() {
   if (!props.site) return;
+  if (originInputValue.value.endsWith("/")) {
+    originInputValue.value = originInputValue.value.slice(0, -1);
+  }
   editSite(props.site.id, nameInputValue.value, originInputValue.value).then(() => {
     talkeeDataStore.updateSite(props.site.id, nameInputValue.value, [ originInputValue.value ]);
     showEditDialog.value = false;
