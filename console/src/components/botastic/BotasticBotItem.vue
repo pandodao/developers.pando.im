@@ -1,26 +1,24 @@
 <template>
   <div>
-    <VSheet class="">
+    <div class="item d-flex align-center" @click="openEditDialog">
       <div class="">
-        <div class="d-flex align-center text-body-1 font-weight-medium">
-          <div>{{ bot.name }}</div>
-          <VSpacer />
-          <VBtn variant="flat" icon class="copy-btn" rounded="0" size="x-small" @click="openEditDialog">
-            <VIcon color="link">$IconEdit</VIcon>
-          </VBtn>
+        <div class="d-flex align-center text-body-1 mb-1">
+          <div class="font-weight-bold">{{ bot.name }}</div>
         </div>
         <div class="d-flex align-center text-body-1 text-greyscale_3">
           <div class="font-fix-width">{{ t("botastic.bot_model", { model: bot.model }) }}</div>
         </div>
       </div>
-    </VSheet>
+      <VSpacer />
+      <VIcon color="greyscale_3" size="16">$IconChevronRight</VIcon>
+    </div>
 
     <FModal v-model="showEditDialog" desktop="dialog" offset="16" :title="t('edit')">
       <div class="pb-4">
         <div class="pa-4 mb-4">
           <VRow dense>
             <VCol cols="12">
-              <FInput v-model="nameInputValue" :label="t('botastic.name')" :placeholder="t('botastic.name.placeholder')" :hide-details="true"/>
+              <FInput v-model="nameInputValue" :label="t('botastic.bot_name')" :placeholder="t('botastic.bot_name.placeholder')" :hide-details="true"/>
             </VCol>
             <VCol cols="12">
               <FTextarea class="" v-model="promptInputValue" :label="t('botastic.prompt')" :hide-details="true"/>
@@ -153,8 +151,8 @@ function openEditDialog() {
 
 <style lang="scss" scoped>
 
-.control {
-  margin: 0 -28px;
+.item {
+  cursor: pointer;
 }
 .v-textarea {
   &:deep(textarea) {

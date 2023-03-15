@@ -1,17 +1,19 @@
 <template>
-  <div>
-    <VSheet class="d-flex align-center">
-      <div class="text-overline pl-0 text-greyscale_3 ">{{ t("botastic.apps") }}</div>
+  <VSheet class="mb-4 rounded-sm" color="greyscale_7" elevation="1">
+    <div class="d-flex align-center">
+      <div class="text-overline pl-4 text-greyscale_3 ">{{ t("botastic.apps") }}</div>
       <VSpacer />
-      <FButton v-if="!reachLimit" size="small" variant="text" text rounded="0" @click="openNewDialog">
-        <VIcon>$IconPlus</VIcon>
-        <span class="ml-1">{{ t("botastic.new_app") }}</span>
-      </FButton>
-    </VSheet>
-    <FDivider class="mb-4"/>
+      <div class="pa-1">
+        <FButton v-if="!reachLimit" size="small" variant="plain" class="rounded-sm" @click="openNewDialog">
+          <VIcon>$IconPlus</VIcon>
+        </FButton>
+      </div>
+    </div>
 
-    <div v-if="apps.length">
-      <div  v-for="item in apps" class="list-item pr-0 mb-4" :key="`app-${item.id}`">
+    <FDivider />
+
+    <div v-if="apps.length" class="pa-4 pb-1">
+      <div v-for="item in apps" class="list-item pr-0 mb-4" :key="`app-${item.id}`">
         <BotasticAppItem :app="item" />
       </div>
     </div>
@@ -34,7 +36,7 @@
       </div>
     </FModal>
 
-  </div>
+  </VSheet>
 </template>
 
 <script lang="ts">

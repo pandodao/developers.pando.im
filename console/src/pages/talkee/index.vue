@@ -10,6 +10,7 @@
     <div v-else>
       <FLoading v-if="talkeeLoading" />
       <TalkeeSiteList v-else />
+      <TalkeeResList />
     </div>
   </div>
 </template>

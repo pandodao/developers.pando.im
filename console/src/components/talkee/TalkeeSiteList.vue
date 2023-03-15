@@ -1,42 +1,22 @@
 <template>
-  <div>
-    <VSheet class="d-flex align-center">
-      <div class="text-overline pl-0 text-greyscale_3 ">{{ t("talkee.sites") }}</div>
+  <VSheet class="mb-4 rounded-sm" color="greyscale_7" elevation="1">
+    <div class="d-flex align-center">
+      <div class="text-overline pl-4 text-greyscale_3 ">{{ t("talkee.sites") }}</div>
       <VSpacer />
-      <FButton v-if="!reachLimit" size="small" variant="text" text rounded="0" @click="openNewDialog">
-        <VIcon>$IconPlus</VIcon>
-        <span class="ml-1">{{ t("talkee.new") }}</span>
-      </FButton>
-    </VSheet>
-    <FDivider class="mb-4"/>
-
-    <div v-if="sites.length">
-      <div  v-for="item in sites" class="list-item pr-0 mb-4" :key="`site-${item.id}`">
+      <div class="pa-1">
+        <FButton v-if="!reachLimit" size="small" variant="plain" class="rounded-sm" @click="openNewDialog">
+          <VIcon>$IconPlus</VIcon>
+        </FButton>
+      </div>
+    </div>
+    <FDivider />
+    <div v-if="sites.length" class="pa-4 pb-1">
+      <div v-for="item in sites" class="list-item pr-0 mb-2" :key="`site-${item.id}`">
         <TalkeeSiteItem :site="item" />
       </div>
     </div>
     <div v-else class="text-body-1 text-greyscale_3 text-center mt-10">
       {{ t("talkee.no_site") }}
-    </div>
-
-    <VSheet class="d-flex align-center">
-      <div class="text-overline pl-0 text-greyscale_3 ">{{ t("talkee.resources") }}</div>
-      <VSpacer />
-    </VSheet>
-    <FDivider class="mb-4"/>
-    <div>
-      <a href="https://developers.pando.im/guide/talkee.html" title="Install Guide" target="_blank">
-        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">{{ t("talkee.resources.install_guide") }}</FButton>
-      </a>
-      <a href="https://developers.pando.im/references/talkee/api.html" title="API References" target="_blank">
-        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">{{ t("talkee.resources.api_references") }}</FButton>
-      </a>
-      <a href="https://developers.pando.im/demo/comment-demo.html" title="Comment Demo" target="_blank">
-        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">{{ t("talkee.resources.comment_demo") }}</FButton>
-      </a>
-      <a href="https://developers.pando.im/demo/chat-demo.html" title="Chat Demo" target="_blank">
-        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">{{ t("talkee.resources.chat_demo") }}</FButton>
-      </a>
     </div>
 
     <FModal v-model="showNewDialog" desktop="dialog" offset="16" :title="'Edit'">
@@ -57,7 +37,7 @@
       </div>
     </FModal>
 
-  </div>
+  </VSheet>
 </template>
 
 <script lang="ts">

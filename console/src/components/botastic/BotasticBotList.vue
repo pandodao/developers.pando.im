@@ -1,33 +1,24 @@
 <template>
-  <div>
-    <VSheet class="d-flex align-center">
-      <div class="text-overline pl-0 text-greyscale_3 ">{{ t("botastic.bots") }}</div>
+  <VSheet class="mb-4 rounded-sm" color="greyscale_7" elevation="1">
+    <div class="d-flex align-center">
+      <div class="text-overline pl-4 text-greyscale_3">{{ t("botastic.bots") }}</div>
       <VSpacer />
-      <FButton v-if="!reachLimit" size="small" variant="text" text rounded="0" @click="openNewDialog">
-        <VIcon>$IconPlus</VIcon>
-        <span class="ml-1">{{ t("botastic.new_bot") }}</span>
-      </FButton>
-    </VSheet>
-    <FDivider class="mb-4"/>
+      <div v-if="!reachLimit" class="pa-1">
+        <FButton size="small" variant="plain" class="rounded-sm" @click="openNewDialog">
+          <VIcon>$IconPlus</VIcon>
+        </FButton>
+      </div>
+    </div>
 
-    <div v-if="bots.length">
-      <div  v-for="item in bots" class="list-item pr-0 mb-4" :key="`bot-${item.id}`">
+    <FDivider />
+
+    <div v-if="bots.length" class="pa-4 pb-1">
+      <div v-for="item in bots" class="list-item pr-0 mb-4" :key="`bot-${item.id}`">
         <BotasticBotItem :bot="item" />
       </div>
     </div>
     <div v-else class="text-body-1 text-greyscale_3 text-center mt-10">
       {{ t("botastic.no_bot") }}
-    </div>
-
-    <VSheet class="d-flex align-center">
-      <div class="text-overline pl-0 text-greyscale_3 ">{{ t("botastic.resources") }}</div>
-      <VSpacer />
-    </VSheet>
-    <FDivider class="mb-4"/>
-    <div>
-      <a href="https://developers.pando.im/references/botastic/api.html" title="API References" target="_blank">
-        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">{{ t("botastic.resources.api_references") }}</FButton>
-      </a>
     </div>
 
     <FModal v-model="showNewDialog" desktop="dialog" offset="16" :title="'Edit'">
@@ -48,7 +39,7 @@
       </div>
     </FModal>
 
-  </div>
+  </VSheet>
 </template>
 
 <script lang="ts">
@@ -99,8 +90,5 @@ function openNewDialog() {
 <style lang="scss" scoped>
 .block {
   flex: 1;
-}
-.list-item {
-  min-height: 64px;
 }
 </style>

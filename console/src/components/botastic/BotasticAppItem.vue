@@ -1,31 +1,30 @@
 <template>
   <div>
-    <VSheet class="">
+    <div class="mb-4 rounded-sm">
       <div class="">
         <div class="d-flex align-center text-body-1 font-weight-medium">
-          <div>{{ app.name }}</div>
+          <div class="font-weight-bold">{{ app.name }}</div>
           <VSpacer />
-          <VBtn variant="flat" icon class="copy-btn" rounded="0" size="x-small" @click="openEditDialog">
+          <VBtn variant="plain" icon class="copy-btn" rounded="0" size="x-small" @click="openEditDialog">
             <VIcon color="link">$IconEdit</VIcon>
           </VBtn>
         </div>
         <div class="d-flex align-center text-body-1 text-greyscale_3">
           <div class="font-fix-width">{{ t("botastic.app_id", { app_id: app.app_id }) }}</div>
           <VSpacer />
-          <VBtn variant="flat" icon class="copy-btn" rounded="0" size="x-small" @click="copyAppID">
+          <VBtn variant="plain" icon class="copy-btn" rounded="0" size="x-small" @click="copyAppID">
             <VIcon color="link">$IconCopy</VIcon>
           </VBtn>
         </div>
         <div class="d-flex align-center text-body-1 text-greyscale_3">
           <div class="font-fix-width">{{ t("botastic.app_secret", { app_secret: shorter(app.app_secret) }) }}</div>
           <VSpacer />
-          <VBtn variant="flat" icon class="copy-btn" rounded="0" size="x-small" @click="copyAppSecret">
+          <VBtn variant="plain" icon class="copy-btn" rounded="0" size="x-small" @click="copyAppSecret">
             <VIcon color="link">$IconCopy</VIcon>
           </VBtn>
         </div>
       </div>
-    </VSheet>
-
+    </div>
 
     <FModal v-model="showEditDialog" desktop="dialog" offset="16" :title="t('edit')">
       <div class="pb-4">

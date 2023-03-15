@@ -1,22 +1,23 @@
 <template>
   <VNavigationDrawer v-model="drawer">
-    <div v-if="logged" class="pa-4 d-flex align-center">
-      <AccountAvatarAction />
+    <div v-if="logged" class="pt-4 px-2">
+      <AccountAvatarAction/>
+      <FDivider class="mt-4"/>
     </div>
-    <FDivider />
-    <VList>
+    <VList class="pa-2">
       <FListItem
-        class="list-item"
+        class="list-item rounded mb-2"
         v-for="serv, ix in services"
         :key="`serv-${ix}`"
         :class="activeClass(serv.route)"
         @click="select(serv.route)"
+        :ripple="false"
       >
         <template #prepend>
           <VImg
             :src="serv.icon"
-            :width="32"
-            :height="32"
+            :width="24"
+            :height="24"
           />
         </template>
         <div class="block pl-3">
@@ -49,7 +50,7 @@ const services = computed(() => {
   return [
     { label: "Home", icon: servIcons.pandoIcon, route: "index" },
     { label: "Talkee", icon: servIcons.talkeeIcon, route: "talkee" },
-    // { label: "Botastic", icon: servIcons.botasticIcon, route: "botastic" }
+    { label: "Botastic", icon: servIcons.botasticIcon, route: "botastic" }
   ]
 });
 
@@ -76,6 +77,13 @@ function select(routeName: string) {
 </script>
 
 <style lang="scss" scoped>
+.v-list {
+  &:deep(.v-list-item--variant-text) {
+    .v-list-item__overlay {
+      background-color: white;
+    }
+  }
+}
 .list-item {
   &.active {
     background-color: rgb(var(--v-theme-greyscale_5));

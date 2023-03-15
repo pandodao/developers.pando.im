@@ -12,6 +12,7 @@
       <template v-else>
         <BotasticAppList />
         <BotasticBotList />
+        <BotasticResList />
       </template>
     </div>
   </div>

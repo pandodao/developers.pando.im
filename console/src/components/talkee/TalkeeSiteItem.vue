@@ -1,8 +1,8 @@
 <template>
   <div>
-    <VSheet class="">
+    <div class="">
       <div class="">
-        <div class="text-body-1 font-weight-medium mb-2">
+        <div class="font-weight-bold">
           {{ site.name }}
         </div>
         <div class="text-caption text-greyscale_3">
@@ -27,8 +27,7 @@
           <span class="ml-1">{{ t("edit") }}</span>
         </FButton>
       </div>
-    </VSheet>
-
+    </div>
 
     <FModal v-model="showEditDialog" desktop="dialog" offset="16" :title="t('edit')">
       <div class="pb-4">
@@ -177,7 +176,7 @@ function copySiteId() {
 }
 
 .control {
-  margin: 0 -28px;
+  margin: 0 -20px;
 }
 
 .tijs-textarea {

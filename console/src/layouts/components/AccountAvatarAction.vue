@@ -1,8 +1,8 @@
 <template>
   <FModal v-model="show" desktop="dialog" offset="4" :title="''">
     <template #activator="{ props: { onClick } }">
-      <div v-if="logged" class="account-avatar-container" @click="onClick">
-        <VAvatar class="account-avatar" :size="32">
+      <div v-if="logged" class="account-avatar-container px-4" @click="onClick">
+        <VAvatar class="account-avatar" :size="24">
           <VImg v-if="displayAvatar" :src="displayAvatar" class="rounded-pill"/>
           <VIcon v-else color="greyscale_7" size="20">$IconProfile</VIcon>
         </VAvatar>
