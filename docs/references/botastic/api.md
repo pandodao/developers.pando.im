@@ -11,7 +11,7 @@ To authenticate your API requests, add these headers:
 
 You can apply your application ID and secret key from [here](https://developers.pando.im/console/botastic).
 
-## Create Indexes
+## Create indexes
 
 <APIEndpoint method="POST" url="/indexes" />
 
@@ -46,7 +46,7 @@ The payload should be a JSON array containing multiple records to be indexed, wi
 }
 ```
 
-## Search Indexes
+## Search indexes
 
 <APIEndpoint method="GET" url="/indexes/search?query=:query&n=:n" />
 
@@ -81,13 +81,13 @@ This API will search a specific index with query.
 }
 ```
 
-## Delete a Index
+## Delete an index
 
 <APIEndpoint method="DELETE" url="/indexes/:object_id" />
 
 Call this API to delete a specific index by `object_id`.
 
-<APIParams :params="searchIndexObjectParam" />
+<APIParams :params="[searchIndexObjectParam]" />
 
 ### Response
 
@@ -98,7 +98,24 @@ Call this API to delete a specific index by `object_id`.
 }
 ```
 
-## Create Conversation
+## Delete all indexes
+
+<APIEndpoint method="POST" url="/indexes/reset" />
+
+Call this API to delete all indexes of the current `app_id`.
+
+<APIParams :params="[searchIndexObjectParam]" />
+
+### Response
+
+```json
+{
+  "ts": 1678946505106,
+  "data": {}
+}
+```
+
+## Create conversation
 
 <APIEndpoint method="POST" url="/conversations" />
 
@@ -147,7 +164,7 @@ This API will create a new conversation. The payload should be a JSON object con
 }
 ```
 
-## Post to Conversation
+## Post to conversation
 
 <APIEndpoint method="POST" url="/conversations/:conversation_id" />
 
@@ -207,7 +224,7 @@ The payload should be a JSON object containing the following fields:
 }
 ```
 
-## Read Conversation
+## Read conversation
 
 <APIEndpoint method="GET" url="/conversations/:conversation_id" />
 
@@ -264,7 +281,7 @@ All conversation history are arranged in a list, we call them `turns`, with a `t
 }
 ```
 
-## Read Conversation Turn
+## Read conversation turn
 
 <APIEndpoint method="GET" url="/conversations/:conversation_id/:turn_id" />
 
