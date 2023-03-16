@@ -3,7 +3,7 @@
   "botastic.app_secret": "App密鑰：{app_secret}",
   "botastic.apps": "應用程式",
   "botastic.bot_id": "機器人 ID：{bot_id}",
-  "botastic.bot_model": "機器人模型",
+  "botastic.bot_model": "模型：{bot_model}",
   "botastic.bot_name": "機器人名稱",
   "botastic.bot_name.placeholder": "一個值得記住的名字",
   "botastic.bots": "機器人",

@@ -3,7 +3,7 @@
   "botastic.app_secret": "App Secret: {app_secret}",
   "botastic.apps": "Apps",
   "botastic.bot_id": "Bot ID: {bot_id}",
-  "botastic.bot_model": "Bot Model",
+  "botastic.bot_model": "Model: {bot_model}",
   "botastic.bot_name": "Bot Name",
   "botastic.bot_name.placeholder": "A name for remembering",
   "botastic.bots": "Bots",

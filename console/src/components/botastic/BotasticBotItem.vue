@@ -6,7 +6,10 @@
           <div class="font-weight-bold">{{ bot.name }}</div>
         </div>
         <div class="d-flex align-center text-body-1 text-greyscale_3">
-          <div class="font-fix-width">{{ t("botastic.bot_model", { model: bot.model }) }}</div>
+          <div class="font-fix-width">
+            {{ t("botastic.bot_id", { bot_id: bot.id }) }},
+            {{ t("botastic.bot_model", { bot_model: bot.model }) }}
+          </div>
         </div>
       </div>
       <VSpacer />

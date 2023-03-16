@@ -3,7 +3,7 @@
   "botastic.app_secret": "アプリの秘密鍵: {app_secret}",
   "botastic.apps": "アプリ",
   "botastic.bot_id": "ボットID：{bot_id}",
-  "botastic.bot_model": "ボットモデル",
+  "botastic.bot_model": "ボットモデル：{bot_model}",
   "botastic.bot_name": "ボット名",
   "botastic.bot_name.placeholder": "記憶に残る名前",
   "botastic.bots": "ボット",
