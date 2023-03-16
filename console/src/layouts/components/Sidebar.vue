@@ -1,5 +1,5 @@
 <template>
-  <VNavigationDrawer v-model="drawer">
+  <VNavigationDrawer v-model="drawer" >
     <div v-if="logged" class="pt-4 px-2">
       <AccountAvatarAction/>
       <FDivider class="mt-4"/>
@@ -49,8 +49,8 @@ const { drawer } = storeToRefs(appStore)
 const services = computed(() => {
   return [
     { label: "Home", icon: servIcons.pandoIcon, route: "index" },
-    { label: "Talkee", icon: servIcons.talkeeIcon, route: "talkee" },
-    // { label: "Botastic", icon: servIcons.botasticIcon, route: "botastic" }
+    { label: "Botastic", icon: servIcons.botasticIcon, route: "botastic" },
+    { label: "Talkee", icon: servIcons.talkeeIcon, route: "talkee" }
   ]
 });
 

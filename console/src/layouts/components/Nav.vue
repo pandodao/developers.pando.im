@@ -1,7 +1,7 @@
 <template>
   <FAppBar :height="navbarHeight">
     <VContainer class="d-flex align-center text-center px-4">
-      <FButton v-if="smAndDown" variant="icon" class="menu-btn" size="small" @click="toggleSide">
+      <FButton variant="icon" class="menu-btn" size="small" @click="toggleSide">
         <VIcon>$IconMenu</VIcon>
       </FButton>
       <VSpacer />

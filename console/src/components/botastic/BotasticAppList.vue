@@ -17,7 +17,7 @@
         <BotasticAppItem :app="item" />
       </div>
     </div>
-    <div v-else class="text-body-1 text-greyscale_3 text-center mt-10">
+    <div v-else class="text-body-1 text-greyscale_3 text-center py-4">
       {{ t("botastic.no_app") }}
     </div>
 

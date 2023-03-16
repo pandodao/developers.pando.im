@@ -30,6 +30,7 @@ onMounted(async () => {
   if (smAndDown.value) {
     drawer.value = false;
   } else {
+    console.log(smAndDown.value)
     drawer.value = true;
   }
 });

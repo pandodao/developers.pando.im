@@ -36,10 +36,13 @@
   "disconnect.confirm": "确定解除钱包连接吗",
   "disconnect_all": "解除全部连接",
   "documents": "文档",
+  "documents.defi.tutorial": "教程",
+  "documents.mixin": "混合文件",
   "edit": "编辑",
   "errorcode.-1": "網路錯誤",
   "errorcode.404": "找不到資源。",
   "errorcode.fallback": "網路錯誤",
+  "getting_started": "開始使用",
   "guard.text": "讓我們開始使用您的區塊鏈錢包。",
   "guard.title": "開發人員控制台",
   "install": "安装",
@@ -68,5 +71,11 @@
   "talkee.sites": "站点",
   "talkee.talkee.no_site": "还没有网站，点击“新增”按钮添加网站",
   "welcome.text": "Pando 提供了一套去中心化协议和 Web3 工具来帮助开发者构建自己的应用程序。",
-  "welcome.title": "欢迎来到 Pando 开发者控制台"
+  "welcome.text.botastic": "使用Botastic，通用的AI平台，來建立您自己的AI應用程式。",
+  "welcome.text.defi": "所有的 DeFi 協議都建立在 Pando Network 上，它是 Mixin Network 的側鏈。有關詳細信息，請查看 Mixin 開發人員文檔或我們的指南。",
+  "welcome.text.talkee": "Talkee是一個具有以太坊登錄和錢包的Web3評論和聊天工具。將您的網站或Web應用程序啟用為Web3社區。",
+  "welcome.title": "欢迎来到 Pando 开发者控制台",
+  "welcome.title.botastic": "建立AI應用程式？",
+  "welcome.title.defi": "建立 DeFi 應用程式？",
+  "welcome.title.talkee": "尋找Web3整合？"
 }

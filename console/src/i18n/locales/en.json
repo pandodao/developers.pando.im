@@ -36,10 +36,13 @@
   "disconnect.confirm": "Are you sure to disconnect?",
   "disconnect_all": "Disconnect All",
   "documents": "Documents",
+  "documents.defi.tutorial": "Tutorial",
+  "documents.mixin": "Mixin Documents",
   "edit": "Edit",
   "errorcode.-1": "NETWORK ERROR",
   "errorcode.404": "CANNOT FIND RESOURCE",
   "errorcode.fallback": "NETWORK ERROR",
+  "getting_started": "Getting Started",
   "guard.text": "Let's get started with your blockchain wallet",
   "guard.title": "Developer Console",
   "install": "Install",
@@ -68,5 +71,11 @@
   "talkee.sites": "Sites",
   "talkee.talkee.no_site": "No site. Tap + to create.",
   "welcome.text": "Pando provides a set of decentralized protocols and Web3 tools to help developers build their own applications.",
-  "welcome.title": "Welcome to Pando Developer Console"
+  "welcome.text.botastic": "Use Botastic, the universal AI platform, to build your own AI apps.",
+  "welcome.text.defi": "All DeFi protocols are built on Pando Network, which is a sidechain of Mixin Network. Explore Mixin Developer docs or our guide for details.",
+  "welcome.text.talkee": "Talkee is a Web3 commenting and chat tool with Ethereum Login \u0026 Wallets. Enable your website or webapp into a Web3 community.",
+  "welcome.title": "Welcome to Pando Developer Console",
+  "welcome.title.botastic": "Build Apps for AI?",
+  "welcome.title.defi": "Build Apps for DeFi?",
+  "welcome.title.talkee": "Looking for Web3 Integration?"
 }

@@ -36,10 +36,13 @@
   "disconnect.confirm": "切断してもよろしいですか？",
   "disconnect_all": "切断する",
   "documents": "文書",
+  "documents.defi.tutorial": "チュートリアル",
+  "documents.mixin": "ミックスインドキュメント",
   "edit": "編集する",
   "errorcode.-1": "ネットワークエラー",
   "errorcode.404": "404 Not Found",
   "errorcode.fallback": "ネットワークエラー",
+  "getting_started": "スタートガイド",
   "guard.text": "あなたのブロックチェーンウォレットを始めましょう。",
   "guard.title": "開発者コンソール",
   "install": "インストール",
@@ -68,5 +71,11 @@
   "talkee.sites": "サイト",
   "talkee.talkee.no_site": "サイトがありません。作成するには「+」をタップしてください。",
   "welcome.text": "Pandoは、開発者が独自のアプリケーションを構築するための分散型プロトコルとWeb3ツールのセットを提供しています。",
-  "welcome.title": "Pando 開発者コンソールへようこそ"
+  "welcome.text.botastic": "「自分自身のAIアプリを構築するために、汎用AIプラットフォームであるBotasticを使用してください。」",
+  "welcome.text.defi": "すべてのDeFiプロトコルは、Mixin NetworkのサイドチェーンであるPando Network上に構築されています。詳細については、Mixin Developerドキュメントまたは当社のガイドをご覧ください。",
+  "welcome.text.talkee": "「Talkeeは、Ethereumログイン＆ウォレットを備えたWeb3コメントとチャットツールです。あなたのウェブサイトまたはWebアプリをWeb3コミュニティに変えます。」",
+  "welcome.title": "Pando 開発者コンソールへようこそ",
+  "welcome.title.botastic": "AIのためのアプリを作成する？",
+  "welcome.title.defi": "DeFiのためのアプリを作成する？",
+  "welcome.title.talkee": "Web3統合を探していますか？"
 }
