@@ -27,11 +27,10 @@ The following details are required:
 - Your site origin (e.g. https://pando.im)
 
 ::: tip Notes
-- You need to sign in with Mixin Messenger to register your site.
 - Each account can only register 3 sites.
 - An amount of tokens/coins may be required to cover the cost of the reward feature.
 - Currently, we only support arweave as the storage network.
-- Ensure that the tokens/coins you want to distribute are supported by [Mixin Network](https://mixin.one/snapshots).
+- Ensure that the tokens/coins you want to distribute are supported by [Mixin Network](https://mixin.space).
 :::
 
 ### Pricing
@@ -68,9 +67,11 @@ The `tijs` function accepts an object with the following properties:
 
 ## Installation (Wordpress)
 
-If you are using Wordpress, We recommend using the [WPCode](https://wordpress.org/plugins/insert-headers-and-footers/) plugin to integrate Talkee.
+We have a Wordpress plugin for Talkee. You can install it from the Wordpress plugin directory.
 
-Install WPCode, enable it. Then, go to the plugin settings page "Code Snippets -> Header & Footers", and add the following code to the `Header` section, which will fix some style glitches:
+Alternatively, you can also install it manually by downloading the [zip file](https://github.com/pandodao/talkee-wordpress-plugin/archive/refs/heads/main.zip) from its [Github repository](https://github.com/pandodao/talkee-wordpress-plugin).
+
+The following code to the `CSS Overide` section, which will fix some style glitches:
 
 ```html
 <style>
@@ -102,16 +103,6 @@ Install WPCode, enable it. Then, go to the plugin settings page "Code Snippets -
 	}
 </style>
 ```
-
-Add the following code to the `body` section. Don't forget to replace the `YOUR_SITE_ID_HERE` with your site id.
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/@foxone/talkee-install-js@0.1.1/dist/ti.min.js"></script>
-<script>window.tijs({ siteId: YOUR_SITE_ID_HERE, authMethods: ["mixin", "fennec"] });</script>
-</script>
-```
-
-Click the `Save` button to save the changes.
 
 ## Installation (UMD)
 
@@ -192,7 +183,7 @@ We provide a <a href="https://developers.pando.im/demo/chat-demo.html" target="_
 To enable MetaMask and WalletConnect support, add the following code to your HTML:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@foxone/mvm@0.1.29/dist/mvm.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@foxone/mvm@0.1.30/dist/mvm.min.js"></script>
 ```
 
 And follow [the instructions](../references/auth-client.html#eip-4361-sign-in-with-ethereum) to implement the EIP-4361 sign in flow.
