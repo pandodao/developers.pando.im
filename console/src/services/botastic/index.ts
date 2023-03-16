@@ -20,9 +20,10 @@ export function login(mixinToken: string, msg: string, sig: string): Promise<any
   return http.post(`/auth/login`, { data });
 }
 
-export function addApp(name: string): Promise<Botastic.App> {
+export function addApp(name: string, prompt: string): Promise<Botastic.App> {
   return http.post(`/apps`, { data: {
       name,
+      prompt
     }
   });
 }
