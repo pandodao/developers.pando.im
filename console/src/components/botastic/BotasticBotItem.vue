@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="item d-flex align-center" @click="openEditDialog">
+    <div class="item d-flex align-center" @click="showActionsDialog = true">
       <div class="">
         <div class="d-flex align-center text-body-1 mb-1">
           <div class="font-weight-bold">{{ bot.name }}</div>
@@ -15,6 +15,41 @@
       <VSpacer />
       <VIcon color="greyscale_3" size="16">$IconChevronRight</VIcon>
     </div>
+
+    <FModal v-model="showTestDialog" desktop="dialog" offset="16" :title="t('test')">
+      <div class="pa-4 pb-6">
+        <VRow dense>
+          <VCol cols="9" class="d-flex align-center">
+            <FInput v-model="testInputValue" :placeholder="t('botastic.test.input.placeholder')"  hide-details :disabled="loadingTest"/>
+          </VCol>
+          <VCol cols="3" class="d-flex align-center">
+            <FButton color="primary" block @click="sendTestRequest" :disabled="loadingTest">{{ t("send") }}</FButton>
+          </VCol>
+        </VRow>
+        <VRow>
+          <VCol cols="12" class="d-flex align-center">
+            <FTextarea v-model="testOutputValue" readonly :placeholder="t('botastic.test.output.placeholder')" hide-details />
+          </VCol>
+        </VRow>
+      </div>
+    </FModal>
+
+    <FModal v-model="showActionsDialog" desktop="dialog" offset="16" :title="t('actions')">
+      <div class="pa-4 pb-6">
+        <VRow>
+          <VCol cols="12" class="d-flex align-center">
+            <div class="text-body-2 mr-2">{{ t("botastic.test.text") }}</div>
+            <VSpacer />
+            <FButton color="primary" rounded="sm" @click="openTestDialog">{{ $t("test") }}</FButton>
+          </VCol>
+          <VCol cols="12" class="d-flex align-center">
+            <div class="text-body-2 mr-2">{{ t("botastic.edit.text") }}</div>
+            <VSpacer />
+            <FButton color="primary" variant="outlined" rounded="sm" @click="openEditDialog">{{ $t("edit") }}</FButton>
+          </VCol>
+        </VRow>
+      </div>
+    </FModal>
 
     <FModal v-model="showEditDialog" desktop="dialog" offset="16" :title="t('edit')">
       <div class="pb-4">
@@ -62,19 +97,30 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { updateBot } from "@/services/botastic";
+import { updateBot, testBotInput } from "@/services/botastic";
+import { storeToRefs } from "pinia";
 
 const { t } = useI18n({ useScope: "local" });
 const botasticDataStore = useBotasticDataStore();
 const toast = useToast();
 
 const showEditDialog = ref(false);
+const showTestDialog = ref(false);
+const showActionsDialog = ref(false);
+
 const nameInputValue = ref("");
 const promptInputValue = ref("");
 const middlewaresInputValue = ref("");
 const temperatureInputValue = ref("");
 const maxTurnCountInputValue = ref("");
 const contextTurnCountInputValue = ref("");
+
+const testInputValue = ref("");
+const testOutputValue = ref("");
+
+const loadingTest = ref(false);
+
+const  { apps } = storeToRefs(botasticDataStore);
 
 const props = defineProps({
   bot: {
@@ -140,13 +186,40 @@ function saveEdit() {
 }
 
 function openEditDialog() {
+  showActionsDialog.value = false
+
   nameInputValue.value = props.bot.name;
   promptInputValue.value = props.bot.prompt;
   middlewaresInputValue.value = JSON.stringify(props.bot.middlewares, null, 2);
   temperatureInputValue.value = props.bot.temperature;
   maxTurnCountInputValue.value = props.bot.max_turn_count;
   contextTurnCountInputValue.value = props.bot.context_turn_count;
+
   showEditDialog.value = true;
+}
+
+function openTestDialog() {
+  showActionsDialog.value = false
+
+  testInputValue.value = "";
+  testOutputValue.value = "";
+
+  showTestDialog.value = true;
+}
+
+function sendTestRequest() {
+  const request = testInputValue.value.trim();
+  if (request === "") return;
+
+  if (apps.value.length === 0) return;
+
+  loadingTest.value = true;
+
+  const firstApp = apps.value[0] as Botastic.App;
+  testBotInput(firstApp.app_id, firstApp.app_secret, props.bot.id, request).then((response) => {
+    testOutputValue.value = response.response;
+    loadingTest.value = false;
+  });
 }
 
 

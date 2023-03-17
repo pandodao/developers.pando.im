@@ -82,3 +82,21 @@ export function addBot(name: string, prompt: string): Promise<Botastic.Bot> {
   });
 }
 
+export function testBotInput(
+  appId: string, appSecret: string,
+  botId: number, input: string
+  ): Promise<any> {
+  return http.post(`/conversations/oneway`, {
+    data: {
+      "bot_id": botId,
+      "user_identity": 1,
+      "lang": "en",
+      "content": input,
+    },
+    headers: {
+      "X-BOTASTIC-APPID": appId,
+      "X-BOTASTIC-SECRET": appSecret,
+    }
+  });
+}
+
