@@ -3,7 +3,7 @@
     <div class="mb-4 rounded-sm">
       <div class="">
         <div class="d-flex align-center text-body-1 font-weight-medium">
-          <div class="font-weight-bold">{{ app.name }}</div>
+          <div class="font-weight-medium">{{ app.name }}</div>
           <VSpacer />
           <VBtn variant="plain" icon class="copy-btn" rounded="0" size="x-small" @click="openEditDialog">
             <VIcon color="link">$IconEdit</VIcon>

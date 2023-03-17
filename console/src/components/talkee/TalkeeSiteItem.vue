@@ -2,7 +2,7 @@
   <div>
     <div class="">
       <div class="">
-        <div class="font-weight-bold">
+        <div class="font-weight-medium">
           {{ site.name }}
         </div>
         <div class="text-caption text-greyscale_3">

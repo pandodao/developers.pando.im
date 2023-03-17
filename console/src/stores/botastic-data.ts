@@ -1,9 +1,10 @@
-import { getApps, getBots } from "@/services/botastic";
+import { getApps, getBots, getMe } from "@/services/botastic";
 
 export const useBotasticDataStore = defineStore("botastic-data", () => {
   // states
   const apps = ref<Array<Botastic.App>>([]);
   const bots = ref<Array<Botastic.Bot>>([]);
+  const credits = ref<string>("0.00");
   const loading = ref(false);
 
   // getters
@@ -69,10 +70,19 @@ export const useBotasticDataStore = defineStore("botastic-data", () => {
     return resp;
   }
 
+  async function loadMe() {
+    loading.value = true;
+    const resp = await getMe();
+    credits.value = resp.credits;
+    loading.value = false;
+    return resp;
+  }
+
   return {
     // states
     apps,
     bots,
+    credits,
     loading,
 
     // getters
@@ -88,6 +98,7 @@ export const useBotasticDataStore = defineStore("botastic-data", () => {
     updateBot,
     loadApps,
     loadBots,
+    loadMe,
   };
 }, { }
 );

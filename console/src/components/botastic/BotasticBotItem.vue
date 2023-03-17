@@ -3,7 +3,7 @@
     <div class="item d-flex align-center" @click="showActionsDialog = true">
       <div class="">
         <div class="d-flex align-center text-body-1 mb-1">
-          <div class="font-weight-bold">{{ bot.name }}</div>
+          <div class="font-weight-medium">{{ bot.name }}</div>
         </div>
         <div class="d-flex align-center text-body-1 text-greyscale_3">
           <div class="font-fix-width">

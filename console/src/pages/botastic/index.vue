@@ -10,6 +10,7 @@
     <div v-else>
       <FLoading v-if="botasticLoading" />
       <template v-else>
+        <BotasticCreditPanel />
         <BotasticAppList />
         <BotasticBotList />
         <BotasticResList />

@@ -215,6 +215,7 @@ export function useAccount() {
   async function getBotasticData() {
     try {
       await Promise.all([
+        botasticDataStore.loadMe(),
         botasticDataStore.loadApps(),
         botasticDataStore.loadBots(),
       ]);
