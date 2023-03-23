@@ -1,10 +1,10 @@
 
 <script setup>
 const searchIndexParams = [{
-  name: 'query',
+  name: 'keywords',
   type: 'string',
   required: true,
-  description: 'the query to be searched',
+  description: 'the keywords to be searched',
 }, {
   name: 'n',
   type: 'number',
