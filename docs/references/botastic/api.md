@@ -48,9 +48,9 @@ The payload should be a JSON array containing multiple records to be indexed, wi
 
 ## Search indexes
 
-<APIEndpoint method="GET" url="/indexes/search?query=:query&n=:n" />
+<APIEndpoint method="GET" url="/indexes/search?keywords=:keywords&n=:n" />
 
-This API will search a specific index with query.
+This API will search a specific index with keywords.
 
 <APIParams :params="searchIndexParams" />
 
@@ -131,6 +131,7 @@ This API will create a new conversation. The payload should be a JSON object con
   "lang": "en"
 }
 ```
+You can apply your bot_id from [here](https://developers.pando.im/console/botastic)
 
 ### Response
 
