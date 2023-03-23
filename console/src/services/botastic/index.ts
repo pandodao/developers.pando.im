@@ -20,6 +20,10 @@ export function login(mixinToken: string, msg: string, sig: string): Promise<any
   return http.post(`/auth/login`, { data });
 }
 
+export function placeOrderMixpay(amount: string): Promise<any> {
+  return http.post(`/orders/mixpay`, { data: { amount }});
+}
+
 export function addApp(name: string, prompt: string): Promise<Botastic.App> {
   return http.post(`/apps`, { data: {
       name,
