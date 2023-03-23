@@ -7,13 +7,15 @@
 To authenticate your API requests, add these headers:
 
 - `X-BOTASTIC-APPID`: the ID of your botastic application
-- `X-BOTASTIC-SECRET`: a secret key of your botastic application
+- `X-BOTASTIC-SECRET`: a secret key of your botastic application (there are only a few APIs that need to pass secret)
 
 You can apply your application ID and secret key from [here](https://developers.pando.im/console/botastic).
 
 ## Create indexes
 
 <APIEndpoint method="POST" url="/indexes" />
+
+- `X-BOTASTIC-SECRET` required.
 
 This API will create an index with current `app_id`
 
@@ -85,6 +87,8 @@ This API will search a specific index with query.
 
 <APIEndpoint method="DELETE" url="/indexes/:object_id" />
 
+- `X-BOTASTIC-SECRET` required.
+
 Call this API to delete a specific index by `object_id`.
 
 <APIParams :params="[searchIndexObjectParam]" />
@@ -102,9 +106,9 @@ Call this API to delete a specific index by `object_id`.
 
 <APIEndpoint method="POST" url="/indexes/reset" />
 
-Call this API to delete all indexes of the current `app_id`.
+- `X-BOTASTIC-SECRET` required.
 
-<APIParams :params="[searchIndexObjectParam]" />
+Call this API to delete all indexes of the current `app_id`.
 
 ### Response
 
