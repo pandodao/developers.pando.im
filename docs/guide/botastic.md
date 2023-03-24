@@ -125,7 +125,7 @@ This feature offers a wide range of possibilities, such as:
 }
 ```
 
-At present, we have some [builtin middlewares](../../docs/references/botastic/middleware.md). We plan to add more middlewares in the future.
+At present, we have some [builtin middlewares](../references/botastic/middleware.md). We plan to add more middlewares in the future.
 
 ## 🌟 Showcases
 
