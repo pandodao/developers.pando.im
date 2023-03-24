@@ -26,16 +26,22 @@ export default {
           ]
         },
         {
-          text: 'Extra Topics',
+          text: 'Web3 Integration',
           items: [
-            { text: 'Wallets', link: '/guide/wallets' },
             { text: 'Talkee', link: '/guide/talkee' },
-            { text: 'Changelog', link: '/guide/changelog' },
           ]
         },
         {
-          text: 'Resources',
+          text: 'AI Services',
           items: [
+            { text: 'Botastic', link: '/guide/botastic' },
+          ]
+        },
+        {
+          text: 'Extra Topics',
+          items: [
+            { text: 'Changelog', link: '/guide/changelog' },
+            { text: 'Wallets', link: '/guide/wallets' },
             { text: 'SDKs', link: '/guide/sdks' },
             { text: 'Community', link: '/guide/community' },
             { text: 'Useful Links', link: '/guide/useful-links' },
@@ -82,6 +88,7 @@ export default {
           collapsed: true,
           items: [
             { text: 'Restful API', link: '/references/botastic/api' },
+            { text: 'Middleware', link: '/references/botastic/middleware' },
           ]
         }
       ]
