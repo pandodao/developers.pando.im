@@ -24,5 +24,4 @@
 | `https://rings-api.pando.im/api`     | Rings  | primary |
 | `https://talkee-api.pando.im/api`     | Talkee  | primary |
 | `https://talkee-ws.pando.im/ws`     | Talkee  | primary (Websocket) |
-
-
+| `https://botastic-api.pando.im/api`     | Botastic  | primary |
