@@ -108,9 +108,10 @@ If you interested in the details, we have a demo project [ask-vitalik-web](https
 
 ## 🤝 Call Multiple Middlewares
 
-As you may notice, the `middlewares` field of bot settings accepts an array of middleware configs. You can call multiple middlewares in one request sequentially. The output of the previous middleware will be passed to the next middleware as the `MiddlewareOutput` field in the prompt.
 
-The possible use cases are:
+In the bot settings, you can pass an array of middleware configurations to the `middlewares` field. By doing this, you can call multiple middlewares sequentially in one request, where the output of the previous middleware is passed to the next middleware as the `MiddlewareOutput` field in the prompt.
+
+This feature offers a wide range of possibilities, such as:
 
 ```json
 {
