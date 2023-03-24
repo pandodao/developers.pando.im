@@ -59,11 +59,11 @@ To use middlewares, you need to create a new bot with the middleware enabled:
 
 You can test the bot with the question "What's Pando Proto?". Without the middleware, the default OpenAI's LLM may have no idea what Pando Proto is. With the middleware, the LLM will be able to search the web and get the answer.
 
-A Question without Duckduckgo middleware:
+An example without Duckduckgo middleware:
 
 ![without middleware](./assets/botastic-test-without-middleware.webp)
 
-A Question with Duckduckgo middleware:
+An example with Duckduckgo middleware:
 
 ![with middleware](assets/botastic-test-with-middleware.webp)
 
