@@ -71,7 +71,7 @@ A Question with Duckduckgo middleware:
 
 A common practice is to feed your own data into the LLMs. Botastic provides a simple way to do that, using the `botastic-search` middleware.
 
-The first step is to prepare some data and call [Create Indexes API](../../references/botastic/api#create-indexes) to upload your data to botastic.
+The first step is to prepare some data and call [Create Indexes API](../references/botastic/api#create-indexes) to upload your data to botastic.
 
 We provide a tool [botastic-cli](https://github.com/pandodao/botastic-cli) to simplify the process. 
 
