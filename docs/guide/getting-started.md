@@ -1,6 +1,6 @@
 # Getting Started
 
-Get started with Pando Protocols development with this guide. We'll cover fundamental concepts and show you how to integrate them into your projects.
+Get started with [Pando Proto](https://pando.im) development with this guide. We'll cover fundamental concepts and show you how to integrate them into your projects.
 
 ## Register Mixin Network App
 

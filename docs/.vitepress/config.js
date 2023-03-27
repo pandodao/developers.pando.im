@@ -92,6 +92,9 @@ export default {
           ]
         }
       ]
+    },
+    footer: {
+      copyright: 'Copyright © 2018-present <a href="https://pando.im">Pando Proto</a>'
     }
   }
 }
