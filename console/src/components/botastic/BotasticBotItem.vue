@@ -212,8 +212,8 @@ function saveEdit() {
   updateBot(props.bot.id,
     nameInputValue.value, "gpt-3.5-turbo", promptInputValue.value,
     temperature, maxTurnCount, contextTurnCount, middlewareConfig
-  ).then(() => {
-    botasticDataStore.updateBot(props.bot.id, nameInputValue.value);
+  ).then(async () => {
+    await getBotasticData();
     showEditDialog.value = false;
   });
 }
