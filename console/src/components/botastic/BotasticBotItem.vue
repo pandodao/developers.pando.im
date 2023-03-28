@@ -36,16 +36,45 @@
 
     <FModal v-model="showActionsDialog" desktop="dialog" offset="16" :title="t('actions')">
       <div class="pa-4 pb-6">
-        <VRow>
+        <VRow dense>
+          <VCol cols="12" class="font-weight-bold">
+            {{ bot.name }}
+          </VCol>
+          <VCol cols="12" class="d-flex align-center">
+            <div>
+              <div class="text-body-2 mr-2">{{ t("botastic.bot_id", { bot_id: bot.id }) }}</div>
+            </div>
+            <VSpacer />
+            <FButton color="primary" variant="outlined" size="small" rounded="sm" @click="copyBotID">{{ $t("copy") }}</FButton>
+          </VCol>
           <VCol cols="12" class="d-flex align-center">
             <div class="text-body-2 mr-2">{{ t("botastic.test.text") }}</div>
             <VSpacer />
-            <FButton color="primary" rounded="sm" @click="openTestDialog">{{ $t("test") }}</FButton>
+            <FButton color="primary" variant="outlined" size="small" rounded="sm" @click="openTestDialog">{{ $t("test") }}</FButton>
+          </VCol>
+          <VCol cols="12" class="d-flex align-center mb-4">
+            <div class="text-body-2 mr-2">{{ t("botastic.edit_bot.text") }}</div>
+            <VSpacer />
+            <FButton color="primary" variant="outlined" size="small" rounded="sm" @click="openEditDialog">{{ $t("edit") }}</FButton>
           </VCol>
           <VCol cols="12" class="d-flex align-center">
-            <div class="text-body-2 mr-2">{{ t("botastic.edit.text") }}</div>
+            <div class="text-body-2 mr-2">{{ t("botastic.delete_bot.text") }}</div>
             <VSpacer />
-            <FButton color="primary" variant="outlined" rounded="sm" @click="openEditDialog">{{ $t("edit") }}</FButton>
+            <FButton color="error" variant="outlined" size="small" rounded="sm" @click="openDeleteDialog">{{ $t("delete") }}</FButton>
+          </VCol>
+        </VRow>
+      </div>
+    </FModal>
+
+    <FModal v-model="showDeleteDialog" desktop="dialog" offset="16" :title="t('confirm')">
+      <div class="px-4 pb-4 text-center">
+        <div class="text-body-1 mb-4">{{ t("botastic.delete_bot.confirm_text") }}</div>
+        <VRow>
+          <VCol cols="6">
+            <FButton variant="tonal" block @click="showDeleteDialog = true">{{ t("cancel") }}</FButton>
+          </VCol>
+          <VCol cols="6">
+            <FButton color="error" block @click="doDeleteBot">{{ t("delete") }}</FButton>
           </VCol>
         </VRow>
       </div>
@@ -97,16 +126,20 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { updateBot, testBotInput } from "@/services/botastic";
+import { updateBot, testBotInput, deleteBot } from "@/services/botastic";
+import { useClipboard } from "@vueuse/core";
 import { storeToRefs } from "pinia";
 
 const { t } = useI18n({ useScope: "local" });
+const { getBotasticData } = useAccount();
+
 const botasticDataStore = useBotasticDataStore();
 const toast = useToast();
 
 const showEditDialog = ref(false);
 const showTestDialog = ref(false);
 const showActionsDialog = ref(false);
+const showDeleteDialog = ref(false);
 
 const nameInputValue = ref("");
 const promptInputValue = ref("");
@@ -207,6 +240,17 @@ function openTestDialog() {
   showTestDialog.value = true;
 }
 
+function openDeleteDialog() {
+  showDeleteDialog.value = true;
+  showActionsDialog.value = false
+}
+
+async function doDeleteBot() {
+  await deleteBot(props.bot.id);
+  await getBotasticData();
+  showDeleteDialog.value = false;
+}
+
 function sendTestRequest() {
   const request = testInputValue.value.trim();
   if (request === "") return;
@@ -222,6 +266,11 @@ function sendTestRequest() {
   });
 }
 
+function copyBotID() {
+  const { copy } = useClipboard({ source: props.bot.id });
+  copy(props.bot.id);
+  toast.success({ message: t("copied") });
+}
 
 </script>
 

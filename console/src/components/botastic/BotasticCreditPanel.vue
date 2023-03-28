@@ -1,6 +1,6 @@
 <template>
   <VSheet class="mb-4 rounded-sm" color="greyscale_7" elevation="1">
-    <div class="d-flex align-end px-4 pt-1 pb-2">
+    <div class="d-flex align-end px-4 pt-1 pb-4">
       <div>
         <div class="text-overline">{{ t("credits") }}</div>
         <div class="text-h5">{{ credits }}</div>
@@ -8,9 +8,6 @@
       <VSpacer />
       <FButton color="greyscale_2" class="rounded-sm" @click="showTopupDialog = true">{{ t("topup") }}</FButton>
     </div>
-    <!-- <div class="text-right text-caption text-greyscale_3 px-4 pb-2">
-      {{ t("botastic.credits.hint_disabled") }}
-    </div> -->
 
     <FModal v-model="showTopupDialog" desktop="dialog" offset="16" :title="t('topup')">
       <div class="pb-4">

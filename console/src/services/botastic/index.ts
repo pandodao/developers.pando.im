@@ -1,5 +1,4 @@
 import { http } from "./http";
-import { v4 as uuid } from "uuid";
 
 export function getMe(): Promise<any> {
   return http.get("/me");
@@ -32,8 +31,8 @@ export function addApp(name: string, prompt: string): Promise<Botastic.App> {
   });
 }
 
-export function updateApp(id: number, name: string): Promise<Botastic.App> {
-  return http.put(`/apps/${id}`, { data: {
+export function updateApp(appId: string, name: string): Promise<Botastic.App> {
+  return http.put(`/apps/${appId}`, { data: {
       name,
     }
   });
@@ -57,6 +56,10 @@ export function getPublicBots(): Promise<Botastic.Bot[]> {
 
 export function getBot(id: number): Promise<Botastic.Bot> {
   return http.get(`/bots/${id}`);
+}
+
+export function deleteBot(id: number): Promise<Botastic.Bot> {
+  return http.delete(`/bots/${id}`);
 }
 
 export function updateBot(id: number, name: string, model: string, prompt: string,

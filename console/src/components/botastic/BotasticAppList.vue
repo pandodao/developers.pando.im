@@ -91,6 +91,5 @@ onMounted(() => {
   flex: 1;
 }
 .list-item {
-  min-height: 64px;
 }
 </style>
