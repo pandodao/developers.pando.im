@@ -2,6 +2,9 @@ export default {
   title: 'Pando Developers',
   description: 'Just playing around with Pando',
   themeConfig: {
+    editLink: {
+      pattern: 'https://github.com/pandodao/developers.pando.im/edit/master/docs/:path'
+    },
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       {
