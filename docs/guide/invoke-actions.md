@@ -32,7 +32,7 @@ The `swap` action are formatted as following string
 - `receiver_id`: the ID of the receiver, you can use the `client_id` in your keystore.
 - `follow_id`: an UUID to trace the order. You can use `uuidgen` to generate a random UUID.
 - `fill_asset_id`: the asset ID of the asset you want to get. In the example, we want to get `DOGE`, which is `6770a1e5-6086-44d5-b60f-545f9d9e8ffd`.
-- `routes`: the routes of the swap. We'll leave it blank for now, 4swap will use [CNB/DOGE pool](https://app.4swap.org/#/pair/detail?base=6770a1e5-6086-44d5-b60f-545f9d9e8ffd&quote=965e5c6e-434c-3fa9-b780-c50f43cd955c&source=market) for the swap. In real projects, you need to calculate the routes by yourself.
+- `routes`: the routes of the swap. We'll leave it blank for now, 4swap will use [CNB/DOGE pool](https://app.4swap.org/#/pair/detail?base=6770a1e5-6086-44d5-b60f-545f9d9e8ffd&quote=965e5c6e-434c-3fa9-b780-c50f43cd955c&source=market) for the swap. In real projects, you need to [calculate the routes](https://github.com/fox-one/4swap-sdk-go/blob/e62757b2c4966d3ebac7eb40dcad7d1926c7f9e3/route.go#L169) by yourself.
 - `minimum`: the minimum amount of asset you will get. In the example, we want to get at least `0.00000001 DOGE`.
 :::
 
@@ -75,6 +75,33 @@ Action are encoded in bytes and encrypted by ed25519. It's recommended to genera
 The following example shows how to generate a swap action by `mtg.SwapAction`:
 
 ```go
+import (
+  fswap "github.com/fox-one/4swap-sdk-go"
+	"github.com/fox-one/4swap-sdk-go/mtg"
+	"github.com/fox-one/mixin-sdk-go"
+)
+
+// ...
+
+// fetch the pair list
+pairs, err := fswap.ListPairs(context.TODO())
+if err != nil {
+  return
+}
+
+// sort first
+sort.Slice(pairs, func(i, j int) bool {
+  aLiquidity := pairs[i].BaseValue.Add(pairs[i].QuoteValue)
+  bLiquidity := pairs[j].BaseValue.Add(pairs[j].QuoteValue)
+  return aLiquidity.GreaterThan(bLiquidity)
+})
+
+// calculate the routes
+preOrder, err := fswap.Route(pairs, inputAssetID, outputAssetID, inputAmount)
+if err != nil {
+  return nil, err
+}
+
 // the ID to trace the orders
 followID, _ := uuid.NewV4()
 
@@ -82,7 +109,8 @@ followID, _ := uuid.NewV4()
 action := mtg.SwapAction(
     receiverID,
     followID.String(),
-    OutputAssetID,
+    outputAssetID,
+    // the routes of the swap
     preOrder.Routes,
     // the minimum amount of asset you will get.
     // you may want to change this value to a number which is less than preOrder.FillAmount
