@@ -62,7 +62,7 @@
           </VCol>
           <VCol cols="12" class="d-flex align-center">
             <div>
-              <div class="text-body-2 mr-2">{{ t("botastic.app_id", { app_id: app.id }) }}</div>
+              <div class="text-body-2 mr-2">{{ t("botastic.app_id", { app_id: app.app_id }) }}</div>
             </div>
             <VSpacer />
             <FButton color="primary" variant="outlined" size="small" rounded="sm" @click="copyAppID">{{ $t("copy") }}</FButton>
@@ -76,7 +76,7 @@
           </VCol>
           <VCol cols="12" class="d-flex align-center mb-4">
             <div>
-              <div class="text-body-2 mr-2">{{ t("botastic.edit_app") }}</div>
+              <div class="text-body-2 mr-2">{{ t("botastic.edit_app.text") }}</div>
             </div>
             <VSpacer />
             <FButton color="primary" variant="outlined" size="small" rounded="sm" @click="openEditDialog">{{ $t("edit") }}</FButton>
