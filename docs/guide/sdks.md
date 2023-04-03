@@ -6,16 +6,16 @@ This section introduces the official and community SDKs for Pando.
 
 ### Golang Packages
 
-- [4swap-sdk-go](https://github.com/fox-one/4swap-sdk-go): A Golang SDK for the 4swap.
-- [passport-go](https://github.com/fox-one/passport-go): A Golang module for pando and mixin authentication supports EIP-4361.
-- [mixin-sdk-go](https://github.com/fox-one/mixin-sdk-go): A Golang SDK for the Mixin Network, which is used widely in Pando Protcols.
-- [lemon-checkout-go](https://github.com/pandodao/lemon-checkout-go): A Golang SDK for the [Lemonsqueezy](https://lemonsqueezy.com)
-- [wechat-login-go](https://github.com/pandodao/wechat-login-go): A Golang SDK for the Wechat Login
-- [twitter-login-go](https://github.com/pandodao/twitter-login-go): A Golang SDK for the Login with Twitter
+- [4swap-sdk-go](https://github.com/fox-one/4swap-sdk-go): A Golang package for the 4swap.
+- [passport-go](https://github.com/fox-one/passport-go): A Golang package for pando and mixin authentication supports EIP-4361.
+- [mixin-sdk-go](https://github.com/fox-one/mixin-sdk-go): A Golang package for the Mixin Network, which is used widely in Pando Protcols.
+- [lemon-checkout-go](https://github.com/pandodao/lemon-checkout-go): A Golang package for the [Lemonsqueezy](https://lemonsqueezy.com)
+- [wechat-login-go](https://github.com/pandodao/wechat-login-go): A Golang package for the Wechat Login
+- [twitter-login-go](https://github.com/pandodao/twitter-login-go): A Golang package for the Login with Twitter
 
 ### NPM Packages
 
-- [@foxone/mixin-api](https://www.npmjs.com/package/@foxone/mixin-api): A Typescript SDK for the Mixin Network, which is used by most of Pando Web Apps.
+- [@foxone/mixin-api](https://www.npmjs.com/package/@foxone/mixin-api): A Typescript package for the Mixin Network, which is used by most of Pando Web Apps.
 - [@foxone/mixin-passport](https://www.npmjs.com/package/@foxone/mixin-passport): The authentication plugin for Pando Web Apps.
 
 ## 3rd Party SDKs
