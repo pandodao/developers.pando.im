@@ -80,7 +80,7 @@ export function addBot(name: string, prompt: string): Promise<Botastic.Bot> {
   return http.post(`/bots`, {
     data: {
       name, prompt,
-      model: "gpt-3.5-turbo",
+      model: "openai:gpt-3.5-turbo",
       temperature: 1,
       max_turn_count: 4,
       context_turn_count: 4,

@@ -210,7 +210,7 @@ function saveEdit() {
   }
 
   updateBot(props.bot.id,
-    nameInputValue.value, "gpt-3.5-turbo", promptInputValue.value,
+    nameInputValue.value, "openai:gpt-3.5-turbo", promptInputValue.value,
     temperature, maxTurnCount, contextTurnCount, middlewareConfig
   ).then(async () => {
     await getBotasticData();
