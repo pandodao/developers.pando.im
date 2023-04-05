@@ -12,6 +12,7 @@ This section introduces the official and community SDKs for Pando.
 - [lemon-checkout-go](https://github.com/pandodao/lemon-checkout-go): A Golang package for the [Lemonsqueezy](https://lemonsqueezy.com)
 - [wechat-login-go](https://github.com/pandodao/wechat-login-go): A Golang package for the Wechat Login
 - [twitter-login-go](https://github.com/pandodao/twitter-login-go): A Golang package for the Login with Twitter
+- [mixpay-go](https://github.com/pandodao/mixpay-go): A Golang package for the [mixpay](https://mixpay.me)
 
 ### NPM Packages
 
