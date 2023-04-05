@@ -115,4 +115,60 @@ const loginParams = [{
   where: 'json',
   description: 'the language of user, 2 letters, like "en", "ja" etc.'
 }];
+
+const airdropParams = [{
+  name: 'site_id',
+  type: 'number',
+  required: true,
+  where: 'json',
+  description: 'the site\'s id'
+}, {
+  name: 'slug',
+  type: 'string',
+  required: true,
+  where: 'json',
+  description: 'the site\'s slug'
+}, {
+  name: 'airdrop_type',
+  type: 'string',
+  required: true,
+  where: 'json',
+  description: 'the airdrop type, please use "comments"'
+}, {
+  name: 'strategy_name',
+  type: 'string',
+  required: true,
+  where: 'json',
+  description: 'the airdrop strategy name, support "topn" or "avg"'
+}, {
+  name: 'strategy_params',
+  type: 'json',
+  required: true,
+  where: 'json',
+  description: 'the airdrop strategy params. For "topn", it should be a JSON object contains "n" field, like {"n": 3}.',
+}, {
+  name: 'asset_id',
+  type: 'UUID',
+  required: true,
+  where: 'json',
+  description: 'the asset id to airdrop'
+}, {
+  name: 'amount',
+  type: 'string',
+  required: true,
+  where: 'json',
+  description: 'how much to airdrop. The precision should be 8, like "1.23456789"'
+}, {
+  name: 'memo',
+  type: 'string',
+  required: true,
+  where: 'json',
+  description: 'the memo of the airdrop transaction'
+}, {
+  name: 'redirect_url',
+  type: 'string',
+  required: true,
+  where: 'json',
+  description: 'the redirect url after airdrop'
+}]
 </script>

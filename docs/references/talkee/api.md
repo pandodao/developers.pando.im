@@ -121,7 +121,11 @@ This API is used to get comments.
         "full_name": "John Wick",
         "avatar_url": "https://mixin-images.zeromesh.net/...",
         "created_at": "2022-02-05T16:11:16.420872+09:00"
-      }
+      },
+      "rewards": [
+        { /*...*/ },
+        { /*...*/ }
+      ]
     },
     // ...
     ],
@@ -226,5 +230,21 @@ This API is used to get a user info.
 This API is used to get my info.
 
 <!--@include: ../../parts/responses/talkee-user.md-->
+
+
+::: warning DRAFT PROPOSAL
+The following section is a draft proposal, it's not finalized yet.
+:::
+
+
+## Create an airdrop a user
+
+<APIEndpoint method="POST" url="/airdrops" />
+
+Call the API to create an airdrop for multiple comments, a slug or a user.
+
+<APIParams :params="airdropParams" />
+
+
 
 

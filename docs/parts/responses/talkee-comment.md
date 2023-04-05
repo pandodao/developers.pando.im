@@ -21,7 +21,11 @@
       "full_name": "John Wick",
       "avatar_url": "https://mixin-images.zeromesh.net/...",
       "created_at": "2022-02-05T16:11:16.420872+09:00"
-    }
+    },
+    "rewards": [
+      { /*...*/ },
+      { /*...*/ }
+    ]
   }
 }
 ```
