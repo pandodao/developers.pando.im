@@ -231,11 +231,11 @@ This API is used to get my info.
 
 <!--@include: ../../parts/responses/talkee-user.md-->
 
+---
 
 ::: warning DRAFT PROPOSAL
 The following section is a draft proposal, it's not finalized yet.
 :::
-
 
 ## Create an airdrop a user
 
@@ -245,6 +245,39 @@ Call the API to create an airdrop for multiple comments, a slug or a user.
 
 <APIParams :params="airdropParams" />
 
+### Response
 
+```json
+{
+  "ts": 1680674968664,
+  "data": {
+    "id": 13,
+    "uuid": "c85d17c8-1e51-43da-b7c5-3a988bc61022",
+    "user_id": 3,
+    "site_id": 1,
+    "slug": "ABC",
+    "tip_type": "comments",
+    "strategy_name": "topn",
+    "strategy_params": {
+        "n": 3
+    },
+    "asset_id": "c6d0c728-2624-429b-8e0d-d9d19b6592fa",
+    "amount": "0.0000001",
+    "memo": "test",
+    "status": 0,
+    "created_at": "2023-04-05T15:09:28.386937+09:00",
+    "updated_at": "2023-04-05T15:09:28.386937+09:00",
+    "deleted_at": null,
+    "mixpay_code": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  }
+}
+```
+
+To complete the airdrop payment, you need to redirect the user to following URL:
+
+```text
+https://mixpay.me/code/:mixpay_code
+```
+in which `:mixpay_code` is the `mixpay_code` returned by the API.
 
 
