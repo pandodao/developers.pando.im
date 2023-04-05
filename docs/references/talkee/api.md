@@ -237,7 +237,7 @@ This API is used to get my info.
 The following section is a draft proposal, it's not finalized yet.
 :::
 
-## Create an airdrop a user
+## Create an airdrop
 
 <APIEndpoint method="POST" url="/airdrops" />
 
