@@ -7,7 +7,7 @@ This section introduces the official and community SDKs for Pando.
 ### Golang Packages
 
 - [4swap-sdk-go](https://github.com/fox-one/4swap-sdk-go): A Golang package for the 4swap.
-- [passport-go](https://github.com/fox-one/passport-go): A Golang package for pando and mixin authentication supports EIP-4361.
+- [passport-go](https://github.com/pandodao/passport-go): A Golang package for pando and mixin authentication supports EIP-4361.
 - [mixin-sdk-go](https://github.com/fox-one/mixin-sdk-go): A Golang package for the Mixin Network, which is used widely in Pando Protcols.
 - [lemon-checkout-go](https://github.com/pandodao/lemon-checkout-go): A Golang package for the [Lemonsqueezy](https://lemonsqueezy.com)
 - [wechat-login-go](https://github.com/pandodao/wechat-login-go): A Golang package for the Wechat Login
