@@ -75,6 +75,17 @@ For Golang developers, we provide a golang package [passport-go](https://github.
 The code snippet below shows how to use the package to verify the authentications.
 
 ```go
+import 	"github.com/pandodao/passport-go/auth"
+
+// ...
+// Create an authorizer with your client ID and the trust domain list
+  authorizer := auth.New([]string{
+    "Your Client ID",
+  }, []string{
+    "pando.im",
+  })
+// ...
+
 func Login(ctx context.Context, loginMethod, mixinToken, sign, signedMsg) error {
   switch loginMethod {
   case "mixin_token":
