@@ -5,7 +5,7 @@ env:
   APP_ENV: prod
   NUXT_PUBLIC_MIXIN_CLIENT_ID: 39270fd3-bda7-4ee0-80ef-8eab00564eb6
   NUXT_PUBLIC_MIXIN_API_BASE_URL: "https://api.mixin.one"
-  NUXT_PUBLIC_TALKEE_CLIENT_ID: 61504be8-a9da-477d-9e18-448ac3780919
+  NUXT_PUBLIC_TALKEE_CLIENT_ID: 829283f7-c82d-4931-bad6-a04da459d83b
   NUXT_PUBLIC_TALKEE_API_BASE_URL: "https://talkee-api.aspens.rocks/api"
   NUXT_PUBLIC_BOTASTIC_CLIENT_ID: 03d2e2c3-4258-45e4-beef-ce96af74fa6a
   NUXT_PUBLIC_BOTASTIC_API_BASE_URL: "https://botastic-api.aspens.rocks/api"
