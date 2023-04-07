@@ -62,86 +62,76 @@ export function useAccount() {
   }
 
   async function loginToTalkee() {
-    if (authChannel.value === "mixin") {
-      const resp = await talkeeLogin(authStore.getToken(), "", "");
-      authStore.setTalkeeAuth({ token: resp.access_token, channel: authChannel.value });
-    } else {
-      try {
-        const data = await passport.auth({
-          origin: "Pando Developer Console",
-          authMethods: ["metamask", "walletconnect", "mixin"],
-          clientId: env.public.talkeeClientID,
-          scope: "PROFILE:READ ASSETS:READ",
-          pkce: true,
-          mvmAuthType: "SignedMessage",
-          hooks: {
-            beforeSignMessage: async () => {
-              return {
-                statement: "You'll login to Talkee by the signature",
-                expirationTime: new Date(
-                  new Date().getTime() + 1000 * 60 * 3
-                ).toISOString(),
-              };
-            },
-            afterSignMessage: async ({ message, signature }) => {
-              const resp = await talkeeLogin("", message, signature);
-              return resp.access_token;
-            },
-          }
-        });
-
-        if (data.channel === "mixin" || data.channel === "fennec") {
-          const resp = await talkeeLogin(data.token, "", "");
-          authStore.setTalkeeAuth({ token: resp.access_token, channel: data.channel });
-        } else {
-          authStore.setTalkeeAuth({ token: data.token, channel: data.channel });
+    try {
+      const data = await passport.auth({
+        origin: "Pando Developer Console",
+        authMethods: ["metamask", "walletconnect", "mixin"],
+        clientId: env.public.talkeeClientID,
+        scope: "PROFILE:READ ASSETS:READ",
+        pkce: true,
+        mvmAuthType: "SignedMessage",
+        hooks: {
+          beforeSignMessage: async () => {
+            return {
+              statement: "You'll login to Talkee by the signature",
+              expirationTime: new Date(
+                new Date().getTime() + 1000 * 60 * 3
+              ).toISOString(),
+            };
+          },
+          afterSignMessage: async ({ message, signature }) => {
+            const resp = await talkeeLogin("", message, signature);
+            return resp.access_token;
+          },
         }
-      } catch (error) {
-        toast.error(error);
+      });
+
+      if (data.channel === "mixin" || data.channel === "fennec") {
+        const resp = await talkeeLogin(data.token, "", "");
+        authStore.setTalkeeAuth({ token: resp.access_token, channel: data.channel });
+      } else {
+        authStore.setTalkeeAuth({ token: data.token, channel: data.channel });
       }
+    } catch (error) {
+      toast.error(error);
     }
     await getTalkeeData();
   }
 
 
   async function loginToBotastic() {
-    if (authChannel.value === "mixin") {
-      const resp = await botasticLogin(authStore.getToken(), "", "");
-      authStore.setServiceAuth("botastic", { token: resp.access_token, channel: authChannel.value });
-    } else {
-      try {
-        const data = await passport.auth({
-          origin: "Pando Developer Console",
-          authMethods: ["metamask", "walletconnect", "mixin"],
-          clientId: env.public.botasticClientID,
-          scope: "PROFILE:READ ASSETS:READ",
-          pkce: true,
-          mvmAuthType: "SignedMessage",
-          hooks: {
-            beforeSignMessage: async () => {
-              return {
-                statement: "You'll login to Botastic by the signature",
-                expirationTime: new Date(
-                  new Date().getTime() + 1000 * 60 * 3
-                ).toISOString(),
-              };
-            },
-            afterSignMessage: async ({ message, signature }) => {
-              const resp = await botasticLogin("", message, signature);
-              return resp.access_token;
-            },
-          }
-        });
-
-        if (data.channel === "mixin" || data.channel === "fennec") {
-          const resp = await talkeeLogin(data.token, "", "");
-          authStore.setServiceAuth("botastic", { token: resp.access_token, channel: data.channel });
-        } else {
-          authStore.setServiceAuth("botastic", { token: data.token, channel: data.channel });
+    try {
+      const data = await passport.auth({
+        origin: "Pando Developer Console",
+        authMethods: ["metamask", "walletconnect", "mixin"],
+        clientId: env.public.botasticClientID,
+        scope: "PROFILE:READ ASSETS:READ",
+        pkce: true,
+        mvmAuthType: "SignedMessage",
+        hooks: {
+          beforeSignMessage: async () => {
+            return {
+              statement: "You'll login to Botastic by the signature",
+              expirationTime: new Date(
+                new Date().getTime() + 1000 * 60 * 3
+              ).toISOString(),
+            };
+          },
+          afterSignMessage: async ({ message, signature }) => {
+            const resp = await botasticLogin("", message, signature);
+            return resp.access_token;
+          },
         }
-      } catch (error) {
-        toast.error(error);
+      });
+
+      if (data.channel === "mixin" || data.channel === "fennec") {
+        const resp = await talkeeLogin(data.token, "", "");
+        authStore.setServiceAuth("botastic", { token: resp.access_token, channel: data.channel });
+      } else {
+        authStore.setServiceAuth("botastic", { token: data.token, channel: data.channel });
       }
+    } catch (error) {
+      toast.error(error);
     }
     await getBotasticData();
   }
