@@ -125,7 +125,7 @@ export function useAccount() {
       });
 
       if (data.channel === "mixin" || data.channel === "fennec") {
-        const resp = await talkeeLogin(data.token, "", "");
+        const resp = await botasticLogin(data.token, "", "");
         authStore.setServiceAuth("botastic", { token: resp.access_token, channel: data.channel });
       } else {
         authStore.setServiceAuth("botastic", { token: data.token, channel: data.channel });
