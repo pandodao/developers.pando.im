@@ -2,9 +2,14 @@ export default {
   title: 'Pando Developers',
   description: 'Just playing around with Pando',
   themeConfig: {
+    logo: { light: '/logo-with-text.svg', dark: 'logo-with-text-dark.svg', alt: 'Pando Proto' },
+
+    siteTitle: false,
+
     editLink: {
       pattern: 'https://github.com/pandodao/developers.pando.im/edit/master/docs/:path'
     },
+
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       {
@@ -16,6 +21,7 @@ export default {
         link: 'https://developers.pando.im/console/'
       }
     ],
+
     sidebar: {
       '/guide/': [
         {
