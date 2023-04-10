@@ -292,7 +292,7 @@ All conversation history are arranged in a list, we call them `turns`, with a `t
 
 This API will get a turn by given conversation id and turn id.
 
-<APIParams :params="[conversationIDParam, turnIDParam]" />
+<APIParams :params="[conversationIDParam, turnIDParam, readConvTurnParams]" />
 
 ### Response
 
