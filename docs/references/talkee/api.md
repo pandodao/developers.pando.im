@@ -225,7 +225,7 @@ This API is used to get a user info.
 
 ## Get me
 
-<APIEndpoint method="GET" url="/me" />
+<APIEndpoint method="GET" url="/me" auth />
 
 This API is used to get my info.
 
@@ -239,7 +239,7 @@ The following section is a draft proposal, it's not finalized yet.
 
 ## Create an airdrop
 
-<APIEndpoint method="POST" url="/airdrops" />
+<APIEndpoint method="POST" url="/airdrops" auth />
 
 Call the API to create an airdrop for multiple comments, a slug or a user.
 
