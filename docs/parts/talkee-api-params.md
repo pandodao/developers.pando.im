@@ -117,35 +117,41 @@ const loginParams = [{
 }];
 
 const airdropParams = [{
-  name: 'site_id',
-  type: 'number',
-  required: true,
-  where: 'json',
-  description: 'the site\'s id'
-}, {
-  name: 'slug',
-  type: 'string',
-  required: true,
-  where: 'json',
-  description: 'the site\'s slug'
-}, {
   name: 'airdrop_type',
   type: 'string',
   required: true,
   where: 'json',
-  description: 'the airdrop type, please use "comments"'
+  description: 'the airdrop type. support "comments", "comment", "user", "slug"'
+}, {
+  name: 'site_id',
+  type: 'number',
+  required: false,
+  where: 'json',
+  description: 'the site\'s id. It\'s required for "slug" and "comments" airdrop type.'
+}, {
+  name: 'slug',
+  type: 'string',
+  required: false,
+  where: 'json',
+  description: 'the site\'s slug. It\'s required for "slug" and "comments" airdrop type.'
+}, {
+  name: 'opponent_id',
+  type: 'number',
+  required: false,
+  where: 'json',
+  description: 'opponent\'s id. It\'s required for "user" and "comment" airdrop type. For "user" airdrop type, it should be the user\'s id. For "comment" airdrop type, it should be the comment\'s id.'
 }, {
   name: 'strategy_name',
   type: 'string',
-  required: true,
+  required: false,
   where: 'json',
-  description: 'the airdrop strategy name, support "topn" or "avg"'
+  description: 'the airdrop strategy name, support "topn" or "avg". It\'s required for "comments" airdrop type.'
 }, {
   name: 'strategy_params',
   type: 'json',
-  required: true,
+  required: false,
   where: 'json',
-  description: 'the airdrop strategy params. For "topn", it should be a JSON object contains "n" field, like {"n": 3}.',
+  description: 'the airdrop strategy params. It\'s required for "comments" airdrop type. For "topn", it should be a JSON object contains "n" field, like {"n": 3}.',
 }, {
   name: 'asset_id',
   type: 'UUID',

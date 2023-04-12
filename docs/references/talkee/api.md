@@ -245,6 +245,13 @@ Call the API to create an airdrop for multiple comments, a slug or a user.
 
 <APIParams :params="airdropParams" />
 
+There are four types of airdrops:
+
+1. Airdrop to a specific user: `airdrop_type` is set to `user`. `opponent_id` is set to the user ID.
+2. Airdrop to a specific slug: `airdrop_type` is set to `slug`. `site_id` and `slug` should be set.
+3. Air drop to a specific comment: `airdrop_type` is set to `comment`. `opponent_id` is set to the comment ID.
+4. Airdrop to a set of comments: `airdrop_type` is set to `comments`. `site_id` and `slug` should be set. `strategy_name` and `strategy_params` should be set.
+
 ### Response
 
 ```json
@@ -256,6 +263,7 @@ Call the API to create an airdrop for multiple comments, a slug or a user.
     "user_id": 3,
     "site_id": 1,
     "slug": "ABC",
+    "opponent_id": 0,
     "tip_type": "comments",
     "strategy_name": "topn",
     "strategy_params": {
