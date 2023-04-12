@@ -96,7 +96,7 @@ export function testBotInput(
   return http.post(`/conversations/oneway`, {
     data: {
       "bot_id": botId,
-      "user_identity": 1,
+      "user_identity": "1",
       "lang": "en",
       "content": input,
     },
