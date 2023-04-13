@@ -44,6 +44,7 @@ export default {
           text: 'AI Services',
           items: [
             { text: 'Botastic', link: '/guide/botastic' },
+            { text: 'PAL9000', link: '/guide/pal9000' },
           ]
         },
         {
