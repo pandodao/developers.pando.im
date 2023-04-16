@@ -1,9 +1,5 @@
 <template>
   <VNavigationDrawer v-model="drawer" >
-    <div v-if="logged" class="pt-4 px-2">
-      <AccountAvatarAction/>
-      <FDivider class="mt-4"/>
-    </div>
     <VList class="pa-2">
       <FListItem
         class="list-item rounded mb-2"
@@ -27,6 +23,12 @@
         </div>
       </FListItem>
     </VList>
+    <template v-slot:append>
+      <div class="py-4 px-2">
+        <FDivider class="mb-4"/>
+        <AccountAvatarAction/>
+      </div>
+    </template>
   </VNavigationDrawer>
 </template>
 

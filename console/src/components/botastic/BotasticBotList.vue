@@ -70,7 +70,7 @@ const validatedEdit = computed(() => {
 });
 
 const reachLimit = computed(() => {
-  return bots.value.length >= 3;
+  return bots.value.length >= 10;
 });
 
 function createBot() {

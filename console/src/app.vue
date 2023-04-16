@@ -16,9 +16,9 @@ const appStore = useAppStore();
 const { drawer } = storeToRefs(appStore);
 
 const layout = computed(() => {
-  if (!logged.value) {
-    return "guard";
-  }
+  // if (!logged.value) {
+  //   return "guard";
+  // }
   return "default";
 });
 

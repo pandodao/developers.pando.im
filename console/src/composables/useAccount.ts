@@ -17,49 +17,7 @@ export function useAccount() {
   const initing = ref(true);
 
   const logging = computed(() => authStore.loading || accountStore.loading);
-  const logged = computed(() => authStore.logged);
-  const talkeeLogged = computed(() => authStore.talkeeLogged);
   const servicesLogged = computed(() => authStore.servicesLogged);
-
-  const authChannel = computed(() => authStore.channel);
-
-  const isMVM = computed(() => logged.value && _isMVM(authStore.channel as AuthMethod));
-
-  const displayName = computed(() => {
-    const name = accountStore.profile?.full_name ?? "";
-
-    return isMVM.value ? shortStr(name) : name;
-  });
-
-  const displayAvatar = computed(() => {
-    const name = accountStore.profile?.full_name ?? "";
-    const avatar = accountStore.profile?.avatar_url;
-
-    return avatar;
-  });
-
-  async function login() {
-    if (env.public.token) {
-      authStore.setAuth({ token: env.public.token, channel: "mixin" });
-      return;
-    }
-    try {
-      const data = await passport.auth({
-        origin: "Pando Developer Console",
-        authMethods: ["metamask", "walletconnect", "mixin"],
-        clientId: env.public.clientID,
-        scope: "PROFILE:READ ASSETS:READ",
-        pkce: true,
-        mvmAuthType: "MixinToken",
-      });
-
-      authStore.setAuth({ token: data.token, channel: data.channel });
-
-      await getAccountData();
-    } catch (error) {
-      toast.error(error);
-    }
-  }
 
   async function loginToTalkee() {
     try {
@@ -88,9 +46,9 @@ export function useAccount() {
 
       if (data.channel === "mixin" || data.channel === "fennec") {
         const resp = await talkeeLogin(data.token, "", "");
-        authStore.setTalkeeAuth({ token: resp.access_token, channel: data.channel });
+        authStore.setServiceAuth("talkee", { token: resp.access_token, channel: data.channel });
       } else {
-        authStore.setTalkeeAuth({ token: data.token, channel: data.channel });
+        authStore.setServiceAuth("talkee", { token: data.token, channel: data.channel });
       }
     } catch (error) {
       toast.error(error);
@@ -141,55 +99,36 @@ export function useAccount() {
     authStore.logout();
   }
 
-  function logoutTalkee() {
-    authStore.clearTalkeeAuth();
-  }
-
   function logoutServ(servName: string) {
     authStore.clearServiceAuth(servName);
   }
 
   async function sync() {
     initing.value = true;
-
+    const servs = ["talkee", "botastic"]
     try {
-      const tokenLocale = authStore.token;
-      const channelLocale = authStore.channel;
+      for (let ix = 0; ix < servs.length; ix++) {
+        const serv = servs[ix];
+        const tokenLocale = authStore.serviceTokens[serv];
+        const channelLocale = authStore.serviceChannels[serv];
 
-      if (!channelLocale) {
-        authStore.clearAuth();
+        if (!channelLocale) {
+          authStore.clearServiceAuth(serv);
+          return;
+        }
 
-        return;
+        const data = await passport.sync({
+          channel: channelLocale as any,
+          token: tokenLocale,
+        });
+
+        authStore.setServiceAuth(serv, { token: data.token, channel: data.channel });
       }
-
-      const data = await passport.sync({
-        channel: channelLocale,
-        token: tokenLocale,
-      });
-
-      authStore.setAuth({ token: data.token, channel: data.channel });
     } catch (error) {
       logout();
     }
 
     initing.value = false;
-  }
-
-  async function getAccountData() {
-    if (!logged.value) return;
-
-    accountStore.loading = true;
-
-    try {
-      await Promise.all([
-        accountStore.loadMe(),
-        assetStore.loadAssets(),
-      ]);
-    } catch (error) {
-      toast.error(error);
-    }
-
-    accountStore.loading = false;
   }
 
   async function getTalkeeData() {
@@ -208,6 +147,7 @@ export function useAccount() {
         botasticDataStore.loadMe(),
         botasticDataStore.loadApps(),
         botasticDataStore.loadBots(),
+        botasticDataStore.loadVariants(),
       ]);
     } catch (error) {
       toast.error(error);
@@ -216,31 +156,19 @@ export function useAccount() {
 
   async function init() {
     await sync();
-    if (logged.value) {
-      await getAccountData();
-    }
   }
 
   return {
     // state
-    isMVM,
-    talkeeLogged,
     servicesLogged,
-    logged,
     logging,
-    displayName,
-    displayAvatar,
-    authChannel,
 
     // actions
     init,
-    login,
     loginToTalkee,
     loginToBotastic,
     logout,
-    logoutTalkee,
     logoutServ,
-    getAccountData,
     getTalkeeData,
     getBotasticData,
   };

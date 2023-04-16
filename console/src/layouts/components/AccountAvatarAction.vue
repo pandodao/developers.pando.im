@@ -1,30 +1,18 @@
 <template>
   <FModal v-model="show" desktop="dialog" offset="4" :title="''">
     <template #activator="{ props: { onClick } }">
-      <div v-if="logged" class="account-avatar-container px-4" @click="onClick">
-        <VAvatar class="account-avatar" :size="24">
-          <VImg v-if="displayAvatar" :src="displayAvatar" class="rounded-pill"/>
-          <VIcon v-else color="greyscale_7" size="20">$IconProfile</VIcon>
-        </VAvatar>
-        <div class="ml-3">
-          <div class="account-name text-body-2 font-weight-bold">{{ displayName }}</div>
-          <div class="account-channel text-caption text-greyscale_3">{{ authChannel }}</div>
+      <div class="account-avatar-container pl-4 pr-2" @click="onClick">
+        <div class="">
+          <div class="account-name text-body-2 font-weight-bold">{{ "Manage Sessions" }}</div>
         </div>
+        <VSpacer />
+        <VIcon color="greyscale_3" size="16">$IconChevronRight</VIcon>
       </div>
     </template>
+
     <div class="pb-4 pt-10">
-      <div class="info d-flex flex-column align-center justify-center text-center ml-0 pa-4">
-        <VAvatar class="account-avatar mb-2" :size="48">
-          <VImg v-if="displayAvatar" :src="displayAvatar" class="rounded-pill"/>
-          <VIcon v-else color="greyscale_7" size="48">$IconProfile</VIcon>
-        </VAvatar>
-        <div>
-          <div class="account-name text-body-1 font-weight-bold">{{ displayName }}</div>
-          <div class="account-channel text-caption text-greyscale_3">{{ authChannel }}</div>
-        </div>
-      </div>
       <div class="services">
-        <div class="text-overline text-greyscale_3">Service Sessions</div>
+        <div class="text-overline text-greyscale_3">Sessions</div>
         <FListItem
           class="list-item"
           v-for="serv, ix in services"
@@ -63,16 +51,15 @@ import servIcons from "@/assets/images/services";
 
 const { t } = useI18n();
 
-const { logged, talkeeLogged, login, loginToTalkee, loginToBotastic, logout, logoutTalkee, logoutServ, servicesLogged,
-  displayAvatar, displayName, authChannel } = useAccount();
+const { loginToTalkee, loginToBotastic, logout, logoutServ, servicesLogged } = useAccount();
 
 const show = ref(false);
 
 const services = computed(() => {
   return [
     {
-      label: "Talkee", icon: servIcons.talkeeIcon, logged: talkeeLogged.value,
-      disconnect: () => { logoutTalkee(); show.value = false; },
+      label: "Talkee", icon: servIcons.talkeeIcon, logged: servicesLogged.value("talkee"),
+      disconnect: () => { logoutServ("talkee"); show.value = false; },
       connect: () => { loginToTalkee(); show.value = false; }
     },
     {
@@ -89,9 +76,7 @@ function disconnect() {
   window.location.reload();
 }
 
-function connect() {
-  login();
-}
+
 </script>
 
 <style lang="scss" scoped>

@@ -21,7 +21,7 @@
       {{ t("botastic.no_app") }}
     </div>
 
-    <FModal v-model="showNewDialog" desktop="dialog" offset="16" :title="'Edit'">
+    <FModal v-model="showNewDialog" desktop="dialog" offset="16" :title="'Create'">
       <div class="pb-4">
         <div class="pa-4 mb-4">
           <VRow dense>
@@ -66,7 +66,7 @@ const validatedEdit = computed(() => {
 });
 
 const reachLimit = computed(() => {
-  return apps.value.length >= 3;
+  return apps.value.length >= 10;
 });
 
 function createApp() {

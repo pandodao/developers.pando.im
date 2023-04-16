@@ -15,19 +15,27 @@
         <VRow dense class="pa-4 mb-2">
           <VCol cols="12" class="text-center">
             <VBtnToggle v-model="topupUsd" variant="outlined" divided>
-              <VBtn>$1</VBtn>
-              <VBtn>$5</VBtn>
-              <VBtn>$10</VBtn>
+              <VBtn v-for="item in amountOptions" :key="item.label">{{ item.label }}</VBtn>
             </VBtnToggle>
           </VCol>
         </VRow>
         <div class="px-4">
           <VRow class="pa-4">
-            <VCol cols="12" class="text-center">
-              <FButton color="primary" rounded="sm" block @click="payMixpay">{{ $t("pay.mixpay") }}</FButton>
+            <VCol cols="12" class="d-flex">
+              <div>
+                <div class="text-caption text-greyscale_3">{{ $t("pay.credit_card") }}</div>
+                <div class="text-body">{{ $t("pay.credit_card.desc") }}</div>
+              </div>
+              <VSpacer />
+              <FButton color="primary" rounded="sm" :disabled="!leomonPayAvailable" @click="payLemon">{{ $t("pay") }}</FButton>
             </VCol>
-            <VCol cols="12" class="text-center">
-              <FButton color="primary" variant="outlined" rounded="sm" block :disabled="true">{{ $t("pay.credit_card") }}</FButton>
+            <VCol cols="12" class="d-flex">
+              <div>
+                <div class="text-caption text-greyscale_3">{{ $t("pay.mixpay") }}</div>
+                <div class="text-body">{{ $t("pay.mixpay.desc") }}</div>
+              </div>
+              <VSpacer />
+              <FButton color="primary" rounded="sm" @click="payMixpay">{{ $t("pay") }}</FButton>
             </VCol>
           </VRow>
         </div>
@@ -51,15 +59,33 @@ const botasticDataStore = useBotasticDataStore();
 
 const payment = usePayment();
 
-const  { credits } = storeToRefs(botasticDataStore);
+const  { credits, variants } = storeToRefs(botasticDataStore);
 
 const showTopupDialog = ref(false);
 
 const topupUsd = ref(0);
 
+const amountOptions = computed(() => {
+  return variants.value.map((v) => {
+    return {
+      label: v.name,
+      amount: v.amount,
+      lemon_id: v.lemon_id,
+    }
+  }).sort((a, b) => b.amount - a.amount);
+});
+
+const leomonPayAvailable = computed(() => {
+  return amountOptions.value[topupUsd.value].lemon_id !== 0;
+});
+
 function payMixpay() {
-  const amounts =['1', '5', '10']
-  payment.payWithMixpay(amounts[topupUsd.value]);
+  payment.payWithMixpay(amountOptions.value[topupUsd.value].amount);
+}
+
+function payLemon() {
+  const variantId = amountOptions.value[topupUsd.value].lemon_id
+  payment.payWithLemon(variantId);
 }
 
 </script>

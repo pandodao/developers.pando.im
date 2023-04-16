@@ -1,9 +1,10 @@
-import { getApps, getBots, getMe } from "@/services/botastic";
+import { getApps, getBots, getMe, getOrderVariants } from "@/services/botastic";
 
 export const useBotasticDataStore = defineStore("botastic-data", () => {
   // states
   const apps = ref<Array<Botastic.App>>([]);
   const bots = ref<Array<Botastic.Bot>>([]);
+  const variants = ref<Array<any>>([]);
   const credits = ref<string>("0.00");
   const loading = ref(false);
 
@@ -78,11 +79,20 @@ export const useBotasticDataStore = defineStore("botastic-data", () => {
     return resp;
   }
 
+  async function loadVariants() {
+    loading.value = true;
+    const resp = await getOrderVariants();
+    variants.value = resp;
+    loading.value = false;
+    return resp;
+  }
+
   return {
     // states
     apps,
     bots,
     credits,
+    variants,
     loading,
 
     // getters
@@ -99,6 +109,7 @@ export const useBotasticDataStore = defineStore("botastic-data", () => {
     loadApps,
     loadBots,
     loadMe,
+    loadVariants,
   };
 }, { }
 );
