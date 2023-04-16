@@ -60,6 +60,8 @@
   "guard.text": "Let's get started with your blockchain wallet",
   "guard.title": "Developer Console",
   "install": "Install",
+  "login": "Login",
+  "login.twitter": "Login with Twitter",
   "ok": "OK",
   "pay.credit_card": "Pay with Credit Card",
   "pay.credit_card.desc": "Visa, MasterCard, JCB, WeChat, etc",
