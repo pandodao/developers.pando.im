@@ -1,7 +1,7 @@
 import { usePassport as _usePassport, isMVM as _isMVM } from "@foxone/mixin-passport/lib/helper";
 import type { AuthMethod } from "@foxone/uikit/types";
 import { login as talkeeLogin } from "@/services/talkee";
-import { login as botasticLogin } from "@/services/botastic";
+import { loginMixin as botasticLogin, loginTwitter as botasticLoginTwitter } from "@/services/botastic";
 
 export function useAccount() {
   const passport = _usePassport();
@@ -56,7 +56,6 @@ export function useAccount() {
     await getTalkeeData();
   }
 
-
   async function loginToBotastic() {
     try {
       const data = await passport.auth({
@@ -94,6 +93,11 @@ export function useAccount() {
     await getBotasticData();
   }
 
+  async function loginToBotasticWithTwitter(oauthToken: string, oauthVerifier: string) {
+    const data = await botasticLoginTwitter(oauthToken, oauthVerifier);
+    authStore.setServiceAuth("botastic", { token: data.access_token, channel: "twitter" });
+    await getBotasticData();
+  }
 
   function logout() {
     authStore.logout();
@@ -167,6 +171,8 @@ export function useAccount() {
     init,
     loginToTalkee,
     loginToBotastic,
+    loginToBotasticWithTwitter,
+
     logout,
     logoutServ,
     getTalkeeData,

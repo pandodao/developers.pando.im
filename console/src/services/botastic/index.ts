@@ -4,7 +4,7 @@ export function getMe(): Promise<any> {
   return http.get("/me");
 }
 
-export function login(mixinToken: string, msg: string, sig: string): Promise<any> {
+export function loginMixin(mixinToken: string, msg: string, sig: string): Promise<any> {
   const data:any = {
     lang: "ja",
   };
@@ -16,6 +16,20 @@ export function login(mixinToken: string, msg: string, sig: string): Promise<any
     data.method = "mixin_token";
     data.mixin_token = mixinToken;
   }
+  return http.post(`/auth/login`, { data });
+}
+
+export function getTwitterAuthUrl(): Promise<any[]> {
+  return http.get("/auth/twitter/url");
+}
+
+export function loginTwitter(oauthToken: string, oauthVerifier: string): Promise<any> {
+  const data:any = {
+    method: "twitter",
+    twitter_oauth_token: oauthToken,
+    twitter_oauth_verifier: oauthVerifier,
+  };
+
   return http.post(`/auth/login`, { data });
 }
 
