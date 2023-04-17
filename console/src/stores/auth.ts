@@ -6,17 +6,10 @@ export const useAuthStore = defineStore(
   "auth",
   () => {
 
-    const talkeeToken = ref("");
-    const talkeeChannel = ref<AuthMethod | "">("");
-
     const serviceTokens = ref<Record<string, string>>({});
     const serviceChannels = ref<Record<string, string>>({});
 
     const loading = ref(false);
-
-    const talkeeLogged = computed(() => {
-      return Boolean(talkeeToken.value);
-    });
 
     const servicesLogged = computed(() => {
       return (servName:string) => {
@@ -24,27 +17,13 @@ export const useAuthStore = defineStore(
       }
     });
 
-    function getTalkeeToken() {
-      return talkeeToken.value;
-    }
-
     function getServiceToken(servName: string) {
       return serviceTokens.value[servName] || "";
-    }
-
-    function setTalkeeAuth(data: any) {
-      talkeeToken.value = data.token;
-      talkeeChannel.value = data.channel;
     }
 
     function setServiceAuth(servName:string, data: any) {
       serviceTokens.value[servName] = data.token;
       serviceChannels.value[servName] = data.channel;
-    }
-
-    function clearTalkeeAuth() {
-      talkeeToken.value = "";
-      talkeeChannel.value = "";
     }
 
     function clearServiceAuth(servName:string = "") {
