@@ -16,6 +16,7 @@ export default defineNuxtPlugin((nuxtApp) => {
             bg_drawer: "#F6F6F6",
             background: "#FFF",
             swap_primary: "#F36EAE",
+            botastic: "#fe5186",
             greyscale_7: "#F8F8F8",
           },
         },

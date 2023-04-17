@@ -33,7 +33,7 @@
               <FInput v-model="nameInputValue" :label="t('botastic.name')" :placeholder="t('botastic.name.placeholder')" />
             </VCol>
             <VCol cols="12" class="text-center">
-              <FButton color="primary" rounded="sm" :disabled="!validatedEdit" @click="saveEdit">{{ $t("save") }}</FButton>
+              <FButton color="botastic" rounded="sm" :disabled="!validatedEdit" @click="saveEdit">{{ $t("save") }}</FButton>
             </VCol>
           </VRow>
         </div>
@@ -65,21 +65,21 @@
               <div class="text-body-2 mr-2">{{ t("botastic.app_id", { app_id: app.app_id }) }}</div>
             </div>
             <VSpacer />
-            <FButton color="primary" variant="outlined" size="small" rounded="sm" @click="copyAppID">{{ $t("copy") }}</FButton>
+            <FButton color="botastic" variant="tonal" size="small" rounded="sm" @click="copyAppID">{{ $t("copy") }}</FButton>
           </VCol>
           <VCol cols="12" class="d-flex align-center">
             <div>
               <div class="app_secret text-body-2 mr-2">{{ t("botastic.app_secret", { app_secret: app.app_secret }) }}</div>
             </div>
             <VSpacer />
-            <FButton color="primary" variant="outlined" size="small" rounded="sm" @click="copyAppSecret">{{ $t("copy") }}</FButton>
+            <FButton color="botastic" variant="tonal" size="small" rounded="sm" @click="copyAppSecret">{{ $t("copy") }}</FButton>
           </VCol>
           <VCol cols="12" class="d-flex align-center mb-4">
             <div>
               <div class="text-body-2 mr-2">{{ t("botastic.edit_app.text") }}</div>
             </div>
             <VSpacer />
-            <FButton color="primary" variant="outlined" size="small" rounded="sm" @click="openEditDialog">{{ $t("edit") }}</FButton>
+            <FButton color="botastic" variant="tonal" size="small" rounded="sm" @click="openEditDialog">{{ $t("edit") }}</FButton>
           </VCol>
           <VCol cols="12" class="d-flex align-center">
             <div class="text-body-2 mr-2">{{ t("botastic.delete_app.text") }}</div>

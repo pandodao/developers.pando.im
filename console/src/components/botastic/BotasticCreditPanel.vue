@@ -6,7 +6,7 @@
         <div class="text-h5">{{ credits }}</div>
       </div>
       <VSpacer />
-      <FButton color="greyscale_2" class="rounded-sm" @click="showTopupDialog = true">{{ t("topup") }}</FButton>
+      <FButton color="botastic" class="rounded-sm" @click="showTopupDialog = true">{{ t("topup") }}</FButton>
     </div>
 
     <FModal v-model="showTopupDialog" desktop="dialog" offset="16" :title="t('topup')">
@@ -14,28 +14,28 @@
         <div class="text-h6 text-center">{{ t("topup.dialog_title") }}</div>
         <VRow dense class="pa-4 mb-2">
           <VCol cols="12" class="text-center">
-            <VBtnToggle v-model="topupUsd" variant="outlined" divided>
+            <VBtnToggle v-model="topupUsd" variant="outlined" mandatory divided>
               <VBtn v-for="item in amountOptions" :key="item.label">{{ item.label }}</VBtn>
             </VBtnToggle>
           </VCol>
         </VRow>
-        <div class="px-4">
+        <div class="px-0">
           <VRow class="pa-4">
             <VCol cols="12" class="d-flex">
-              <div>
-                <div class="text-caption text-greyscale_3">{{ $t("pay.credit_card") }}</div>
-                <div class="text-body">{{ $t("pay.credit_card.desc") }}</div>
+              <div class="mr-2">
+                <div class="text-caption text-greyscale_3 font-weight-bold">{{ $t("pay.credit_card") }}</div>
+                <div class="text-body-2">{{ $t("pay.credit_card.desc") }}</div>
               </div>
               <VSpacer />
-              <FButton color="primary" rounded="sm" :disabled="!leomonPayAvailable" @click="payLemon">{{ $t("pay") }}</FButton>
+              <FButton color="botastic" rounded="sm" :disabled="!leomonPayAvailable" @click="payLemon">{{ $t("pay") }}</FButton>
             </VCol>
             <VCol cols="12" class="d-flex">
-              <div>
-                <div class="text-caption text-greyscale_3">{{ $t("pay.mixpay") }}</div>
-                <div class="text-body">{{ $t("pay.mixpay.desc") }}</div>
+              <div class="mr-2">
+                <div class="text-caption text-greyscale_3 font-weight-bold">{{ $t("pay.mixpay") }}</div>
+                <div class="text-body-2">{{ $t("pay.mixpay.desc") }}</div>
               </div>
               <VSpacer />
-              <FButton color="primary" rounded="sm" @click="payMixpay">{{ $t("pay") }}</FButton>
+              <FButton color="botastic" variant="tonal" rounded="sm" @click="payMixpay">{{ $t("pay") }}</FButton>
             </VCol>
           </VRow>
         </div>

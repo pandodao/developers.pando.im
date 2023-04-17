@@ -29,7 +29,7 @@
               <FInput v-model="nameInputValue"  :label="t('botastic.name')" :placeholder="t('botastic.name.placeholder')"  />
             </VCol>
             <VCol cols="12" class="text-center">
-              <FButton color="primary" rounded="sm" :disabled="!validatedEdit" @click="createApp">{{ $t("create") }}</FButton>
+              <FButton color="botastic" rounded="sm" :disabled="!validatedEdit" @click="createApp">{{ $t("create") }}</FButton>
             </VCol>
           </VRow>
         </div>

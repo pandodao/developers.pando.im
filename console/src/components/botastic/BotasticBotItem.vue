@@ -23,7 +23,7 @@
             <FInput v-model="testInputValue" :placeholder="t('botastic.test.input.placeholder')"  hide-details :disabled="loadingTest"/>
           </VCol>
           <VCol cols="3" class="d-flex align-center">
-            <FButton color="primary" block @click="sendTestRequest" :disabled="loadingTest">{{ t("send") }}</FButton>
+            <FButton color="botastic" block @click="sendTestRequest" :disabled="loadingTest">{{ t("send") }}</FButton>
           </VCol>
         </VRow>
         <VRow>
@@ -45,17 +45,17 @@
               <div class="text-body-2 mr-2">{{ t("botastic.bot_id", { bot_id: bot.id }) }}</div>
             </div>
             <VSpacer />
-            <FButton color="primary" variant="outlined" size="small" rounded="sm" @click="copyBotID">{{ $t("copy") }}</FButton>
+            <FButton color="botastic" variant="tonal" size="small" rounded="sm" @click="copyBotID">{{ $t("copy") }}</FButton>
           </VCol>
           <VCol cols="12" class="d-flex align-center">
             <div class="text-body-2 mr-2">{{ t("botastic.test.text") }}</div>
             <VSpacer />
-            <FButton color="primary" variant="outlined" size="small" rounded="sm" @click="openTestDialog">{{ $t("test") }}</FButton>
+            <FButton color="botastic" variant="tonal" size="small" rounded="sm" @click="openTestDialog">{{ $t("test") }}</FButton>
           </VCol>
           <VCol cols="12" class="d-flex align-center mb-4">
             <div class="text-body-2 mr-2">{{ t("botastic.edit_bot.text") }}</div>
             <VSpacer />
-            <FButton color="primary" variant="outlined" size="small" rounded="sm" @click="openEditDialog">{{ $t("edit") }}</FButton>
+            <FButton color="botastic" variant="tonal" size="small" rounded="sm" @click="openEditDialog">{{ $t("edit") }}</FButton>
           </VCol>
           <VCol cols="12" class="d-flex align-center">
             <div class="text-body-2 mr-2">{{ t("botastic.delete_bot.text") }}</div>

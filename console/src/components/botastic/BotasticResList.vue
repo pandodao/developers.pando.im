@@ -7,7 +7,7 @@
     <FDivider class="" color="red"/>
     <div class="pa-4 pb-2">
       <a href="https://developers.pando.im/references/botastic/api.html" title="API References" target="_blank">
-        <FButton variant="outlined" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">{{ t("botastic.resources.api_references") }}</FButton>
+        <FButton variant="tonal" size="small" color="greyscale_2" class="rounded-sm mr-2 mb-2">{{ t("botastic.resources.api_references") }}</FButton>
       </a>
     </div>
   </VSheet>

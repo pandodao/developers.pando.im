@@ -26,7 +26,7 @@
             <FButton color="primary" rounded="sm" block @click="openTwitterOAuthUrl">{{ t("login.twitter") }}</FButton>
           </VCol>
           <VCol cols="12" class="text-center">
-            <FButton variant="tonal" rounded="sm" block @click="loginToBotastic">{{ t("connect_wallet") }}</FButton>
+            <FButton variant="tonal" rounded="sm" block @click="connect">{{ t("connect_wallet") }}</FButton>
           </VCol>
         </VRow>
       </div>
@@ -53,6 +53,11 @@ const showLoginDialog = ref(false);
 const logged = computed(() => {
   return servicesLogged.value('botastic');
 })
+
+function connect() {
+  showLoginDialog.value = false;
+  loginToBotastic();
+}
 
 onMounted(async () => {
   if (logged.value) {

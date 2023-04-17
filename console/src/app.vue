@@ -25,7 +25,7 @@ const layout = computed(() => {
 onMounted(async () => {
   await loadAppData();
   init();
-  const code = window.navigator.language.slice(0, 2)
+  const code = window.navigator.language.toLocaleLowerCase()
   i18n.setLocale(code);
   if (smAndDown.value) {
     drawer.value = false;
