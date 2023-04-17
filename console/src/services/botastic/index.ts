@@ -36,7 +36,7 @@ export function loginTwitter(oauthToken: string, oauthVerifier: string): Promise
 export function placeOrderMixpay(amount: string, redirectUrl: string): Promise<any> {
   return http.post(`/orders`, {
     data: {
-      channel: "mixpay",
+      channel: "Mixpay",
       amount: amount,
       redirect_url: redirectUrl,
     },
@@ -46,7 +46,7 @@ export function placeOrderMixpay(amount: string, redirectUrl: string): Promise<a
 export function placeOrderLemon(variantId: any, redirectUrl: string): Promise<any> {
   return http.post(`/orders`, {
     data: {
-      channel: "lemon",
+      channel: "Lemon",
       variant_id: variantId,
       redirect_url: redirectUrl,
     },
