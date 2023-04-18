@@ -91,6 +91,9 @@
               <FTextarea class="" v-model="promptInputValue" :label="t('botastic.prompt')" :hide-details="true"/>
             </VCol>
             <VCol cols="12">
+              <FTextarea class="" v-model="boundaryPromptInputValue" :label="t('botastic.boundary_prompt')" :hide-details="true"/>
+            </VCol>
+            <VCol cols="12">
               <FInput v-model="temperatureInputValue" :label="t('botastic.temperature')" :placeholder="t('botastic.temperature.placeholder')"
                 :error-messages="temperatureInputErrors" :hide-details="true"
               />
@@ -143,6 +146,7 @@ const showDeleteDialog = ref(false);
 
 const nameInputValue = ref("");
 const promptInputValue = ref("");
+const boundaryPromptInputValue = ref("");
 const middlewaresInputValue = ref("");
 const temperatureInputValue = ref("");
 const maxTurnCountInputValue = ref("");
@@ -210,7 +214,7 @@ function saveEdit() {
   }
 
   updateBot(props.bot.id,
-    nameInputValue.value, "openai:gpt-3.5-turbo", promptInputValue.value,
+    nameInputValue.value, "openai:gpt-3.5-turbo", promptInputValue.value, boundaryPromptInputValue.value,
     temperature, maxTurnCount, contextTurnCount, middlewareConfig
   ).then(async () => {
     await getBotasticData();

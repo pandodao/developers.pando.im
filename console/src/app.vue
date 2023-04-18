@@ -11,14 +11,11 @@ import { storeToRefs } from "pinia";
 import { useDisplay } from "vuetify";
 const i18n = useI18n();
 const { smAndDown } = useDisplay();
-const { logged, init } = useAccount();
+const { init } = useAccount();
 const appStore = useAppStore();
 const { drawer } = storeToRefs(appStore);
 
 const layout = computed(() => {
-  // if (!logged.value) {
-  //   return "guard";
-  // }
   return "default";
 });
 

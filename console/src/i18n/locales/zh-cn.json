@@ -1,7 +1,7 @@
 {
   "actions": "操作",
   "botastic.app_id": "App ID：{app_id}",
-  "botastic.app_secret": "App密钥：{app_secret}",
+  "botastic.app_secret": "App 密钥：{app_secret}",
   "botastic.apps": "应用",
   "botastic.bot_id": "机器人 ID：{bot_id}",
   "botastic.bot_model": "模型：{bot_model}",
@@ -14,7 +14,7 @@
   "botastic.context_turn_count.placeholder": "机器人的上下文回合数",
   "botastic.credits.hint_disabled": "现在无法充值，请联系我们以增加您的信用额度。",
   "botastic.delete_app.confirm_text": "App 将被删除，此操作无法撤销。您确定要继续吗？",
-  "botastic.delete_app.text": "删除此App。警告：此操作无法撤销。",
+  "botastic.delete_app.text": "删除此 App。警告：此操作无法撤销。",
   "botastic.delete_bot.confirm_text": "机器人将被删除，此操作无法撤销。您确定要继续吗？",
   "botastic.delete_bot.text": "删除此机器人。警告：此操作无法撤销。",
   "botastic.edit.text": "编辑机器人的名称、提示和其他设置。",

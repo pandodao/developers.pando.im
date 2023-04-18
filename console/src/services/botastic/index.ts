@@ -95,11 +95,12 @@ export function deleteBot(id: number): Promise<Botastic.Bot> {
   return http.delete(`/bots/${id}`);
 }
 
-export function updateBot(id: number, name: string, model: string, prompt: string,
+export function updateBot(id: number, name: string, model: string, prompt: string, boundaryPrompt: string,
   temperature: number, maxTurnCount: number, contextTurnCount: number, middlewares: Object): Promise<Botastic.Bot> {
   return http.put(`/bots/${id}`, {
     data: {
       name, prompt,
+      boundary_prompt: boundaryPrompt,
       model,
       temperature,
       max_turn_count: maxTurnCount,

@@ -30,6 +30,8 @@
   "botastic.no_bot": "No Bot",
   "botastic.prompt": "Prompt",
   "botastic.prompt.placeholder": "The prompt for the bot",
+  "botastic.boundary_prompt": "Boundary Prompt",
+  "botastic.boundary_prompt.placeholder": "The boundary prompt for the bot",
   "botastic.resources": "Resources",
   "botastic.resources.api_references": "API References",
   "botastic.temperature": "Temperature",
