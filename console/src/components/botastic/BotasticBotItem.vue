@@ -227,6 +227,7 @@ function openEditDialog() {
 
   nameInputValue.value = props.bot.name;
   promptInputValue.value = props.bot.prompt;
+  boundaryPromptInputValue.value = props.bot.boundary_prompt;
   middlewaresInputValue.value = JSON.stringify(props.bot.middlewares, null, 2);
   temperatureInputValue.value = props.bot.temperature;
   maxTurnCountInputValue.value = props.bot.max_turn_count;
