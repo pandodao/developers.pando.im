@@ -12,9 +12,9 @@ The section is a draft proposal, it's not finalized yet.
 ---
 20~84 bytes: MMISG
 16    bytes: fill_asset_id
-8     bytes: minimum
 1     byte : length of route_hash
 N     bytes: route_hash
+8     bytes: minimum
 ```
 
 In which, 
@@ -22,8 +22,8 @@ In which,
 - `header` is the header of the action, `header.action` = `0x03`.
 - `MMISG` is the address of the user or the group who will receive the swap result asset.
 - `fill_asset_id` is the asset id of the asset to be filled.
-- `minimum` is the minimum amount of the asset you expect to receive. When encoding, the number should be multiplied by 10^8 and then encoded as an integer.
 - `route_hash` is the [hash_id](https://hashids.org/) of the route. The length of the hash is determined by the incoming byte.
+- `minimum` is the minimum amount of the asset you expect to receive. When encoding, the number should be multiplied by 10^8 and then encoded as an integer.
 
 `@TODO: add the route hash implementation here`
 
