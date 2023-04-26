@@ -37,7 +37,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       store.$subscribe(
         () => {
           configAuthToken(mixinHttp, store.$state.token);
-          configAuthToken(talkeeHttp, store.$state.talkeeToken);
+          configAuthToken(talkeeHttp, store.$state.serviceTokens["talkee"]);
           configAuthToken(botasticHttp, store.$state.serviceTokens["botastic"]);
           configTalkeeSiteData();
         },
