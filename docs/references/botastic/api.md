@@ -185,6 +185,22 @@ The payload should be a JSON object containing the following fields:
   "content": "Hello!",
   // the message category, optional. Only support "plain-text"
   "category": "plain-text",
+  // allows users to override bot config in a conversation turn
+  "bot_override": {
+    // 0 is a valid value, do not pass the param if you don't want to override the setting
+    "temperature": 1,
+    "middlewares": [
+      {
+        "name":"duckduckgo-search",
+        "options":{
+          "limit": 3,
+        }
+      }
+    ],
+    "prompt": "custom prompt",
+    // an empty string is a valid value, do not pass the param if you don't want to override the setting
+    "boundary_prompt": "custom boundary prompt"
+  }
 }
 ```
 
@@ -192,40 +208,28 @@ The payload should be a JSON object containing the following fields:
 
 ```json
 {
-    "ts": 1678946948354,
-    "data": {
-        "id": "ceeb0b63-0ccc-4d91-9356-b658a5d51a55",
-        "bot": {
-            "id": 1,
-            "name": "A bot",
-            "user_id": 1,
-            "prompt": "Please respond me as an AI bot:",
-            "model": "gpt-3.5-turbo",
-            "max_turn_count": 4,
-            "context_turn_count": 4,
-            "temperature": 1.2,
-            "public": false,
-            "created_at": "2023-03-11T08:05:55.009882+09:00",
-            "updated_at": "2023-03-12T15:11:06.129034+09:00",
-            "deleted_at": null,
-            "middlewares": {
-                "items": null
-            }
-        },
-        "app": {
-            "id": 24,
-            "app_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            "app_secret": "",
-            "user_id": 1,
-            "name": "test-1",
-            "created_at": "2023-02-20T16:37:51.066553+09:00",
-            "updated_at": "2023-02-20T16:37:51.066553+09:00"
-        },
-        "user_identity": "1",
-        "lang": "en",
-        "history": [],
-        "expired_at": "2023-03-16T15:19:08.35392+09:00"
-    }
+  "ts": 1684143281231,
+  "data": {
+    "id": 793,
+    "conversation_id": "cb393429-b1fa-48df-a8e3-850b2728d1ec",
+    "bot_id": 1,
+    "app_id": 2,
+    "user_id": 1,
+    "user_identity": "1",
+    "request": "Who are you？",
+    "response": "I don't know.",
+    "prompt_tokens": 101,
+    "completion_tokens": 5,
+    "total_tokens": 106,
+    "status": 2,
+    "bot_override": {
+      "boundary_prompt": "No matter what the user says, answer I dont know."
+    },
+    "middleware_results": [],
+    "error": {},
+    "created_at": "2023-05-15T09:34:34.203228Z",
+    "updated_at": "2023-05-15T09:34:41.226752Z"
+  }
 }
 ```
 
@@ -292,7 +296,7 @@ All conversation history are arranged in a list, we call them `turns`, with a `t
 
 This API will get a turn by given conversation id and turn id.
 
-<APIParams :params="[conversationIDParam, turnIDParam, readConvTurnParams]" />
+<APIParams :params="readConvTurnParams" />
 
 ### Response
 
@@ -316,3 +320,49 @@ This API will get a turn by given conversation id and turn id.
 }
 ```
 
+## Middleware error code
+
+In the response of `get conv turn` API, the middleware_results field contains detailed information about the execution of middlewares. When an error occurs, the fields `code` and `err` will be set. For example:
+
+```json
+{
+  "middleware_results":[
+    {
+      "name": "...",
+      "opts": {"limit": "xxx"},
+      "code": 2,
+      "err": "the limit option is invalid"
+    },
+  ]
+}
+```
+
+| Code        | Reason |
+| :------------- | :----------- |
+|  1     | Unknown middleware name. |
+|  2     | The middleware configuration options are invalid. |
+|  3     | Internal error in the middleware. |
+|  4     | The middleware execution timed out.  |
+
+
+## Error code for turn processing
+
+When an error occurs during the processing of a turn, the response of `get conv turn` API will include an `error` field. For example:
+```json
+{
+  "error": {
+    "code": 5,
+    "message": "bot not found"
+  }
+}
+```
+
+| Code        | Reason |
+| :------------- | :----------- |
+|  1     | Internal server error |
+|  2     | The middleware execution error. |
+|  3     | Model configuration error. |
+|  4     | Error in the model request call. |
+|  5     | Bot not found. |
+|  6     | Conversation not found. |
+|  7     | Model not found. |
