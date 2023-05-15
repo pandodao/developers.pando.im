@@ -30,7 +30,7 @@ const turnIDParam = {
   description: 'the turn id',
 }
 
-const readConvTurnParams = [{
+const readConvTurnParams = [conversationIDParam,turnIDParam,{
   name: 'block_until_response',
   type: 'boolean',
   required: false,
