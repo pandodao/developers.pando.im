@@ -67,7 +67,7 @@ The `tijs` function accepts an object with the following properties:
 
 ## Installation (Wordpress)
 
-We have a Wordpress plugin for Talkee. You can install it from the Wordpress plugin directory.
+We have a Wordpress plugin for Talkee. You can install it from the [Wordpress plugin directory](https://wordpress.org/plugins/talkee/).
 
 Alternatively, you can also install it manually by downloading the [zip file](https://github.com/pandodao/talkee-wordpress-plugin/archive/refs/heads/main.zip) from its [Github repository](https://github.com/pandodao/talkee-wordpress-plugin).
 

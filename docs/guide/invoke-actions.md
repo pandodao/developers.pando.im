@@ -6,9 +6,7 @@ To retrieve information, call the APIs and read the response.
 
 However, if you want to interact with the protocols and tell them what you want to do with cryptocurrency, you need to send transactions to Pando's multisig address. 
 
-The behavior of each transaction is illustrated by the `Action Protocol`, a byte array encoded in the transaction memo field. When you send a transaction, MTG Nodes decode the memo field and execute the action within.
-
-## Generate actions by API
+The behavior of each transaction is illustrated by the [Action Protocol](https://developers.pando.im/references/action.html), a byte array encoded in the transaction memo field. When you send a transaction, MTG Nodes decode the memo field and execute the action within.
 
 To better understand how the action works, let's generate the action manually. This time, we'll use 4swap's `swap` action as an example: We want to swap `CNB` to `DOGE`.
 
@@ -17,58 +15,43 @@ First, we need to know the asset ID of `CNB` and `DOGE`:
 - CNB: `965e5c6e-434c-3fa9-b780-c50f43cd955c`
 - DOGE: `6770a1e5-6086-44d5-b60f-545f9d9e8ffd`
 
-Those 2 assets has [a pool in 4swap](https://app.4swap.org/#/pair/detail?base=6770a1e5-6086-44d5-b60f-545f9d9e8ffd&quote=965e5c6e-434c-3fa9-b780-c50f43cd955c), so we can swap them directly.
+Those 2 assets has [a pool at Pando](https://app.pando.im/swap?mode=pro&base=6770a1e5-6086-44d5-b60f-545f9d9e8ffd&quote=965e5c6e-434c-3fa9-b780-c50f43cd955c), so we can swap them directly.
 
-### Form the action
+## Form the action
 
-The `swap` action are formatted as following string
+The ["Swap" action](references/4swap/action.html#swap) are formed as a byte-based structure. You can see the specification in the [reference](https://developer.pando.im/references/4swap/action.html#swap).
 
-```
-3,:receiver_id,:follow_id,:fill_asset_id,:routes,:minimum
-```
+You can build the structure yourself, or using the packages provided by Pando Team.
 
-:::info in which:
-- `3`: the action type, `3` means `swap`.
-- `receiver_id`: the ID of the receiver, you can use the `client_id` in your keystore.
-- `follow_id`: an UUID to trace the order. You can use `uuidgen` to generate a random UUID.
-- `fill_asset_id`: the asset ID of the asset you want to get. In the example, we want to get `DOGE`, which is `6770a1e5-6086-44d5-b60f-545f9d9e8ffd`.
-- `routes`: the routes of the swap. We'll leave it blank for now, 4swap will use [CNB/DOGE pool](https://app.4swap.org/#/pair/detail?base=6770a1e5-6086-44d5-b60f-545f9d9e8ffd&quote=965e5c6e-434c-3fa9-b780-c50f43cd955c&source=market) for the swap. In real projects, you need to [calculate the routes](https://github.com/fox-one/4swap-sdk-go/blob/e62757b2c4966d3ebac7eb40dcad7d1926c7f9e3/route.go#L169) by yourself.
-- `minimum`: the minimum amount of asset you will get. In the example, we want to get at least `0.00000001 DOGE`.
-:::
+### Generate action using `@foxone/memo-encode`
 
-Assume that your `client_id` is `eac51982-xxxx-xxxx-xxxx-xxxxxxxxxxxx`, so the action will be:
+For JavaScript developers, you can use the `@foxone/memo-encode` to generate the action quickly:
 
-```bash
-3,eac51982-xxxx-xxxx-xxxx-xxxxxxxxxxxx,$RANDOM_UUID_HERE,6770a1e5-6086-44d5-b60f-545f9d9e8ffd,,0.00000001
-```
+```javascript
+import { swap as MemoEncoder } from "@foxone/memo-encode";
 
-### Encode the action
+// swap encode
+const params = {
+  // an UUID to trace the order. We just generate a random UUID.
+  follow_id: uuid(),
+  // the asset ID of the asset you want to get. In the example, we want to get `DOGE`.
+  fill_asset_id: '6770a1e5-6086-44d5-b60f-545f9d9e8ffd',
+  // the minimum amount of asset you will get. In the example, we want to get at least `0.00000001 DOGE`.
+  minimum: 0.00000001,
+  // the routes of the swap. We'll leave it blank for now
+  // Pando will use CNB/DOGE pool for the swap. 
+  // In real projects, you need to calculate the routes by yourself: https://github.com/fox-one/4swap-sdk-go/blob/e62757b2c4966d3ebac7eb40dcad7d1926c7f9e3/route.go 
+  route_hash: "",
+  // the members group to receive the filled asset.
+  // we leave it blank to use the sender(our bot) as the receiver.
+  members: [],
+};
 
-It's hard to encode the action without writing code. Fortunately, 4swap provides an API to encode the action:
-
-```bash{4}
-$ curl --location --request POST 'https://api.4swap.org/api/actions' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "action":     "3,eac51982-xxxx-xxxx-xxxx-xxxxxxxxxxxx,'$(uuidgen)',6770a1e5-6086-44d5-b60f-545f9d9e8ffd,,0.00000001"
-}'
-```
-
-It will output something like that:
-
-```bash{4}
-{
-  "ts":1675064016874,
-  "data": {
-    "action":"PBK6......7czqcUt",
-    "follow_id":"bde36668-8715-4bdf-9a40-d13ad5561d53"
-  }
-}
+// base64 memo for mixin transaction
+const memo = MemoEncoder.encodeSwapMemo(params);
 ```
 
-The `action` field is the encoded action, we will put it in the `memo` field of the transaction.
-
-## Generate actions by SDK
+### Generate actions by 4swap SDK
 
 Action are encoded in bytes and encrypted by ed25519. It's recommended to generate it by using the [4swap SDK](https://github.com/fox-one/4swap-sdk-go), to simplify the process. 
 
