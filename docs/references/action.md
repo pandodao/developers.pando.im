@@ -1,9 +1,5 @@
 # Action Specification
 
-::: warning DRAFT PROPOSAL
-The section is a draft proposal, it's not finalized yet.
-:::
-
 Action is a byte array which contains the data and instructions for the protocol to execute. In practice, the action is encoded in the transaction memo field, which is very limited in size. So the action should be as compact as possible.
 
 To make the action compatible with URL encoding, we usually use base64 to encode the action.
