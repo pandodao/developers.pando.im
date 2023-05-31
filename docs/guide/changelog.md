@@ -1,13 +1,22 @@
 # Changelog
 
-## 1.0.0
+## 1.0.1
 
-- Effective Date: `2023-03-15`
+- Effective Date: `2023-05-31`
 - Affected Products: `4swap`
 
-::: info
-Due to the project progress, the effective date of this version have to postpone to `2023-03-30`. We will keep updating.
-:::
+the Action protocol has been released in the new version of the Pando Web App (4swap). Developers can now try migrating to Action V2.
+
+The new V2 removed encryption and makes the encoding much simpler. Of course, we still provide Go and JS SDKs to assist with the encoding process. It's also not difficult to implement it in other programming languages.
+
+Previous discussion: https://github.com/orgs/pandodao/discussions/9
+
+Other protocols' action will be updated in the future.
+
+## 1.0.0
+
+- Effective Date: `2023-03-30`
+- Affected Products: `4swap`
 
 For the reasons of performance, 4swap will make the following changes to the swap action:
 
