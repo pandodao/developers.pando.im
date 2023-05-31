@@ -1,3 +1,7 @@
+---
+outline: deep
+---
+
 # Invoke Actions
 
 Pando is a set of blockchain protocols executed by sending transactions to multisig address.
@@ -19,13 +23,15 @@ Those 2 assets has [a pool at Pando](https://app.pando.im/swap?mode=pro&base=677
 
 ## Form the action
 
-The ["Swap" action](references/4swap/action.html#swap) are formed as a byte-based structure. You can see the specification in the [reference](https://developer.pando.im/references/4swap/action.html#swap).
+The "Action" is formed as a byte-based structure. You can see the specification in the [reference](https://developer.pando.im/references/action.html).
 
 You can build the structure yourself, or using the packages provided by Pando Team.
 
 ### Generate action using `@foxone/memo-encode`
 
 For JavaScript developers, you can use the `@foxone/memo-encode` to generate the action quickly:
+
+Here is an example to generate the action for the `swap` action:
 
 ```javascript
 import { swap as MemoEncoder } from "@foxone/memo-encode";
@@ -40,7 +46,7 @@ const params = {
   minimum: 0.00000001,
   // the routes of the swap. We'll leave it blank for now
   // Pando will use CNB/DOGE pool for the swap. 
-  // In real projects, you need to calculate the routes by yourself: https://github.com/fox-one/4swap-sdk-go/blob/e62757b2c4966d3ebac7eb40dcad7d1926c7f9e3/route.go 
+  // In real projects, you need to calculate the routes by yourself
   route_hash: "",
   // the members group to receive the filled asset.
   // we leave it blank to use the sender(our bot) as the receiver.
@@ -51,62 +57,66 @@ const params = {
 const memo = MemoEncoder.encodeSwapMemo(params);
 ```
 
-### Generate actions by 4swap SDK
+### Generate actions by `mtg` packages
 
-Action are encoded in bytes and encrypted by ed25519. It's recommended to generate it by using the [4swap SDK](https://github.com/fox-one/4swap-sdk-go), to simplify the process. 
+For Golang developers, you can use the `mtg/mtgpack` and `mtg/protocol` packages to generate the action quickly.
 
-The following example shows how to generate a swap action by `mtg.SwapAction`:
+Here is an example to generate the action for the `swap` action:
 
 ```go
 import (
-  fswap "github.com/fox-one/4swap-sdk-go"
-	"github.com/fox-one/4swap-sdk-go/mtg"
-	"github.com/fox-one/mixin-sdk-go"
+  "encoding/base64"
+  "github.com/google/uuid"
+  "github.com/pandodao/mtg/mtgpack"
+  "github.com/pandodao/mtg/protocol"
+  "github.com/shopspring/decimal"
 )
 
-// ...
+func generateSwapMemo() string {
+  // protocol header
+  header := protocol.Header{
+    Version:    1,
+    ProtocolID: protocol.ProtocolFswap,
+    FollowID:   uuid.New(),
+    Action:     3,
+  }
 
-// fetch the pair list
-pairs, err := fswap.ListPairs(context.TODO())
-if err != nil {
-  return
+  // the receiver group to receive the filled asset.
+  // we leave it blank to use the sender(our bot) as the receiver.
+  receiver := protocol.MultisigReceiver{
+    Version:   1,
+    Members:   []uuid.UUID{},
+    Threshold: 0,
+  }
+
+  // id of the asset you want to get
+  assetID := "6770a1e5-6086-44d5-b60f-545f9d9e8ffd"
+  
+  // minimum amount of the asset you want to get
+  min, _ := decimal.NewFromString("0.00000001")
+  
+  // the routes of the swap. We'll leave it blank for now
+  // Pando will use CNB/DOGE pool for the swap. 
+  // In real projects, you need to calculate the routes by yourself: https://github.com/fox-one/4swap-sdk-go/blob/e62757b2c4966d3ebac7eb40dcad7d1926c7f9e3/route.go 
+  route := ""
+
+  // encode memo
+  enc := mtgpack.NewEncoder()
+  if err := enc.EncodeValues(header, receiver, uuid.MustParse(assetID), route, min); err != nil {
+    panic(err)
+  }
+  return base64.StdEncoding.EncodeToString(enc.Bytes())
 }
-
-// sort first
-sort.Slice(pairs, func(i, j int) bool {
-  aLiquidity := pairs[i].BaseValue.Add(pairs[i].QuoteValue)
-  bLiquidity := pairs[j].BaseValue.Add(pairs[j].QuoteValue)
-  return aLiquidity.GreaterThan(bLiquidity)
-})
-
-// calculate the routes
-preOrder, err := fswap.Route(pairs, inputAssetID, outputAssetID, inputAmount)
-if err != nil {
-  return nil, err
-}
-
-// the ID to trace the orders
-followID, _ := uuid.NewV4()
-
-// build a swap action, specified the parameters
-action := mtg.SwapAction(
-    receiverID,
-    followID.String(),
-    outputAssetID,
-    // the routes of the swap
-    preOrder.Routes,
-    // the minimum amount of asset you will get.
-    // you may want to change this value to a number which is less than preOrder.FillAmount
-    preOrder.FillAmount.Div(decimal.NewFromFloat(0.005)),
-)
-
-// generate the memo
-memo, err := action.Encode(group.PublicKey)
-if err != nil {
-    return err
-}
-log.Println("memo", memo)
 ```
+
+::: tip
+To simplify the process, we don't specify the `receiver` and `route` fields. 
+However, in real projects, you may need to calculate the routes by yourself, and specify the correct receiver or receivers group.
+
+For the route hash algorithm, you can refer to the [4swap-sdk-go](https://github.com/fox-one/4swap-sdk-go/blob/master/route.go#LL10C1-L29C2).
+
+For the receiver group specification, you can refer to the [Action Specification](https://developers.pando.im/references/action.html).
+:::
 
 ## Send transactions
 
