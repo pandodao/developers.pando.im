@@ -64,6 +64,13 @@ In which,
 - `follow_id` is a 16 bytes uuid, it's used to trace the action. It can be omitted if the `has_follow_id` is 0.
 - `action` is the action id. The meaning of the action id is described by the protocol.
 
+## SDK to generate action
+
+Although you can generate the action by yourself, and the action protocol is very simple, Pando Proto Team provides 2 packages to generate the action:
+
+- Golang: [pandodao/mtgpack](https://github.com/pandodao/mtg)
+- Javascript: [@foxone/memo-encode](https://github.com/pandodao/pando-libs/blob/main/packages/memo/ReadMe.md)
+
 ## Pando Action Protocol Payload
 
 The protocol body is attached to the protocol header. You can define the content according to your own needs

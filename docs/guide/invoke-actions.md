@@ -144,7 +144,7 @@ the `memo` field is the action you generated.
 
 Run the command and type `y` to confirm the transfer, you will see the transaction is sent to the 4swap MTG. Wait for a while, you will receive some `DOGE` in your keystore:
 
-```base{3}
+```bash
 $ mixin-cli -f $LYRIC_KEYSTORE asset list
 AssetId                               Symbol     Name                     Balance
 6770a1e5-6086-44d5-b60f-545f9d9e8ffd  DOGE       Dogecoin                 0.00000212
