@@ -23,7 +23,7 @@ Those 2 assets has [a pool at Pando](https://app.pando.im/swap?mode=pro&base=677
 
 ## Form the action
 
-The "Action" is formed as a byte-based structure. You can see the specification in the [reference](https://developer.pando.im/references/action.html).
+The "Action" is formed as a byte-based structure. You can see the specification in the [reference](https://developers.pando.im/references/action.html).
 
 You can build the structure yourself, or using the packages provided by Pando Team.
 
