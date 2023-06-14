@@ -5,7 +5,7 @@ Action is a byte array which contains the data and instructions for the protocol
 To make the action compatible with URL encoding, we usually use base64 to encode the action. 
 
 :::info
-All integers are encoded in big endian in the action. [Ref](https://github.com/pandodao/mtg/blob/main/mtgpack/encode.go#L61)
+All integers are encoded in big endian in the action. [Source](https://github.com/pandodao/mtg/blob/main/mtgpack/encode.go#L61).
 :::
 
 ## MMISG
