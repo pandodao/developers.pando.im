@@ -104,7 +104,8 @@ export default {
       ]
     },
     footer: {
-      copyright: 'Copyright © 2018-present <a href="https://pando.im">Pando Proto</a>'
+      copyright: 'Copyright © present <a href="https://pando.im" title="Pando is a set of DeFi protocols">Pando Proto</a>',
+      message: '<a href="https://pando.im/defi" title="What is DeFi? Exploring the Operatin of Decentralized Finance at Pando" target="_blank">DeFi</a>・<a href="https://pando.im/leaf" title="What is Stablecoin? Exploring the stablecoin at Pando" target="_blank">Stablecoin</a>',
     }
   }
 }
