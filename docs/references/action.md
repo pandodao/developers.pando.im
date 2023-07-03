@@ -45,6 +45,13 @@ Each action chould be constructed as a header and a payload. The header is used 
 ```yaml
 5~21  bytes: header
 N     bytes: payload
+4     bytes: checksum (header version == 2)
+```
+
+- `checksum` is the checksum of the action. It is the last 4 bytes of the two round sha256 hash of the action without the checksum.
+
+```
+checksum = sha256(sha256(header + payload))[0:4]
 ```
 
 ## Pando Action Protocol Header
@@ -63,6 +70,7 @@ It's used to identify the protocol and the action in the payload.
 
 In which, 
 
+- `version` is the version of the protocol, it's used to identify the protocol version.
 - `protocol_id` is described in [previous section](./overview#protocol-id).
 - `has_follow_id` is a boolean value, if it's 1, then the `follow_id` is included in the header, otherwise it's not.
 - `follow_id` is a 16 bytes uuid, it's used to trace the action. It can be omitted if the `has_follow_id` is 0.
