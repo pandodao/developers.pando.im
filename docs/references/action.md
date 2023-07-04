@@ -45,6 +45,7 @@ Each action chould be constructed as a header and a payload. The header is used 
 ```yaml
 5~21  bytes: header
 N     bytes: payload
+4     bytes: checksum
 ```
 
 ## Pando Action Protocol Header
@@ -67,6 +68,22 @@ In which,
 - `has_follow_id` is a boolean value, if it's 1, then the `follow_id` is included in the header, otherwise it's not.
 - `follow_id` is a 16 bytes uuid, it's used to trace the action. It can be omitted if the `has_follow_id` is 0.
 - `action` is the action id. The meaning of the action id is described by the protocol.
+
+## Pando Action Protocol Checksum
+
+The checksum is used to verify the integrity of the action. It's calculated by the following formula:
+
+```go
+checksum = sha256(sha256(header + payload))[:4]
+```
+
+Let's explain it in detail:
+
+1. Concatenate the header and the payload.
+2. Calculate the sha256 of the result.
+3. Calculate the sha256 of the result again.
+4. Take the first 4 bytes of the result.
+5. The result is the checksum, append it to the end of the action.
 
 ## SDK to generate action
 
