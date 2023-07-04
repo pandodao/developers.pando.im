@@ -1,11 +1,20 @@
 # Changelog
 
+## 1.0.2 
+
+- Effective Date: `2023-07-30`
+- Affected Protocols: all protocols
+
+We plan to add a new field `checksum` to the action, which is used to verify the integrity of the action.
+
+Please read the draft [here](https://developers.pando.im/references/action.html#pando-action-protocol-checksum)
+
 ## 1.0.1
 
 - Effective Date: `2023-05-31`
-- Affected Products: `4swap`
+- Affected Protocols: all protocols
 
-the Action protocol has been released in the new version of the Pando Web App (4swap). Developers can now try migrating to Action V2.
+The Action protocol has been released in the new version of the Pando Web App (4swap). Developers can now try migrating to Action V2.
 
 The new V2 removed encryption and makes the encoding much simpler. Of course, we still provide Go and JS SDKs to assist with the encoding process. It's also not difficult to implement it in other programming languages.
 
@@ -16,7 +25,7 @@ Other protocols' action will be updated in the future.
 ## 1.0.0
 
 - Effective Date: `2023-03-30`
-- Affected Products: `4swap`
+- Affected Protocols: `4swap`
 
 For the reasons of performance, 4swap will make the following changes to the swap action:
 

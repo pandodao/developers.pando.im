@@ -71,6 +71,10 @@ In which,
 
 ## Pando Action Protocol Checksum
 
+::: warning DRAFT PROPOSAL
+The section is a draft proposal, it's not finalized yet.
+:::
+
 The checksum is used to verify the integrity of the action. It's calculated by the following formula:
 
 ```go
