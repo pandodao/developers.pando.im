@@ -100,6 +100,13 @@ export default {
             { text: 'Restful API', link: '/references/botastic/api' },
             { text: 'Middleware', link: '/references/botastic/middleware' },
           ]
+        },
+        {
+          text: 'Pool',
+          collapsed: true,
+          items: [
+            { text: 'Design', link: '/references/pool/design' }
+          ]
         }
       ]
     },

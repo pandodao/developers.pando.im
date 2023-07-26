@@ -12,6 +12,7 @@
 | 4swap | 0x01 |
 | Leaf  | 0x02 |
 | Rings | 0x03 |
+| Pool | 0x04 |
 
 
 ## API base
@@ -25,3 +26,4 @@
 | `https://talkee-api.pando.im/api`     | Talkee  | primary |
 | `https://talkee-ws.pando.im/ws`     | Talkee  | primary (Websocket) |
 | `https://botastic-api.pando.im/api`     | Botastic  | primary |
+| `TODO`     | Pool  | primary |
