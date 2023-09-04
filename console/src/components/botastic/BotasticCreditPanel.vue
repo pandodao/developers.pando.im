@@ -21,14 +21,14 @@
         </VRow>
         <div class="px-0">
           <VRow class="pa-4">
-            <VCol cols="12" class="d-flex">
+            <!-- <VCol cols="12" class="d-flex">
               <div class="mr-2">
                 <div class="text-caption text-greyscale_3 font-weight-bold">{{ $t("pay.credit_card") }}</div>
                 <div class="text-body-2">{{ $t("pay.credit_card.desc") }}</div>
               </div>
               <VSpacer />
               <FButton color="botastic" rounded="sm" :disabled="!leomonPayAvailable" @click="payLemon">{{ $t("pay") }}</FButton>
-            </VCol>
+            </VCol> -->
             <VCol cols="12" class="d-flex">
               <div class="mr-2">
                 <div class="text-caption text-greyscale_3 font-weight-bold">{{ $t("pay.mixpay") }}</div>
@@ -83,10 +83,10 @@ function payMixpay() {
   payment.payWithMixpay(amountOptions.value[topupUsd.value].amount);
 }
 
-function payLemon() {
-  const variantId = amountOptions.value[topupUsd.value].lemon_id
-  payment.payWithLemon(variantId);
-}
+// function payLemon() {
+//   const variantId = amountOptions.value[topupUsd.value].lemon_id
+//   payment.payWithLemon(variantId);
+// }
 
 </script>
 
