@@ -52,7 +52,6 @@ const services = computed(() => {
   return [
     { label: "Home", icon: servIcons.pandoIcon, route: "index" },
     { label: "Botastic", icon: servIcons.botasticIcon, route: "botastic" },
-    { label: "Talkee", icon: servIcons.talkeeIcon, route: "talkee" }
   ]
 });
 
