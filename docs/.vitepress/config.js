@@ -86,14 +86,6 @@ export default {
           ]
         },
         {
-          text: 'Talkee',
-          collapsed: true,
-          items: [
-            { text: 'Restful API', link: '/references/talkee/api' },
-            { text: 'Websocket', link: '/references/talkee/websocket' },
-          ]
-        },
-        {
           text: 'Botastic',
           collapsed: true,
           items: [

@@ -51,23 +51,6 @@
       </div>
     </VSheet>
 
-    <VSheet class="pa-4 mb-4 rounded-sm" color="greyscale_7" elevation="1">
-      <div class="d-flex mb-3 justify-begin">
-        <img class="mr-1" :src="servIcons.talkeeIcon" :width="24" :height="24" />
-      </div>
-      <h3 class="text-h6 mb-2">{{ t("welcome.title.talkee") }}</h3>
-      <div class="text-body-1 text-greyscale_3 mb-4">
-        {{ t("welcome.text.talkee") }}
-      </div>
-      <div>
-        <a href="./talkee" class="mr-2">
-          <FButton variant="outlined" color="primary" rounded="sm" >{{ t("getting_started") }}</FButton>
-        </a>
-        <a href="https://developers.pando.im/references/talkee/api.html" target="_blank" class="mr-2">
-          <FButton variant="outlined" color="primary" rounded="sm" >{{ t("documents") }}</FButton>
-        </a>
-      </div>
-    </VSheet>
   </div>
 </template>
 
