@@ -32,7 +32,7 @@ export default defineNuxtConfig({
         },
       ],
       script: [
-        { src: "https://polyfill.io/v3/polyfill.min.js?features=Intl" },
+        { src: "https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=Intl" },
         { src: "https://cdn.jsdelivr.net/npm/@foxone/mvm@0.1.30/dist/mvm.min.js", defer: true },
       ],
     },
