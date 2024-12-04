@@ -69,13 +69,14 @@ import (
   "github.com/google/uuid"
   "github.com/pandodao/mtg/mtgpack"
   "github.com/pandodao/mtg/protocol"
+  "github.com/pandodao/mtg/protocol/checksum"
   "github.com/shopspring/decimal"
 )
 
 func generateSwapMemo() string {
   // protocol header
   header := protocol.Header{
-    Version:    1,
+    Version:    2,
     ProtocolID: protocol.ProtocolFswap,
     FollowID:   uuid.New(),
     Action:     3,
@@ -105,7 +106,10 @@ func generateSwapMemo() string {
   if err := enc.EncodeValues(header, receiver, uuid.MustParse(assetID), route, min); err != nil {
     panic(err)
   }
-  return base64.StdEncoding.EncodeToString(enc.Bytes())
+
+  data := enc.Bytes()
+	data = append(data, checksum.Sha256(data)...)
+	return base64.StdEncoding.EncodeToString(data)
 }
 ```
 
